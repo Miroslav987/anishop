@@ -1,0 +1,31 @@
+import { SearchParamProps } from "@/lib/definitions";
+import { useModal } from "@/context/ModalProvider";
+import clsx from "clsx";
+import Link from "next/link";
+import React, { useEffect, useState } from "react";
+
+export default function Exite() {
+  const { closeModal } = useModal();
+
+  return (
+    <>
+      <div className=" w-[646] rounded-[10px] bg-white py-[80] px-[90]">
+        <p className=" font-[MullerBold] text-[26px] text-center pb-[48px]">
+          Выход
+        </p>
+        <div className="flex gap-[48px] h-[60px] justify-between">
+          <button
+            onClick={closeModal}
+            className="w-full rounded-[10px] border-black bg-black border text-white hover:bg-white hover:text-black"
+          >
+            Отмена
+          </button>
+
+          <button className="w-full rounded-[10px] border-black border-2 hover:bg-black hover:text-white">
+            Выйти
+          </button>
+        </div>
+      </div>
+    </>
+  );
+}

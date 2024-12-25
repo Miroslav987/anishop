@@ -3,19 +3,78 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --black_first: #1E2128;
+  /* --black_first: #FAF9F9; */
+  
+  --black_second: #32353C;
+
+  --white:#ffffff;
+  /* --white:#000000; */
+
+  --grey_first: #FAF9F9;
+  /* --grey_first: #1E2128; */
+  
+  --grey_second: #AAADB4;
+  --grey_third: #D9DDDF;
+  --yellow: #E4A529;
+  --green_first: #20CF5B;
+  --green_second: #20CF5B0F;
+  --shadow_first:0 0 10px 0 #00000014;
+  --radius:10px;
 }
 
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: white) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
   }
-}
+} */
+
+/* p,input,label,button {
+  color: var(--black_first);
+} */
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  color: var(--black);
+  background: var(--grey_first);
+  font-family: var(--Muller);
+}
+
+a{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+input[type='checkbox'] {
+  width: 20px;   /* Устанавливает ширину */
+  height: 20px;  
+  accent-color: var(--black); 
+}
+
+
+.scroll_style::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+ background-color: var(--grey_third);
+}
+
+.scroll_style::-webkit-scrollbar {
+  width: 5px;
+ background-color: rgba(255, 255, 255, 0);
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0; 
+}
+input:checked {
+  accent-color: var(--black_first);
+}
+
+
+@layer components {
+  .container {
+    max-width: 1120px;
+  }
 }

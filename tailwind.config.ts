@@ -8,9 +8,34 @@ export default {
   ],
   theme: {
     extend: {
+      borderRadius:{
+        'radius':'var(--radius)'
+      },
+
+      boxShadow: {
+        'shadow_first': 'var(--shadow_first)',
+      },
+
+      fontFamily: {
+        "MullerBold":".//",
+        "MullerLight":".//"
+      },
+
+      container:{
+        center:true,
+        padding:"0 20",
+      },
+
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        white: "var(--white)",
+        black: "var(--black_first)",
+        black_second: "var(--black_second)",
+        grey_first: "var(--grey_first)",
+        grey_second: "var(--grey_second)",
+        grey_third: "var(--grey_third)",
+        yellow: "var(--yellow)",
+        green_first: "var(--green_first)",
+        green_second: "var(--green_second)",
       },
     },
   },

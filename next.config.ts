@@ -1,7 +1,9 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  // images: {
+  //   domains: ['api-3tuib.strapidemo.com'], // Add the external domain here
+  // },
 };
 
 export default nextConfig;

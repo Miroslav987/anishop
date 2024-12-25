@@ -1,15 +1,29 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import Footer from "../components/Footer";
+import Exite from "../components/modals/Exite";
+import ModalProvider from "@/context/ModalProvider";
+import NavBar from "@/components/Navbar";
+import DetailsInfoProvider from "@/context/DetailsInfoProvidre";
+import StoreProvider from "./StoreProvider";
+import { makeStore } from "@/lib/store";
 
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
+const mullerLight = localFont({
+  src: "../fonts/Mullerlight.ttf",
+  variable: "--Mullerlight",
   weight: "100 900",
 });
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
+
+const muller = localFont({
+  src: "../fonts/Muller.ttf",
+  variable: "--Muller",
+  weight: "100 900",
+});
+
+const mullerBold = localFont({
+  src: "../fonts/MullerBold.ttf",
+  variable: "--MullerBold",
   weight: "100 900",
 });
 
@@ -26,9 +40,17 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${muller.variable}  ${mullerBold.variable} antialiased`}
       >
-        {children}
+        <StoreProvider>
+          <ModalProvider>
+            <DetailsInfoProvider>
+              <NavBar />
+                {children}
+              <Footer />
+            </DetailsInfoProvider>
+          </ModalProvider>
+        </StoreProvider>
       </body>
     </html>
   );
