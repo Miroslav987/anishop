@@ -1,12 +1,13 @@
-import { SearchParamProps } from "@/lib/definitions";
+
 import { useModal } from "@/context/ModalProvider";
+import { useAuth } from "@/lib/features/user/UserServer";
 import clsx from "clsx";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 
 export default function Exite() {
   const { closeModal } = useModal();
-
+  const {Logout} = useAuth()
   return (
     <>
       <div className=" w-[646] rounded-[10px] bg-white py-[80] px-[90]">
@@ -21,7 +22,7 @@ export default function Exite() {
             Отмена
           </button>
 
-          <button className="w-full rounded-[10px] border-black border-2 hover:bg-black hover:text-white">
+          <button onClick={Logout} className="w-full rounded-[10px] border-black border-2 hover:bg-black hover:text-white">
             Выйти
           </button>
         </div>

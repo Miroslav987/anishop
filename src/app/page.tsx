@@ -6,20 +6,20 @@ import { useEffect, useRef, useState } from "react";
 import Sorting from "../components/Sorting";
 import { useDispatch } from "react-redux";
 import { useAppSelector } from "@/lib/hooks";
-// import { GetProducts } from "@/lib/features/ProductsAPI";
-// import { checkAuthState, LogInViaLink } from "@/lib/features/AuthSlice";
+import { auth } from "@/lib/fire";
+import { onAuthStateChanged } from "firebase/auth";
+import { usePathname, useRouter } from "next/navigation";
+import { useProduct } from "@/lib/features/products/ProductServer";
 
 
 export default function Home() {
-  const dispatch = useDispatch()
-  const {products ,status} = useAppSelector(state => state.products)
-  
-  useEffect(()=>{
-    // checkAuthState(dispatch)
- 
-    // GetProducts(dispatch)
-  },[])
-  
+  const {GetProducts} = useProduct()
+  const { products, status } = useAppSelector(state => state.products)
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    GetProducts(dispatch)
+  }, []);
 
   return (
     <>
@@ -31,14 +31,18 @@ export default function Home() {
           </div>
           <Sorting />
           <div className="w-full flex flex-wrap gap-[20] justify-between">
-          {products ? products.map((e: any)=>(
+            {products ? products.map((e: any) => (
               <Card e={e} />
-          )):<p>Пусто</p>}
-           
-            <button className=" w-[264px] h-[48] rounded-[10] m-auto mt-[40] bg-black text-white">
-              Загрузить еще
-            </button>
+              // console.log(e)
+              
+              )) :
+               <p>Пусто</p>
+            }
           </div>
+
+          <button className=" w-[264px] h-[48] rounded-[10] m-auto mt-[40] bg-black text-white">
+            Загрузить еще
+          </button>
         </div>
       </div>
     </>

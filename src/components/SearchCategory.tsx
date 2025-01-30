@@ -7,8 +7,9 @@ export default function SearchCategory() {
   return (
     <div className={` w-full flex gap-[16]  mb-[50] font-[MullerBold] overflow-hidden `}>
         <ScrollContainer  vertical={false}  className='w-full flex gap-[16] '>
-            {category.map((e)=>(
-            <button className={`
+            {category.map((e,i)=>(
+            <button key={i} className={`
+              
                 whitespace-nowrap
                 flex justify-center items-center 
                 py-[16] px-[30] h-[48] rounded-[10] bg-white

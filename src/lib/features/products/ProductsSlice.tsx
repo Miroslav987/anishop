@@ -1,7 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
-import { createAppSlice } from "../CreateAppSlice";
-import { GetProducts } from "./ProductsAPI";
+import { createAppSlice } from "../../CreateAppSlice";
 
 
 
@@ -22,8 +21,8 @@ const initialState:ProductsState = {
 export const productsSlice = createAppSlice({
     name:"products",
     initialState,
-    reducers:(create)=> ({
-        Setproducts: create.reducer((state,action)=>{
+    reducers:()=> ({
+        Setproducts:((state,action)=>{
             state.products = action.payload
             console.log(action.payload);
         }),

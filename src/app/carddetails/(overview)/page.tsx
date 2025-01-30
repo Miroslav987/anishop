@@ -3,7 +3,7 @@ import Descrition from "@/components/carddetails/Descrition";
 import Сharacterization from "@/components/carddetails/Сharacterization";
 import MainInfo from "@/components/carddetails/MainInfo";
 import CardSwiper from "@/components/carddetails/Swiper";
-import { useDetailsInfo } from "@/context/DetailsInfoProvidre";
+import { useDetailsInfo } from "@/context/CardDetailsInfoProvidre";
 import clsx from "clsx";
 
 export default function page()  {

@@ -1,9 +1,13 @@
 import type { Action, ThunkAction } from "@reduxjs/toolkit";
-import { combineSlices, configureStore } from "@reduxjs/toolkit";
-import { productsSlice } from "./features/ProductsSlice";
+import { combineReducers, combineSlices, configureStore } from "@reduxjs/toolkit";
+import { productsSlice } from "./features/products/ProductsSlice";
+import { userSlice } from "./features/user/UserSlice";
+// import  { productsSlice } from "./features/products/ProductsSlice";
+
 
 const rootReducer = combineSlices(
   productsSlice,
+  userSlice
 );
 export type RootState = ReturnType<typeof rootReducer>;
 

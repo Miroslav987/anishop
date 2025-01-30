@@ -23,12 +23,12 @@ export default function layout({children}:{children:React.ReactNode}) {
       <div className="mt-[53px] ">
         <p className="mb-[20px] text-[26px]">Возможно вы искали</p>
         <div className="flex flex-wrap gap-[20px] justify-start">
+          {/* <Card/>
           <Card/>
           <Card/>
           <Card/>
           <Card/>
-          <Card/>
-          <Card/>
+          <Card/> */}
         </div>
       </div>
     </div>

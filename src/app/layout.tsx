@@ -5,10 +5,9 @@ import Footer from "../components/Footer";
 import Exite from "../components/modals/Exite";
 import ModalProvider from "@/context/ModalProvider";
 import NavBar from "@/components/Navbar";
-import DetailsInfoProvider from "@/context/DetailsInfoProvidre";
+import DetailsInfoProvider from "@/context/CardDetailsInfoProvidre";
 import StoreProvider from "./StoreProvider";
 import { makeStore } from "@/lib/store";
-
 const mullerLight = localFont({
   src: "../fonts/Mullerlight.ttf",
   variable: "--Mullerlight",
@@ -37,6 +36,7 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
   return (
     <html lang="en">
       <body

@@ -24,15 +24,11 @@ const ModalProvider = (props: ModalProviderProps) => {
 
   const openModal = (content: any) => {
     setState({isOpen: true, content})
-    console.log(state.isOpen);
 
   };
 
   const closeModal = () => {
     setState((prev: any) => ({...prev, isOpen: false}));
-
-    console.log(state.isOpen);
-    
   };
   
   return (
@@ -43,6 +39,7 @@ const ModalProvider = (props: ModalProviderProps) => {
     className={clsx(`w-full fixed  inset-0 backdrop-blur-[10px] bg-[#1E21281A]  flex items-center justify-center `,
      { " hidden ": !state.isOpen }
      )}>
+     
       {state.content}
    </div>
       {props.children}
