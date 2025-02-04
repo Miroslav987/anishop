@@ -46,10 +46,10 @@ export default function Card({e}:any) {
 // addRating(2, 5);  // Добавляем оценку 5 для товара с ID 2
 // getAverageRating(1); // Печатаем средний рейтинг товара с ID 1
 // getAverageRating(2)
+  console.log(e);
   
-console.log(e.extraProduct[1].images[0]);
   return (
-    <Link href={`carddetails`}>
+    <Link href={`/carddetails/${encodeURIComponent(e.id)}`}>
     <div className="relative  w-[291px] h-[326px] p-[18] rounded-[10] bg-white shadow-[0_0_10px_0_#00000014]">
       <button className="absolute top-[10] left-[18] flex justify-center items-center bg-grey_first rounded-[10]  w-[36] h-[32] p-[5]  hover:invert-[100%]">
       <svg width="15" height="15" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">

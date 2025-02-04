@@ -1,15 +1,17 @@
 import { db } from "@/lib/fire"
-import { addDoc, collection, getDocs } from "firebase/firestore"
+import { addDoc, collection, doc, getDoc, getDocs, setDoc } from "firebase/firestore"
 import { useDispatch } from "react-redux"
-import { Setproducts } from "./ProductsSlice"
+import { SetOneProduct, Setproducts } from "./ProductsSlice"
+import { AppDispatch } from "@/lib/store"
 
 export const  useProduct =()=> {
+const dispatch:AppDispatch = useDispatch()
 
  const GetProducts = async(dispatch:any)=> {
     try {
         const data = await getDocs(collection(db,"products"))
         const products = data.docs.map(doc => ({
-            ...doc.data()
+            ...doc.data(),
         }));
         dispatch(Setproducts(products))
     } catch (error) {
@@ -19,11 +21,26 @@ export const  useProduct =()=> {
 
  const AddProduct = async(product:any)=> {
     try {
-        const data = await addDoc(collection(db, "products"), product)
+        const data = await setDoc(doc(db, "products", product.id),product)
+        console.log(data);
+        
       } catch (error) {
         console.log(error);
   
       }
 }
-return{GetProducts,AddProduct}
+
+const GetOneProduct = async(id:any,dispatch:any)=>{
+    try {
+        const data = doc(db, `products/${id}`)
+        const  product = await getDoc(data);
+        
+        dispatch(SetOneProduct(product.data()))
+        
+    } catch (error) {
+        console.log(error);
+    }
+} 
+
+return{GetProducts,GetOneProduct,AddProduct}
 }

@@ -6,13 +6,15 @@ import { createAppSlice } from "../../CreateAppSlice";
 
  export interface ProductsState {
     products:any,
-    status: "good"|"loading"|"failed",
+    oneProduct:any,
+    loading:boolean,
 
 }
 
 const initialState:ProductsState = {
     products:[],
-    status:"good",
+    oneProduct:{},
+    loading:true,
 
 }
 
@@ -24,19 +26,23 @@ export const productsSlice = createAppSlice({
     reducers:()=> ({
         Setproducts:((state,action)=>{
             state.products = action.payload
-            console.log(action.payload);
         }),
+        SetOneProduct:((state,action)=>{
+            state.oneProduct = action.payload
+            state.loading= false
+        })
 
         }),
         selectors:{
             selectProduct:(state) => state.products,
-            selectStatus:(state) => state.status
+            selectOneProduct:(state) => state.oneProduct,
+            selectStatus:(state) => state.loading
         }
     })
 
 
 
-export const {Setproducts} = productsSlice.actions
+export const {Setproducts,SetOneProduct} = productsSlice.actions
 export default productsSlice.reducer
 
 

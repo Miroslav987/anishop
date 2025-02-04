@@ -1,5 +1,5 @@
 "use client"
-import Descrition from '@/components/carddetails/Descrition';
+import Descrition from '@/components/carddetails/Description';
 import clsx from 'clsx';
 import React, {createContext, useContext, useState} from 'react';
 

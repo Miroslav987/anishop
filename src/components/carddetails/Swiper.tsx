@@ -6,8 +6,8 @@ import React, { useRef } from "react";
 import { Swiper, SwiperSlide, useSwiper } from "swiper/react";
 import Image from "next/image";
 
-export default function CardSwiper() {
-  // Создаем ссылку для экземпляра Swiper
+export default function CardSwiper({images}:any) {
+
   const swiperRef = useRef<any | null>(null);
 
   const handlePrev = () => {
@@ -19,49 +19,28 @@ export default function CardSwiper() {
   };
 
   return (
-    <div className="w-[400px] details_swiper">
+    <div className="w-[60%] details_swiper">
       <div className="relative">
         <Swiper
           loop={true}
-          className="w-[80%]"
+          className="w-[100%]"
           spaceBetween={50}
           slidesPerView={1}
           ref={swiperRef}
         >
+          {images.map((e:any)=>
           <SwiperSlide className="flex justify-center">
-            <Image
-              src="/images/cardphoto.png"
-              width={310}
-              height={340}
-              className=""
-              alt="logo"
-            />
+            <img src={e} alt="" />
           </SwiperSlide>
-          <SwiperSlide className="flex justify-center">
-            <Image
-              src="/images/cardphoto.png"
-              width={310}
-              height={340}
-              className=""
-              alt="logo"
-            />
-          </SwiperSlide>
-          <SwiperSlide className="flex justify-center">
-            <Image
-              src="/images/cardphoto.png"
-              width={310}
-              height={340}
-              className=""
-              alt="logo"
-            />
-          </SwiperSlide>
+        )}
+
         </Swiper>
-        <div className="w-full absolute top-[50%] flex  justify-between">
-          <button onClick={handlePrev}>
+        <div className=" absolute top-[50%] inset-x-[10px] flex z-[2]  justify-between">
+          <button className="bg-white p-[10px] rounded-full" onClick={handlePrev}>
             <svg
               className="rotate-90"
-              width="15"
-              height="15"
+              width="25"
+              height="25"
               viewBox="0 0 10 6"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
@@ -75,11 +54,11 @@ export default function CardSwiper() {
               />
             </svg>
           </button>
-          <button onClick={handleNext}>
+          <button className="bg-white p-[10px] rounded-full" onClick={handleNext}>
             <svg
               className="rotate-[-90deg]"
-              width="15"
-              height="15"
+              width="25"
+              height="25"
               viewBox="0 0 10 6"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"

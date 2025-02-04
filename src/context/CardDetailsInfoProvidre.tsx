@@ -1,5 +1,5 @@
 "use client"
-import Descrition from '@/components/carddetails/Descrition';
+import Description from '@/components/carddetails/Description';
 import clsx from 'clsx';
 import React, {createContext, useContext, useState} from 'react';
 
@@ -15,8 +15,8 @@ type CardDetailsInfoProviderProps = {
 const SnackbarContext = createContext<CardDetailsInfoContextType | undefined>(undefined);
 
 const initialState = {
-  text:true,
-  content: <Descrition/>
+  text:false,
+  content: <Description/>
 }
 
 const DetailsInfoProvider = (props: CardDetailsInfoProviderProps) => {

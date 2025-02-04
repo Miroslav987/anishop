@@ -1,10 +1,8 @@
 import Card from "@/components/cards/Card";
 import Link from "next/link";
 
-export default function layout({children}:{children:React.ReactNode}) {
-    // const router = useRouter()
-    // const {profile} = router.query;
-    //   console.log(profile);
+export default async function layout ({children}:{children:React.ReactNode}) {
+
       
     return (
       <div className='container'>

@@ -36,6 +36,7 @@
 
 *{
   cursor: url("/icons/cursor.png"),auto ;
+
   :active {
     cursor: url("/icons/cursorclick.png"),auto ;
   }
@@ -47,6 +48,19 @@ body {
   font-family: var(--Muller);
 }
 
+button {
+  :hover {
+    cursor:pointer !important ;
+  }
+  :active {
+    cursor: pointer !important;
+  }
+}
+button:active {
+    cursor: pointer !important;
+
+}
+
 a{
   display: flex;
   align-items: center;
@@ -54,7 +68,7 @@ a{
 }
 
 input[type='checkbox'] {
-  width: 16px;   /* Устанавливает ширину */
+  width: 16px;  
   height: 16px;  
   accent-color: var(--black); 
 }

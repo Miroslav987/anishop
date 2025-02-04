@@ -11,6 +11,7 @@ import { addDoc, collection } from "firebase/firestore";
 import { db, storage } from "@/lib/fire";
 import Cookies from 'js-cookie';
 import { deleteObject, getDownloadURL, listAll, ref, uploadBytes } from "firebase/storage";
+import { useProduct } from "@/lib/features/products/ProductServer";
 
 interface extraProduct {
   color: string,
@@ -21,6 +22,7 @@ interface extraProduct {
   quantity: any,
 }
 export default function page() {
+  const {AddProduct} =useProduct()
   const cookPhone:any = Cookies.get("userPhone")
 
   const [characteristics, setСharacteristics] = useState<any>([
@@ -167,7 +169,6 @@ export default function page() {
 
   };
 
-  console.log(product);
 
   const handleImgsChange = async (indexProduct: any, e: any) => {
     const files = e.files
@@ -196,7 +197,10 @@ export default function page() {
 
 
 
-  const ClickAddProduct = async () => {
+  const ClickAddProduct = (e:any) => {
+    e.preventDefault();
+    AddProduct(product)
+  console.log(product);
 
   }
   console.log(product);
@@ -205,7 +209,7 @@ export default function page() {
   return (
     <>
       <div className="w-full flex flex-col gap-[20px]  rounded-[10] bg-white px-[40] pt-[50] pb-[30] ">
-        <form className="w-full flex flex-col gap-[20px]" onSubmit={ClickAddProduct}>
+        <form className="w-full flex flex-col gap-[20px]" onSubmit={ClickAddProduct} >
           <div className="flex gap-[20px]">
             <input
               className="w-full  rounded-[10px] border-grey border-[2px] px-[20px] py-[15px] placeholder:text-black "

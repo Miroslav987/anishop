@@ -14,7 +14,7 @@ import { useProduct } from "@/lib/features/products/ProductServer";
 
 export default function Home() {
   const {GetProducts} = useProduct()
-  const { products, status } = useAppSelector(state => state.products)
+  const { products } = useAppSelector(state => state.products)
   const dispatch = useDispatch();
 
   useEffect(() => {
