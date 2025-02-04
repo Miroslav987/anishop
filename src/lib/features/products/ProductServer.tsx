@@ -5,7 +5,7 @@ import { SetOneProduct, Setproducts } from "./ProductsSlice"
 import { AppDispatch } from "@/lib/store"
 
 export const  useProduct =()=> {
-const dispatch:AppDispatch = useDispatch()
+const dispatch = useDispatch()
 
  const GetProducts = async()=> {
     try {

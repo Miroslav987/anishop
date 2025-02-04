@@ -2,37 +2,44 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: 'Mullerlight';
+  src: url('/fonts/Mullerlight.ttf') format('truetype');
+  font-weight: 100 900;
+}
+
+@font-face {
+  font-family: 'Muller';
+  src: url('/fonts/Muller.ttf') format('truetype');
+  font-weight: 100 900;
+}
+
+@font-face {
+  font-family: 'MullerBold';
+  src: url('/fonts/MullerBold.ttf') format('truetype');
+  font-weight: 100 900;
+}
+
 :root {
   --black_first: #1E2128;
-  /* --black_first: #FAF9F9; */
-  
   --black_second: #32353C;
 
   --white:#ffffff;
-  /* --white:#000000;   */
 
   --grey_first: #FAF9F9;
-  /* --grey_first: #1E2128; */
-  
   --grey_second: #AAADB4;
   --grey_third: #D9DDDF;
+
   --yellow: #E4A529;
+
   --green_first: #20CF5B;
   --green_second: #20CF5B0F;
+
   --shadow_first:0 0 10px 0 #00000014;
   --radius:10px;
 }
 
-/* @media (prefers-color-scheme: white) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-} */
 
-/* p,input,label,button {
-  color: var(--black_first) !important;
-} */
 
 *{
   cursor: url("/icons/cursor.png"),auto ;

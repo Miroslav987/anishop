@@ -1,31 +1,13 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
-import Exite from "../components/modals/Exite";
 import ModalProvider from "@/context/ModalProvider";
 import DetailsInfoProvider from "@/context/CardDetailsInfoProvidre";
 import StoreProvider from "./StoreProvider";
-import { makeStore } from "@/lib/store";
-import dynamic from "next/dynamic";
 import NavBar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-const mullerLight = localFont({
-  src: "../fonts/Mullerlight.ttf",
-  variable: "--Mullerlight",
-  weight: "100 900",
-});
 
-const muller = localFont({
-  src: "../fonts/Muller.ttf",
-  variable: "--Muller",
-  weight: "100 900",
-});
 
-const mullerBold = localFont({
-  src: "../fonts/MullerBold.ttf",
-  variable: "--MullerBold",
-  weight: "100 900",
-});
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -43,7 +25,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${muller.variable}  ${mullerBold.variable} antialiased`}
+        className="antialiased"
       >
         <StoreProvider>
           <ModalProvider>

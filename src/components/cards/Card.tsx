@@ -46,7 +46,7 @@ export default function Card({e}:any) {
 // addRating(2, 5);  // Добавляем оценку 5 для товара с ID 2
 // getAverageRating(1); // Печатаем средний рейтинг товара с ID 1
 // getAverageRating(2)
-  console.log(e);
+
   
   return (
     <Link href={`/carddetails/${encodeURIComponent(e.id)}`}>
