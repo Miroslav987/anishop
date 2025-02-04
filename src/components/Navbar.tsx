@@ -10,11 +10,22 @@ import AuthEmail from './modals/Authorization/auth/AuthEmail'
 import { usePathname, useRouter } from 'next/navigation'
 import { onAuthStateChanged } from 'firebase/auth'
 import { auth } from '@/lib/fire'
-export default function NavBar() {
+
+
+const NavBar =()=> {
 
   const {openModal} = useModal()
   const {userUID,userEmail,userPhone} = useAppSelector(state =>state.user)
+  const [client, setClient] = useState(false);
 
+
+  useEffect(() => {
+    setClient(true); 
+  }, []);
+
+  if (!client) {
+    return null; 
+  }
   return (
     <header className=' shadow-md  mb-[60] bg-white'>
         <nav className='container h-[142] flex justify-between items-center px-[20] lg:px-0'>
@@ -82,3 +93,6 @@ export default function NavBar() {
     </header>
   )
 }
+
+
+export default NavBar

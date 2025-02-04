@@ -1,8 +1,9 @@
+"use client"
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
 
-export default function Footer() {
+const Footer =()=> {
   return (
     <div className='bg-white shadow-[0_-4px_6px_-1px_#0000001a] mt-[120]'  >
         <div className='w-full h-[142] flex items-center justify-between container snap-y'>
@@ -33,3 +34,5 @@ export default function Footer() {
     </div>
   )
 }
+
+export default Footer

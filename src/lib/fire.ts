@@ -6,16 +6,6 @@ import { getFirestore } from "firebase/firestore";
 import { getStorage } from "firebase/storage";
 import { getAuth } from "firebase/auth";
 
-// const firebaseConfig = {
-//   apiKey: "AIzaSyABeN6TZD71xEpk_QxWIBmY7nJEBDpOZms",
-//   authDomain: "almurut.firebaseapp.com",
-//   projectId: "almurut",
-//   storageBucket: "almurut.firebasestorage.app",
-//   messagingSenderId: "724863970039",
-//   appId: "1:724863970039:web:66f2dd9920cd8e862fc1f2",
-//   measurementId: "G-H82N6WVFER"
-// };
-
 const firebaseConfig = {
   apiKey: "AIzaSyAKW7aW_LfabEAJOn5BztpgzzjjBPhUZd4",
   authDomain: "onlineshop-4f347.firebaseapp.com",
@@ -28,8 +18,7 @@ const firebaseConfig = {
 
 
 // Initialize Firebase
-export const app = initializeApp(firebaseConfig);
-export const analytics = getAnalytics(app);
+ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 const storage = getStorage(app);

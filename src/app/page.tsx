@@ -18,8 +18,12 @@ export default function Home() {
   // const dispatch = useDispatch();
 
   useEffect(() => {
-    GetProducts()
+    if (typeof window !== 'undefined') {
+      GetProducts()
+  }
   }, []);
+
+
 
   return (
     <>
