@@ -50,7 +50,7 @@ const CardDetails = ({ params }: any) => {
   return (
     <>
       <div className='container'>
-        <div className='flex gap-[10] mb-[30] items-center'>
+        <div className='flex gap-[10px] mb-[30px] items-center'>
           <Link href="/">Главная</Link>
           <svg width="12" height="10" viewBox="0 0 12 10" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M1 5H11M11 5L7 1M11 5L7 9" stroke="#1E2128" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
@@ -58,18 +58,17 @@ const CardDetails = ({ params }: any) => {
           <p>Профиль</p>
         </div>
 
-        <div className='w-full  rounded-[10] bg-white px-[40] pt-[50] pb-[30] shadow-[0_0_10px_0_#00000014]'>
+        <div className='w-full  rounded-[10px]  bg-white px-[40px] pt-[50px] pb-[30px] shadow-[0_0_10px_0_#00000014] '>
           {oneProduct ?
             <div>
               <div className="w-full flex gap-[2.1875rem]">
                 <CardSwiper images={oneProduct.extraProduct[typeColor].images} />
-
                 <div>
 
                   <h3 className="w-[300px] flex items-center gap-[17.5px] text-[24px] ">
                     {oneProduct.name}
                     {oneProduct.extraProduct[typeColor].sale ?
-                      <p className="w-[51] h-[41] text-base flex items-center justify-center rounded-[100] text-green_first bg-green_second">
+                      <p className="w-[51px] h-[41px] text-base flex items-center justify-center rounded-[100] text-green_first bg-green_second">
                         {oneProduct.extraProduct[typeColor].sale}%
                       </p> : null}
                   </h3>
@@ -89,7 +88,7 @@ const CardDetails = ({ params }: any) => {
                   </div> */}
 
                   <div className="mt-[32px]">
-                    <p className="text-grey_second pb-[6]">Цвет:</p>
+                    <p className="text-grey_second pb-[6px]">Цвет:</p>
                     <div className="flex gap-[10px]">
                       {oneProduct.extraProduct.map((e: any, i: number) =>
                         <button style={{ background: e.color }} className={`w-[44px] h-[44px] rounded-full border   hover:scale-105 duration-100 `} onClick={() => setTypeColor(i)}></button>

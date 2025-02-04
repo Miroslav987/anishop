@@ -80,7 +80,7 @@ export default function page() {
             </div>
 
      
-              <button onClick={()=>openModal(<MakingOrdering/>)} className="w-full mr-[32px] rounded-[10px] h-[60] bg-black text-white ">
+              <button onClick={()=>openModal(<MakingOrdering/>)} className="w-full mr-[32px] rounded-[10px] h-[60px] bg-black text-white ">
                 Продолжить
               </button>
 
@@ -104,9 +104,9 @@ export default function page() {
             </svg>
             <p className="text-[32px]">Корзина пуста</p>
           </div>
-          <div className="w-full h-[4] bg-grey_third rounded-[4px]  opacity-[0.5]"></div>
+          <div className="w-full h-[4px] bg-grey_third rounded-[4px]  opacity-[0.5]"></div>
           <div className="h-40 flex gap-[47.5px] items-end opacity-[0.5] ">
-            <div className=" w-[340]  flex gap-[10px] flex-col pt-[45px]">
+            <div className=" w-[340px]  flex gap-[10px] flex-col pt-[45px]">
               <div className=" w-full flex items-center gap-[8px]">
                 <p className="whitespace-nowrap">Доставка</p>
                 <p className=" text-black overflow-hidden whitespace-nowrap tracking-[5px]">
@@ -137,7 +137,7 @@ export default function page() {
                 Использовать
               </button>
             </div>
-            <button className="mr-[32px] w-full rounded-[10px] h-[60px] bg-black text-white ">
+            <button className="mr-[32px] w-full rounded-[10px] h-[61px] bg-black text-white ">
               Продолжить
             </button>
           </div>

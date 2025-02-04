@@ -31,8 +31,8 @@ const handleSubmit = async (e:any) => {
 return (
 // ! вход по ссылке почты
   <>
-  <div className=" w-[646] relative rounded-[10px] bg-white py-[80] px-[90] shadow-shadow_first ">
-  <button onClick={closeModal} className="absolute right-[20] top-[20] rotate-45 text-grey_second text-4xl ">+</button>
+  <div className=" w-[646px] relative rounded-[10px] bg-white py-[80px] px-[90px] shadow-shadow_first ">
+  <button onClick={closeModal} className="absolute right-[20px] top-[20px] rotate-45 text-grey_second text-4xl ">+</button>
     <div className="flex flex-col items-center gap-[24px]">
       <p className="font-[MullerBold] text-[32px] text-center pb-[30px]">
         Номер телефона
