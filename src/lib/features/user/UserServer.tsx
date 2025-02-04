@@ -53,13 +53,14 @@ export const useAuth = () => {
 
   const sendSignInLink = async (email:string) => {
     const actionCodeSettings = {
-      url: `http://localhost:3000/finishsignup?email=${email}`,
+      url: `https://almurut.vercel.app/finishsignup?email=${email}`,
       handleCodeInApp: true,
     };
-  
+    
     try {
       await sendSignInLinkToEmail(auth, email, actionCodeSettings);
       window.localStorage.setItem('emailForSignIn', email); 
+      router.push('/profile');
       
       return { success: true, message: 'Ссылка для входа отправлена на ваш email.' };
     } catch (error:any) {
