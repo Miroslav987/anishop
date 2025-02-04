@@ -208,7 +208,7 @@ export default function page() {
 
   return (
     <>
-      <div className="w-full flex flex-col gap-[20px]  rounded-[10] bg-white px-[40] pt-[50] pb-[30] ">
+      <div className="w-full flex flex-col gap-[20px]  rounded-[10px] bg-white px-[40px] pt-[50px] pb-[30px] ">
         <form className="w-full flex flex-col gap-[20px]" onSubmit={ClickAddProduct} >
           <div className="flex gap-[20px]">
             <input
@@ -224,12 +224,12 @@ export default function page() {
               name="category"
               required
               onChange={handleNameChange}
-              className="w-full appearance-none rounded-[10] border-grey border-[2px] px-[20px] py-[15px]">
-              <option className="px-[20px] rounded-[10] hover:!text-whiter hover:!bg-black" value=''>Категории</option>
-              <option className="px-[20px] rounded-[10] hover:!text-whiter hover:!bg-black" value="phone">Смартфон</option>
-              <option className="px-[20px] rounded-[10] hover:!text-whiter hover:!bg-black" value="laptop">Ноутбук</option>
-              <option className="px-[20px] rounded-[10] hover:!text-whiter hover:!bg-black" value="home appliances">Бытовая техника</option>
-              <option className="px-[20px] rounded-[10] hover:!text-whiter hover:!bg-black" value="PC Accessories">Аксессуары для ПК</option>
+              className="w-full appearance-none rounded-[10px] border-grey border-[2px] px-[20px] py-[15px]">
+              <option className="px-[20px] rounded-[10px] hover:!text-whiter hover:!bg-black" value=''>Категории</option>
+              <option className="px-[20px] rounded-[10px] hover:!text-whiter hover:!bg-black" value="phone">Смартфон</option>
+              <option className="px-[20px] rounded-[10px] hover:!text-whiter hover:!bg-black" value="laptop">Ноутбук</option>
+              <option className="px-[20px] rounded-[10px] hover:!text-whiter hover:!bg-black" value="home appliances">Бытовая техника</option>
+              <option className="px-[20px] rounded-[10px] hover:!text-whiter hover:!bg-black" value="PC Accessories">Аксессуары для ПК</option>
             </select>
             <input
               className="w-full  rounded-[10px] border-grey border-[2px] px-[20px] py-[15px] placeholder:text-black "

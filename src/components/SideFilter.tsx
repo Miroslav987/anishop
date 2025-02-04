@@ -5,7 +5,7 @@ export default function SideFilter() {
 
 
   return (
-    <div className='w-[166] flex flex-col gap-[20px]'>
+    <div className='w-[166px] flex flex-col gap-[20px]'>
 
 
       <div className='accordion'>
@@ -26,18 +26,18 @@ export default function SideFilter() {
         <div className='accordion__content '>
           <div className='accordion__content__body flex flex-col gap-[10px]'>
 
-            <div className='flex items-center gap-[10]'>
-              <input className='p-[20] text-[7]' type="checkbox" id={`filter_1`} name="scales" />
+            <div className='flex items-center gap-[10px]'>
+              <input className='p-[20px] text-[7px]' type="checkbox" id={`filter_1`} name="scales" />
               <label htmlFor={`filter_1`}>Фильтр 1</label>
             </div>
 
-            <div className='flex items-center gap-[10]'>
-              <input className='p-[20] text-[7]' type="checkbox" id={`filter_1`} name="scales" />
+            <div className='flex items-center gap-[10px]'>
+              <input className='p-[20px] text-[7px]' type="checkbox" id={`filter_1`} name="scales" />
               <label htmlFor={`filter_1`}>Фильтр 1</label>
             </div>
 
-            <div className='flex items-center gap-[10]'>
-              <input className='p-[20] text-[7]' type="checkbox" id={`filter_1`} name="scales" />
+            <div className='flex items-center gap-[10px]'>
+              <input className='p-[20px] text-[7px]' type="checkbox" id={`filter_1`} name="scales" />
               <label htmlFor={`filter_1`}>Фильтр 1</label>
             </div>
 
@@ -63,18 +63,18 @@ export default function SideFilter() {
         <div className='accordion__content '>
           <div className='accordion__content__body flex flex-col gap-[10px]'>
 
-            <div className='flex items-center gap-[10]'>
-              <input className='p-[20] text-[7]' type="checkbox" id={`filter_1`} name="scales" />
+            <div className='flex items-center gap-[10px]'>
+              <input className='p-[20px] text-[7px]' type="checkbox" id={`filter_1`} name="scales" />
               <label htmlFor={`filter_1`}>Фильтр 1</label>
             </div>
 
             <div className='flex items-center gap-[10]'>
-              <input className='p-[20] text-[7]' type="checkbox" id={`filter_1`} name="scales" />
+              <input className='p-[20px] text-[7px]' type="checkbox" id={`filter_1`} name="scales" />
               <label htmlFor={`filter_1`}>Фильтр 1</label>
             </div>
 
             <div className='flex items-center gap-[10]'>
-              <input className='p-[20] text-[7]' type="checkbox" id={`filter_1`} name="scales" />
+              <input className='p-[20px] text-[7px]' type="checkbox" id={`filter_1`} name="scales" />
               <label htmlFor={`filter_1`}>Фильтр 1</label>
             </div>
 

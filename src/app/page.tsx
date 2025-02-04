@@ -27,14 +27,14 @@ export default function Home() {
 
   return (
     <>
-      <div className="flex justify-between gap-[50] container px-[20] lg:px-0 ">
+      <div className="flex justify-between gap-[50px] container px-[20px] lg:px-0 ">
         <SideFilter />
         <div className="  flex flex-col overflow-hidden ">
           <div>
             <SearchCategory />
           </div>
           <Sorting />
-          <div className="w-full flex flex-wrap gap-[20] justify-between">
+          <div className="w-full flex flex-wrap gap-[20px] justify-between">
             {products ? products.map((e: any) => (
               <Card key={e.id} e={e} />
               // console.log(e)
@@ -44,7 +44,7 @@ export default function Home() {
             }
           </div>
 
-          <button className=" w-[264px] h-[48] rounded-[10] m-auto mt-[40] bg-black text-white">
+          <button className=" w-[264px] h-[48px] rounded-[10px] m-auto mt-[40px] bg-black text-white">
             Загрузить еще
           </button>
         </div>

@@ -17,7 +17,7 @@ export default function page() {
           <div className="flex justify-end">
               <button
               onClick={()=>openModal(<ConfirmClearBasket/>)}
-              className="w-[202] h-[36] rounded-[10] flex justify-center items-center gap-[10] bg-grey_first shadow-[0_0_4px_0_#00000029]">
+              className="w-[202px] h-[36px] rounded-[10px] flex justify-center items-center gap-[10px] bg-grey_first shadow-[0_0_4px_0_#00000029]">
                 <svg
                   width="18"
                   height="18"
@@ -36,32 +36,32 @@ export default function page() {
                 Очистить корзину
               </button>
           </div>
-          <div className="flex mt-[40] mb-[45] flex-wrap gap-[54] ">
+          <div className="flex mt-[40px] mb-[45px] flex-wrap gap-[54px] ">
             {cards.map((e) => (
               <CardBasket key={e} />
             ))}
           </div>
-          <div className="w-full h-[4] bg-grey_third rounded-[4] "></div>
+          <div className="w-full h-[4px] bg-grey_third rounded-[4px] "></div>
 
-          <div className="h-40 flex gap-[47.5] items-end ">
-            <div className=" w-[340]  flex gap-[10] flex-col pt-[45]">
-              <div className=" w-full flex items-center gap-[8]">
+          <div className="h-40 flex gap-[47.5px] items-end ">
+            <div className=" w-[340px]  flex gap-[10px] flex-col pt-[45px]">
+              <div className=" w-full flex items-center gap-[8px]">
                 <p className="whitespace-nowrap">Доставка</p>
-                <p className=" text-black overflow-hidden whitespace-nowrap tracking-[5]">
+                <p className=" text-black overflow-hidden whitespace-nowrap tracking-[5px]">
                   ...............................
                 </p>
                 <p className="font-[MullerBold] whitespace-nowrap">Бесплатно</p>
               </div>
-              <div className=" w-full flex items-center gap-[8]">
+              <div className=" w-full flex items-center gap-[8px]">
                 <p className="whitespace-nowrap">Количество товаров</p>
-                <p className=" text-black overflow-hidden whitespace-nowrap tracking-[5]">
+                <p className=" text-black overflow-hidden whitespace-nowrap tracking-[5px]">
                   ...............................
                 </p>
                 <p className="font-[MullerBold] whitespace-nowrap">4шт.</p>
               </div>
-              <div className=" w-full flex items-center gap-[8]">
+              <div className=" w-full flex items-center gap-[8px]">
                 <p className="whitespace-nowrap">Итого</p>
-                <p className=" text-black overflow-hidden whitespace-nowrap tracking-[5]">
+                <p className=" text-black overflow-hidden whitespace-nowrap tracking-[5px]">
                   ...............................
                 </p>
                 <p className="font-[MullerBold] whitespace-nowrap">
@@ -69,9 +69,9 @@ export default function page() {
                 </p>
               </div>
             </div>
-            <div className=" h-[60] rounded-[10px] bg-grey_first flex items-center ">
-              <p className="px-[25]">G7P4K2ZQ</p>
-              <button className=" h-[100%] rounded-[10px]  px-[25] bg-black text-white ">
+            <div className=" h-[60px] rounded-[10px] bg-grey_first flex items-center ">
+              <p className="px-[25px]">G7P4K2ZQ</p>
+              <button className=" h-[100%] rounded-[10px]  px-[25px] bg-black text-white ">
                 Использовать
               </button>
               {/* <button className=" h-[100%] rounded-[10px]  px-[25] bg-green_first text-white ">
@@ -104,26 +104,26 @@ export default function page() {
             </svg>
             <p className="text-[32px]">Корзина пуста</p>
           </div>
-          <div className="w-full h-[4] bg-grey_third rounded-[4]  opacity-[0.5]"></div>
-          <div className="h-40 flex gap-[47.5] items-end opacity-[0.5] ">
-            <div className=" w-[340]  flex gap-[10] flex-col pt-[45]">
-              <div className=" w-full flex items-center gap-[8]">
+          <div className="w-full h-[4] bg-grey_third rounded-[4px]  opacity-[0.5]"></div>
+          <div className="h-40 flex gap-[47.5px] items-end opacity-[0.5] ">
+            <div className=" w-[340]  flex gap-[10px] flex-col pt-[45px]">
+              <div className=" w-full flex items-center gap-[8px]">
                 <p className="whitespace-nowrap">Доставка</p>
-                <p className=" text-black overflow-hidden whitespace-nowrap tracking-[5]">
+                <p className=" text-black overflow-hidden whitespace-nowrap tracking-[5px]">
                   ...............................
                 </p>
                 <p className="font-[MullerBold] whitespace-nowrap">Бесплатно</p>
               </div>
-              <div className=" w-full flex items-center gap-[8]">
+              <div className=" w-full flex items-center gap-[8px]">
                 <p className="whitespace-nowrap">Количество товаров</p>
-                <p className=" text-black overflow-hidden whitespace-nowrap tracking-[5]">
+                <p className=" text-black overflow-hidden whitespace-nowrap tracking-[5px]">
                   ...............................
                 </p>
                 <p className="font-[MullerBold] whitespace-nowrap">4шт.</p>
               </div>
-              <div className=" w-full flex items-center gap-[8]">
+              <div className=" w-full flex items-center gap-[8px]">
                 <p className="whitespace-nowrap">Итого</p>
-                <p className=" text-black overflow-hidden whitespace-nowrap tracking-[5]">
+                <p className=" text-black overflow-hidden whitespace-nowrap tracking-[5px]">
                   ...............................
                 </p>
                 <p className="font-[MullerBold] whitespace-nowrap">
@@ -131,13 +131,13 @@ export default function page() {
                 </p>
               </div>
             </div>
-            <div className=" h-[60] rounded-[10px] bg-grey_first flex items-center ">
-              <p className="px-[25]">G7P4K2ZQ</p>
-              <button className=" h-[100%] rounded-[10px]  px-[25] bg-black text-white ">
+            <div className=" h-[60px] rounded-[10px] bg-grey_first flex items-center ">
+              <p className="px-[25px]">G7P4K2ZQ</p>
+              <button className=" h-[100%] rounded-[10px]  px-[25px] bg-black text-white ">
                 Использовать
               </button>
             </div>
-            <button className="mr-[32px] w-full rounded-[10px] h-[60] bg-black text-white ">
+            <button className="mr-[32px] w-full rounded-[10px] h-[60px] bg-black text-white ">
               Продолжить
             </button>
           </div>

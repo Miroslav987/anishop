@@ -8,7 +8,7 @@ export default function layout({
   }>) {
     
   return (
-    <div className='w-full  rounded-[10] bg-white px-[40] pt-[40] pb-[60] shadow-[0_0_10px_0_#00000014] container '>
+    <div className='w-full  rounded-[10px] bg-white px-[40px] pt-[40px] pb-[60px] shadow-[0_0_10px_0_#00000014] container '>
        {children}
     </div>
   )
