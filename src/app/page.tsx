@@ -15,10 +15,10 @@ import { useProduct } from "@/lib/features/products/ProductServer";
 export default function Home() {
   const {GetProducts} = useProduct()
   const { products } = useAppSelector(state => state.products)
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   useEffect(() => {
-    GetProducts(dispatch)
+    GetProducts()
   }, []);
 
   return (
@@ -32,7 +32,7 @@ export default function Home() {
           <Sorting />
           <div className="w-full flex flex-wrap gap-[20] justify-between">
             {products ? products.map((e: any) => (
-              <Card e={e} />
+              <Card key={e.id} e={e} />
               // console.log(e)
               
               )) :

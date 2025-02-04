@@ -7,7 +7,7 @@ import { AppDispatch } from "@/lib/store"
 export const  useProduct =()=> {
 const dispatch:AppDispatch = useDispatch()
 
- const GetProducts = async(dispatch:any)=> {
+ const GetProducts = async()=> {
     try {
         const data = await getDocs(collection(db,"products"))
         const products = data.docs.map(doc => ({

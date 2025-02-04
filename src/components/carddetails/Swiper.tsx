@@ -48,9 +48,9 @@ export default function CardSwiper({images}:any) {
               <path
                 d="M9 1L5 5L1 1"
                 stroke="#1E2128"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               />
             </svg>
           </button>
@@ -66,9 +66,9 @@ export default function CardSwiper({images}:any) {
               <path
                 d="M9 1L5 5L1 1"
                 stroke="#1E2128"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               />
             </svg>
           </button>

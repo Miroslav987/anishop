@@ -74,10 +74,10 @@ export default function Card({e}:any) {
           alt="logo"
         /> */}
       </div>
-      <div>
+      <div >
         <p className="text-base font-black pb-[10] pt-[15] ">{e.name}</p>
       {e.extraProduct[0].characteristics[0]? e.extraProduct[0].characteristics.slice(0, 3).map((characteristic:any )=> 
-        <p className=" text-grey_second text-sm">{characteristic.name} {characteristic.info}</p>
+        <p className=" text-grey_second text-sm" key={characteristic.name}>{characteristic.name} {characteristic.info}</p>
       ):null}
       </div>
       <div className="flex h-[41] pt-[18] items-center justify-between ">
