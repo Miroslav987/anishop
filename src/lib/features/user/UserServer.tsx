@@ -68,20 +68,20 @@ export const useAuth = () => {
     }
 };
 
-  const confirmEmailSign = async (url: string, emailFromStorage: string,router:any) => {
-    if (isSignInWithEmailLink(auth, url)) {
-      try {
-        const result: any = await signInWithEmailLink(auth, emailFromStorage, url);
-        dispatch(setUser(result.user));
-        console.log(result.user);
-        router.push('/profile');
-      } catch (error: any) {
-        console.error(error.message);
-      }
-    } else {
-      return 'Неверная сссылка';
-    }
-  };
+  // const confirmEmailSign = async (url: string, emailFromStorage: string,router:any) => {
+  //   if (isSignInWithEmailLink(auth, url)) {
+  //     try {
+  //       const result: any = await signInWithEmailLink(auth, emailFromStorage, url);
+  //       dispatch(setUser(result.user));
+  //       console.log(result.user);
+  //       router.push('/profile');
+  //     } catch (error: any) {
+  //       console.error(error.message);
+  //     }
+  //   } else {
+  //     return 'Неверная сссылка';
+  //   }
+  // };
 
    const handleGoogle = async () => {
     const provider =  new GoogleAuthProvider()

@@ -352,7 +352,7 @@ export default function EditProduct({ params }: CardDetailsProps) {
                             </div>
                             <div className="flex flex-col gap-[20px] ">
                                 {productExtra.characteristics.map((product: any, index: number) =>
-                                    <div key={index} className="flex gap-[20px] items-center">
+                                    <div  className="flex gap-[20px] items-center">
                                         <input
                                             className="w-full  rounded-[10px] border-grey border-[2px] px-[20px] py-[15px] placeholder:text-black "
                                             type="text"
