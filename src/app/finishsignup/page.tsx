@@ -10,7 +10,7 @@ import { useAuth } from "@/lib/features/user/UserServer";
 
 export default function page (){
 
-  const {confirmEmailSign} = useAuth();
+  // const {confirmEmailSign} = useAuth();
   const [loading, setLoading] = useState(true);
   const [message, setMessage] = useState("");
   const router = useRouter();
@@ -19,7 +19,7 @@ export default function page (){
   useEffect(() => {
     const url = window.location.href;
     const emailFromStorage:any = window.localStorage.getItem("emailForSignIn");
-    confirmEmailSign(url,emailFromStorage,router)
+    // confirmEmailSign(url,emailFromStorage,router)
     
   }, [auth, router]);
   // console.log(emailFromStorage);
