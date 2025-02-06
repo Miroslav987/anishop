@@ -22,8 +22,8 @@ interface extraProduct {
   quantity: any,
 }
 export default function page() {
-  const {AddProduct} =useProduct()
-  const cookPhone:any = Cookies.get("userPhone")
+  const { AddEditProduct } = useProduct()
+  const cookPhone: any = Cookies.get("userPhone")
 
   const [characteristics, setСharacteristics] = useState<any>([
     {
@@ -127,31 +127,31 @@ export default function page() {
 
   const DeleteExtraProduct = async (indexProduct: number) => {
     if (indexProduct > 0) {
-    const deleteExtraProduct = extraProduct.filter((e: any, i: number) => i !== indexProduct)
-    const mainProductFolder = `productImages/${product.id}`;
-    const additionalProductFolder = `${mainProductFolder}/extraProduct${indexProduct}`;
-    const imageRef = ref(storage, `${additionalProductFolder}`);
-    if (extraProduct[indexProduct].images[0]) {
-      try {
-        const imgs = await listAll(imageRef)
-        for (const img of imgs.items) {
-          deleteObject(img)
+      const deleteExtraProduct = extraProduct.filter((e: any, i: number) => i !== indexProduct)
+      const mainProductFolder = `productImages/${product.id}`;
+      const additionalProductFolder = `${mainProductFolder}/extraProduct${indexProduct}`;
+      const imageRef = ref(storage, `${additionalProductFolder}`);
+      if (extraProduct[indexProduct].images[0]) {
+        try {
+          const imgs = await listAll(imageRef)
+          for (const img of imgs.items) {
+            deleteObject(img)
+          }
+          setExtraProduct(deleteExtraProduct);
+          setProduct(({ ...product, extraProduct: deleteExtraProduct, }));
+
+        } catch (e) {
+          console.log(e);
         }
+
+      }
+      else {
         setExtraProduct(deleteExtraProduct);
         setProduct(({ ...product, extraProduct: deleteExtraProduct, }));
-
-      } catch (e) {
-        console.log(e);
       }
+    } else {
 
     }
-    else {
-      setExtraProduct(deleteExtraProduct);
-      setProduct(({ ...product, extraProduct: deleteExtraProduct, }));
-    }
-  }else{
-   
-  }
   }
 
   const DeleteСharacteristic = (index: number, indexProduct: number) => {
@@ -197,13 +197,13 @@ export default function page() {
 
 
 
-  const ClickAddProduct = (e:any) => {
+  const ClickAddProduct = (e: any) => {
     e.preventDefault();
-    AddProduct(product)
-  console.log(product);
+    AddEditProduct(product)
 
   }
   console.log(product);
+  console.log(characteristics);
 
 
   return (
@@ -345,6 +345,7 @@ export default function page() {
                       placeholder="информация хар."
                     />
                     <button
+                      type="button"
                       onClick={() => DeleteСharacteristic(index, indexProduct)}
                       className="p-[10px] h-[40px] bg-white rounded-[10px] hover:bg-black">
                       <svg width="18" height="18" viewBox="0 0 18 18" fill="#0000" xmlns="http://www.w3.org/2000/svg">

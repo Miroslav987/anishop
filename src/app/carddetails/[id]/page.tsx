@@ -9,36 +9,38 @@ import { useProduct } from '@/lib/features/products/ProductServer';
 import { useAppSelector } from '@/lib/hooks';
 import clsx from 'clsx';
 // import { useRouter } from 'next/router';
-import { useEffect, useState, } from "react"
+import { use, useEffect, useState, } from "react"
 import { useDispatch } from 'react-redux';
 import Link from 'next/link';
+import Image from 'next/image';
+import { useModal } from '@/context/ModalProvider';
+import DeleteCard from '@/components/modals/DeleteCard';
+import { useRouter } from 'next/navigation';
 
+interface CardDetailsProps {
+  params: Promise<{ id: string }>
+}
 
-
-const CardDetails = ({ params }: any) => {
-
-  const dispatch = useDispatch()
+const CardDetails = ({ params }: CardDetailsProps) => {
+  const newParams = use(params)
+  const router = useRouter()
+  const { openModal } = useModal()
   const { GetOneProduct } = useProduct()
+  const { state, handleContent } = useDetailsInfo()
   const { oneProduct, loading } = useAppSelector(state => state.products)
   const [typeColor, setTypeColor] = useState<number>(0)
 
-
   useEffect(() => {
-    GetOneProduct(params.id, dispatch);
-  }, [params.id]);
+    GetOneProduct(newParams?.id);
+  }, [newParams?.id]);
 
   useEffect(() => {
     handleContent(<Description description={oneProduct.description} />, false)
   }, [oneProduct])
 
-  function colorBtn(num: number) {
-
+  const handleTypeColor=(num:number)=> {
+    setTypeColor(num)
   }
-
-  console.log(oneProduct);
-
-
-  const { state, handleContent } = useDetailsInfo()
 
   if (loading) {
     return (
@@ -58,8 +60,27 @@ const CardDetails = ({ params }: any) => {
           <p>Профиль</p>
         </div>
 
-        <div className='w-full  rounded-[10px]  bg-white px-[40px] pt-[50px] pb-[30px] shadow-[0_0_10px_0_#00000014] '>
-          {oneProduct ?
+        <div className='w-full relative  rounded-[10px]  bg-white px-[40px] pt-[50px] pb-[30px] shadow-[0_0_10px_0_#00000014] '>
+          {oneProduct ?<>
+          {/* <p>{oneProduct.id}</p> */}
+          <div className='absolute right-[10px] top-[10px] flex gap-[10px]'>
+            <button onClick={()=>router.push(`/admin/editProduct/${encodeURIComponent(oneProduct.id)}`)} className='p-[10px] border rounded-lg bg-white hover:invert'>
+              <Image
+                src={'/icons/edit.png'}
+                width={25}
+                height={25}
+                alt='edite'
+              />
+            </button>
+            <button onClick={()=>openModal(<DeleteCard id={oneProduct.id}/>)} className='p-[10px] border rounded-lg bg-white hover:invert'>
+            <Image
+                src={'/icons/delete.png'}
+                width={23}
+                height={23}
+                alt='delete'
+              />
+            </button>
+          </div>
             <div>
               <div className="w-full flex gap-[2.1875rem]">
                 <CardSwiper images={oneProduct.extraProduct[typeColor].images} />
@@ -72,12 +93,14 @@ const CardDetails = ({ params }: any) => {
                         {oneProduct.extraProduct[typeColor].sale}%
                       </p> : null}
                   </h3>
-                  {!oneProduct.extraProduct[typeColor].sale?
-                  <p className="text-[24px]">{oneProduct.extraProduct[typeColor].price} сом</p>:
-                  <div className='flex gap-[20px] items-baseline'>
-                    <p className="text-[24px]">{oneProduct.extraProduct[typeColor].price-(oneProduct.extraProduct[typeColor].price / 100 * oneProduct.extraProduct[typeColor].sale)} сом</p>
-                    <p className="text-[14px] line-through text-grey_second">{oneProduct.extraProduct[typeColor].price} сом</p>
-                  </div>}
+                  {!oneProduct.extraProduct[typeColor].sale ?
+                    <p className="text-[24px]">{oneProduct.extraProduct[typeColor].price} сом</p> :
+                    <div className='flex gap-[20px] items-baseline'>
+                      <p className="text-[24px]">{oneProduct.extraProduct[typeColor].price - (oneProduct.extraProduct[typeColor].price / 100 * oneProduct.extraProduct[typeColor].sale)} сом</p>
+                      <p className="text-[14px] line-through text-grey_second">{oneProduct.extraProduct[typeColor].price} сом</p>
+                    </div>}
+
+
                   {/* <div className="mt-[32px]">
                     <p className="text-grey_second pb-[6]">Память:</p>
                     <div className="flex gap-[10px]">
@@ -91,7 +114,7 @@ const CardDetails = ({ params }: any) => {
                     <p className="text-grey_second pb-[6px]">Цвет:</p>
                     <div className="flex gap-[10px]">
                       {oneProduct.extraProduct.map((e: any, i: number) =>
-                        <button style={{ background: e.color }} className={`w-[44px] h-[44px] rounded-full border   hover:scale-105 duration-100 `} onClick={() => setTypeColor(i)}></button>
+                        <button key={i} style={{ background: e.color }} className={`w-[44px] h-[44px] rounded-full border   hover:scale-105 duration-100 `} onClick={() => handleTypeColor(i)}></button>
                       )}
                     </div>
                   </div>
@@ -128,8 +151,9 @@ const CardDetails = ({ params }: any) => {
 
 
               </div>
-              <p className="text-justify font-[MullerLight] tracking-wide">{state.content}</p>
+              <div className="text-justify font-[MullerLight] tracking-wide">{state.content}</div>
             </div>
+            </>
             : null}
         </div>
       </div>

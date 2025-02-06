@@ -6,10 +6,8 @@ import { useModal } from '@/context/ModalProvider'
 import Search from './search'
 import Exite from './modals/Exite'
 import { useAppSelector } from '@/lib/hooks'
+import AuthPhone from './modals/Authorization/auth/AuthPhone'
 import AuthEmail from './modals/Authorization/auth/AuthEmail'
-import { usePathname, useRouter } from 'next/navigation'
-import { onAuthStateChanged } from 'firebase/auth'
-import { auth } from '@/lib/fire'
 
 
 const NavBar =()=> {
@@ -23,6 +21,7 @@ const NavBar =()=> {
     setClient(true); 
   }, []);
 
+  
   if (!client) {
     return null; 
   }
@@ -30,7 +29,7 @@ const NavBar =()=> {
     <header className=' shadow-md  mb-[60px] bg-white'>
         <nav className='container h-[142px] flex justify-between items-center px-[20px] lg:px-0'>
         <Link href="/">
-            <div>         
+            <div className='flex flex-col items-start lg:flex-row'>         
               <Image
               src="/logo.svg"
               width={173}
@@ -45,7 +44,7 @@ const NavBar =()=> {
               className="block mr-[30px] lg:hidden"
               alt="logo"
             />
-            
+            <span className='text-green-600'>beta</span>
             </div>
           </Link>
             <Search/>

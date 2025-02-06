@@ -1,9 +1,9 @@
 import { auth } from "@/lib/fire";
-import { isSignInWithEmailLink, onAuthStateChanged, sendSignInLinkToEmail, signInWithEmailLink, signOut } from "firebase/auth";
-import { useDispatch } from "react-redux";
+import { browserLocalPersistence, GoogleAuthProvider, isSignInWithEmailLink, onAuthStateChanged, sendSignInLinkToEmail, signInWithEmailLink, signInWithPopup, signOut } from "firebase/auth";
 import { clearUser, setUser } from "./UserSlice";
 import { useRouter } from "next/navigation";
 import { useModal } from "@/context/ModalProvider";
+import { useAppDispatch } from "@/lib/hooks";
 
 // 
 
@@ -48,7 +48,7 @@ import { useModal } from "@/context/ModalProvider";
 
 export const useAuth = () => {
   const router = useRouter();
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
     const {closeModal} = useModal()
 
   const sendSignInLink = async (email:string) => {
@@ -83,6 +83,18 @@ export const useAuth = () => {
     }
   };
 
+   const handleGoogle = async () => {
+    const provider =  new GoogleAuthProvider()
+    try {
+      const {user}= await signInWithPopup(auth,provider)
+      router.push("/profile")
+      dispatch(setUser(user))
+    } catch (error) {
+      console.log(error);
+      
+    }
+  };
+
   const Logout = async ()=> {
     try{
       await signOut(auth)
@@ -96,6 +108,6 @@ export const useAuth = () => {
   }
 
 
-  return {confirmEmailSign,Logout,sendSignInLink};
+  return {Logout,handleGoogle};
 };
 

@@ -26,7 +26,7 @@ const Footer =()=> {
             <div className='flex items-center text-sm'>
                 <Link className=' underline' href="">Соглашение о конфиденциальности</Link>
                 <div className='w-[2px] h-[24px] mx-[5px] rounded-[10px]  bg-grey_third'></div>
-                <p>© 2024 upwards</p>
+                <p>© 2025 Miro</p>
                 <div className='w-[2px] h-[24px] mx-[5px] rounded-[10px]  bg-grey_third'></div>
                 <p>Все права защищены</p>
             </div>

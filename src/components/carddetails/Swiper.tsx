@@ -28,8 +28,8 @@ export default function CardSwiper({images}:any) {
           slidesPerView={1}
           ref={swiperRef}
         >
-          {images.map((e:any)=>
-          <SwiperSlide className="flex justify-center">
+          {images.map((e:string, i:number)=>
+          <SwiperSlide key={i} className="flex justify-center">
             <img src={e} alt="" />
           </SwiperSlide>
         )}

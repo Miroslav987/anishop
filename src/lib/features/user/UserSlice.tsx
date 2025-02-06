@@ -41,18 +41,18 @@ export const userSlice = createAppSlice({
       
     },
     setUser: (state, action) => {
-      const { uid, email, displayName, photoURL, phoneNumber, token } = action.payload;
+      const { uid, email, photoURL, phoneNumber, accessToken } = action.payload;
       
       state.userUID = uid;
       state.userEmail = email;
       state.userPhone = phoneNumber;
-      state.userToken = token;
+      state.userToken = accessToken;
       
       Cookies.set("userUID",uid, settingCook)
       Cookies.set("userEmail", email, settingCook);
       Cookies.set("userEmail",email, settingCook)
       Cookies.set("userPhone",phoneNumber, settingCook)
-      Cookies.set("userToken",token, settingCook)
+      Cookies.set("userToken",accessToken, settingCook)
 
     },
     clearUser: (state) => {
