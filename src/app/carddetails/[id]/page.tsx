@@ -26,6 +26,7 @@ const CardDetails = ({ params }: CardDetailsProps) => {
   const router = useRouter()
   const { openModal } = useModal()
   const { GetOneProduct } = useProduct()
+  const { userUID, userEmail, userPhone } = useAppSelector(state => state.user)
   const { state, handleContent } = useDetailsInfo()
   const { oneProduct, loading } = useAppSelector(state => state.products)
   const [typeColor, setTypeColor] = useState<number>(0)
@@ -38,7 +39,7 @@ const CardDetails = ({ params }: CardDetailsProps) => {
     handleContent(<Description description={oneProduct.description} />, false)
   }, [oneProduct])
 
-  const handleTypeColor=(num:number)=> {
+  const handleTypeColor = (num: number) => {
     setTypeColor(num)
   }
 
@@ -61,26 +62,27 @@ const CardDetails = ({ params }: CardDetailsProps) => {
         </div>
 
         <div className='w-full relative  rounded-[10px]  bg-white px-[40px] pt-[50px] pb-[30px] shadow-[0_0_10px_0_#00000014] '>
-          {oneProduct ?<>
-          {/* <p>{oneProduct.id}</p> */}
-          <div className='absolute right-[10px] top-[10px] flex gap-[10px]'>
-            <button onClick={()=>router.push(`/admin/editProduct/${encodeURIComponent(oneProduct.id)}`)} className='p-[10px] border rounded-lg bg-white hover:invert'>
-              <Image
-                src={'/icons/edit.png'}
-                width={25}
-                height={25}
-                alt='edite'
-              />
-            </button>
-            <button onClick={()=>openModal(<DeleteCard id={oneProduct.id}/>)} className='p-[10px] border rounded-lg bg-white hover:invert'>
-            <Image
-                src={'/icons/delete.png'}
-                width={23}
-                height={23}
-                alt='delete'
-              />
-            </button>
-          </div>
+          {oneProduct ? <>
+            {userUID ?
+              <div className='absolute right-[10px] top-[10px] flex gap-[10px]'>
+                <button onClick={() => router.push(`/admin/editProduct/${encodeURIComponent(oneProduct.id)}`)} className='p-[10px] border rounded-lg bg-white hover:invert'>
+                  <Image
+                    src={'/icons/edit.png'}
+                    width={25}
+                    height={25}
+                    alt='edite'
+                  />
+                </button>
+                <button onClick={() => openModal(<DeleteCard id={oneProduct.id} />)} className='p-[10px] border rounded-lg bg-white hover:invert'>
+                  <Image
+                    src={'/icons/delete.png'}
+                    width={23}
+                    height={23}
+                    alt='delete'
+                  />
+                </button>
+              </div>
+              : null}
             <div>
               <div className="w-full flex gap-[2.1875rem]">
                 <CardSwiper images={oneProduct.extraProduct[typeColor].images} />
@@ -153,7 +155,7 @@ const CardDetails = ({ params }: CardDetailsProps) => {
               </div>
               <div className="text-justify font-[MullerLight] tracking-wide">{state.content}</div>
             </div>
-            </>
+          </>
             : null}
         </div>
       </div>

@@ -10,7 +10,7 @@ export default function Exite() {
   const {Logout} = useAuth()
   return (
     <>
-      <div className=" w-[646] rounded-[10px] bg-white py-[80] px-[90]">
+      <div className=" w-[646px] rounded-[10px] bg-white py-[80px] px-[90px]">
         <p className=" font-[MullerBold] text-[26px] text-center pb-[48px]">
           Выход
         </p>

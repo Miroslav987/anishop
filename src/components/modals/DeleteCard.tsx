@@ -11,7 +11,7 @@ export default function DeleteCard({id}:any) {
   const {DeleteProduct} = useProduct()
   return (
     <>
-      <div className=" w-[650] rounded-[10px] bg-white py-[80] px-[90]">
+      <div className=" w-[650px] rounded-[10px] bg-white py-[80px] px-[90px]">
         <p className=" font-[MullerBold] text-[26px] text-center pb-[48px]">
           Вы точно хотите удалить этот товар ?
         </p>
