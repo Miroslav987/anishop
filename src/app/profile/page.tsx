@@ -8,7 +8,6 @@ import { useAppSelector } from "@/lib/hooks";
 import AuthPhone from "@/components/modals/Authorization/auth/AuthPhone";
 import CardOrderingProfile from "@/components/cards/CardOrderingProfile";
 import AuthAdmin from "@/components/modals/Authorization/auth/AuthAdmin";
-import Search from "@/components/Search";
 import { useProduct } from "@/lib/features/products/ProductServer";
 
 export default function page() {

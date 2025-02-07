@@ -1,14 +1,10 @@
 'use client'
 import Link from 'next/link'
-// import { useRouter } from 'next/router';
 import { useRouter } from 'next/navigation'
 import React from 'react'
 
 export default function layout({children}:{children:React.ReactNode}) {
-  // const router = useRouter()
-  // const {profile} = router.query;
-  //   console.log(profile);
-    
+
   return (
     <div className='container'>
     <div className='flex gap-[10px] mb-[30px] items-center'>
