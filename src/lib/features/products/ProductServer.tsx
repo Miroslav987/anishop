@@ -94,7 +94,7 @@ export const useProduct = () => {
                 ...doc.data(),
             }));
 
-            // dispatch(Setproducts(categoryProducts))
+            dispatch(Setproducts(categoryProducts))
         } catch (error) {
             console.error(error);
 

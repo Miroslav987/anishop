@@ -5,7 +5,6 @@ import React, { useEffect, useState } from 'react'
 import { useModal } from '@/context/ModalProvider'
 import Exite from './modals/Exite'
 import { useAppSelector } from '@/lib/hooks'
-import AuthPhone from './modals/Authorization/auth/AuthPhone'
 import AuthEmail from './modals/Authorization/auth/AuthEmail'
 import Search from './Search'
 
