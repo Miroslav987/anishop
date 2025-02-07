@@ -26,7 +26,8 @@ const initialState = {
        userUID: Cookies.get("userUID") || null,
        userEmail: Cookies.get("userEmail")|| null,
        userPhone: Cookies.get("userPhone")|| null,
-       userToken: Cookies.get("userToken")|| null
+       userToken: Cookies.get("userToken")|| null,
+       userAdmin: Cookies.get("userAdmin")|| null
 };
 
 // Создаем сл
@@ -36,12 +37,16 @@ export const userSlice = createAppSlice({
   reducers: {
     setUserPhone:(state,action) =>{
       state.userPhone =action.payload
-      
       Cookies.set("userPhone",action.payload, settingCook)
-      
     },
+    
+    setAdmin:(state,action) =>{
+      state.userAdmin = action.payload
+      Cookies.set("userAdmin",action.payload, settingCook)
+    },
+
     setUser: (state, action) => {
-      const { uid, email, photoURL, phoneNumber, accessToken } = action.payload;
+      const { uid, email, photoURL, phoneNumber, accessToken  } = action.payload;
       
       state.userUID = uid;
       state.userEmail = email;
@@ -68,7 +73,7 @@ export const userSlice = createAppSlice({
   },
 });
 
-export const { setUser, clearUser,setUserPhone } = userSlice.actions;
+export const { setUser, clearUser,setUserPhone,setAdmin } = userSlice.actions;
 
 export default userSlice.reducer;
 

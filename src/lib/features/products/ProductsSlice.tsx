@@ -8,14 +8,14 @@ import { createAppSlice } from "../../CreateAppSlice";
     products:any,
     oneProduct:any,
     loading:boolean,
-
+    category:any
 }
 
 const initialState:ProductsState = {
     products:[],
     oneProduct:{},
     loading:true,
-
+    category:[]
 }
 
 
@@ -24,9 +24,15 @@ export const productsSlice = createAppSlice({
     name:"products",
     initialState,
     reducers:()=> ({
+
+        SetCategory:((state,action)=>{
+            state.category = action.payload
+        }),
+
         Setproducts:((state,action)=>{
             state.products = action.payload
         }),
+
         SetOneProduct:((state,action)=>{
             state.oneProduct = action.payload
             state.loading= false
@@ -42,7 +48,7 @@ export const productsSlice = createAppSlice({
 
 
 
-export const {Setproducts,SetOneProduct} = productsSlice.actions
+export const {Setproducts,SetOneProduct,SetCategory} = productsSlice.actions
 export default productsSlice.reducer
 
 

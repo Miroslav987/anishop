@@ -16,14 +16,14 @@ import { useAppSelector } from "@/lib/hooks";
 import { Setproducts } from "@/lib/features/products/ProductsSlice";
 
 
-interface CardDetailsProps {
+interface EditProductProps {
     params: Promise<{ id: string }>
-  }
+}
 
-export default function EditProduct({ params }: CardDetailsProps) {
+export default function EditProduct({ params }: EditProductProps) {
     const newParams = use(params)
-    const { GetOneProduct } = useProduct()
-    const { AddEditProduct } = useProduct()
+    const { GetOneProduct, AddEditProduct, Getcategory } = useProduct()
+    const { category } = useAppSelector(state => state.products)
     const { oneProduct, loading } = useAppSelector(state => state.products)
     const cookPhone: any = Cookies.get("userPhone")
     const [characteristics, setСharacteristics] = useState<any>([
@@ -36,7 +36,7 @@ export default function EditProduct({ params }: CardDetailsProps) {
         [
             {
                 color: "#000000",
-                characteristics: [ { name: "",info: ""}],
+                characteristics: [{ name: "", info: "" }],
                 images: [],
                 price: 0,
                 sale: 0,
@@ -56,26 +56,6 @@ export default function EditProduct({ params }: CardDetailsProps) {
             id: "",
         }
     )
-    useEffect(() => {
-        GetOneProduct(newParams.id);
-    }, [newParams.id]);
-
-    useEffect(() => {
-        // Обновляем product, но правильно копируя данные
-
-        setExtraProduct(
-            (prev: any) => (oneProduct.extraProduct ? [...oneProduct.extraProduct] : prev)
-        )
-
-
-        setProduct((prevProduct: any) =>
-        ({
-            ...prevProduct,
-            ...oneProduct,
-        }));
-        console.log(extraProduct);
-
-    }, [oneProduct]);
 
     const handleNameChange = (event: any) => {
         const updatedProduct = {
@@ -104,7 +84,7 @@ export default function EditProduct({ params }: CardDetailsProps) {
         updatedCharacteristics[index] = {
             ...updatedCharacteristics[index],
             [e.name]: e.value,
-         };
+        };
 
 
         updatedExtraProduct[indexProduct] = {
@@ -119,7 +99,7 @@ export default function EditProduct({ params }: CardDetailsProps) {
     const AddExtraProductChange = () => {
         const newExtraProduct = {
             color: "#000000",
-            characteristics: [{name:"",info:""}],
+            characteristics: [{ name: "", info: "" }],
             images: [],
             price: 0,
             sale: 0,
@@ -135,13 +115,13 @@ export default function EditProduct({ params }: CardDetailsProps) {
 
     const AddСharacteristicsChange = (indexProduct: number) => {
         const updatedExtraProduct = [...extraProduct];
-        const newCharacteristics =  { name:"",info:""}
-        const characteristics= [...updatedExtraProduct[indexProduct].characteristics ];
-        const updatedCharacteristics= [...characteristics,newCharacteristics] ;
-        
+        const newCharacteristics = { name: "", info: "" }
+        const characteristics = [...updatedExtraProduct[indexProduct].characteristics];
+        const updatedCharacteristics = [...characteristics, newCharacteristics];
+
         updatedExtraProduct[indexProduct] = {
             ...updatedExtraProduct[indexProduct],
-            characteristics: updatedCharacteristics ,
+            characteristics: updatedCharacteristics,
         };
 
         setExtraProduct(updatedExtraProduct);
@@ -218,7 +198,15 @@ export default function EditProduct({ params }: CardDetailsProps) {
         setProduct(({ ...product, extraProduct: updatedExtraProduct, }));
     }
 
+    useEffect(() => {
+        GetOneProduct(newParams.id);
+        Getcategory()
+    }, [newParams.id]);
 
+    useEffect(() => {
+        setExtraProduct((prev: any) => (oneProduct.extraProduct ? [...oneProduct.extraProduct] : prev))
+        setProduct((prev: any) =>({...prev,...oneProduct,}));
+    }, [oneProduct]);
 
     const ClickEditProduct = (e: any) => {
         e.preventDefault();
@@ -249,10 +237,9 @@ export default function EditProduct({ params }: CardDetailsProps) {
                             onChange={handleNameChange}
                             className="w-full appearance-none rounded-[10px] border-grey border-[2px] px-[20px] py-[15px]">
                             <option className="px-[20px] rounded-[10px] hover:!text-whiter hover:!bg-black" value=''>Категории</option>
-                            <option className="px-[20px] rounded-[10px] hover:!text-whiter hover:!bg-black" value="phone">Смартфон</option>
-                            <option className="px-[20px] rounded-[10px] hover:!text-whiter hover:!bg-black" value="laptop">Ноутбук</option>
-                            <option className="px-[20px] rounded-[10px] hover:!text-whiter hover:!bg-black" value="home appliances">Бытовая техника</option>
-                            <option className="px-[20px] rounded-[10px] hover:!text-whiter hover:!bg-black" value="PC Accessories">Аксессуары для ПК</option>
+                            {category.stateCategory ? category.stateCategory.map((e: any, i: number) =>
+                                <option key={i} className="px-[20px] rounded-[10px] hover:!text-whiter hover:!bg-black" value={e.search_key}>{e.name}</option>
+                            ) : null}
                         </select>
                         <input
                             className="w-full  rounded-[10px] border-grey border-[2px] px-[20px] py-[15px] placeholder:text-black "
@@ -343,7 +330,7 @@ export default function EditProduct({ params }: CardDetailsProps) {
                                     className="w-full"
                                     slidesPerView={3}
                                 >
-                                    {productExtra.images.map((file: any ,i:number) =>
+                                    {productExtra.images.map((file: any, i: number) =>
                                         <SwiperSlide key={i} className="flex justify-center">
                                             <img className="w-full rounded-[10px]" src={file} alt="" />
                                         </SwiperSlide>
@@ -352,7 +339,7 @@ export default function EditProduct({ params }: CardDetailsProps) {
                             </div>
                             <div className="flex flex-col gap-[20px] ">
                                 {productExtra.characteristics.map((product: any, index: number) =>
-                                    <div  className="flex gap-[20px] items-center">
+                                    <div key={index} className="flex gap-[20px] items-center">
                                         <input
                                             className="w-full  rounded-[10px] border-grey border-[2px] px-[20px] py-[15px] placeholder:text-black "
                                             type="text"

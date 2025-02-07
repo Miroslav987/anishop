@@ -15,7 +15,8 @@ import { useProduct } from "@/lib/features/products/ProductServer";
 export default function Home() {
   const {GetProducts} = useProduct()
   const { products } = useAppSelector(state => state.products)
-  // const dispatch = useDispatch();
+
+
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -29,12 +30,12 @@ export default function Home() {
     <>
       <div className="flex justify-between gap-[50px] container px-[20px] lg:px-0 ">
         <SideFilter />
-        <div className="  flex flex-col overflow-hidden ">
+        <div className="w-full  flex flex-col overflow-hidden ">
           <div>
             <SearchCategory />
           </div>
           <Sorting />
-          <div className="w-full flex flex-wrap gap-[20px] justify-between">
+          <div className="w-full flex flex-wrap gap-[20px]  md:grid-rows-1">
             {products ? products.map((e: any) => (
               <Card key={e.id} e={e} />
               // console.log(e)

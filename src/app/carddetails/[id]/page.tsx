@@ -91,7 +91,7 @@ const CardDetails = ({ params }: CardDetailsProps) => {
                   <h3 className="w-[300px] flex items-center gap-[17.5px] text-[24px] ">
                     {oneProduct.name}
                     {oneProduct.extraProduct[typeColor].sale ?
-                      <p className="w-[51px] h-[41px] text-base flex items-center justify-center rounded-[100] text-green_first bg-green_second">
+                      <p className="w-[51px] h-[41px] text-base flex items-center justify-center rounded-[100px] text-green_first bg-green_second">
                         {oneProduct.extraProduct[typeColor].sale}%
                       </p> : null}
                   </h3>

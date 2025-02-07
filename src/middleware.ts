@@ -2,7 +2,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 
 export function middleware(req: NextRequest) {
-    const token = req.cookies.get('userUID')
+    const token = req.cookies.get('userAdmin')
     console.log( `token:${token?.value}`);  // Для отладки
 
   // Если токен отсутствует, перенаправляем на страницу логина
@@ -10,7 +10,7 @@ export function middleware(req: NextRequest) {
     return NextResponse.redirect(new URL('/', req.url));
   }
 
-  // Если токен есть, продолжаем выполнение
+
   return NextResponse.next();
 }
 

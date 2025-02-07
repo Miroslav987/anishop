@@ -12,7 +12,7 @@ export default function Admin() {
         className='px-[35px] py-[25px] bg-grey_first rounded-[10] font-[MullerBold] shadow-[0_0_10px_0_#00000014]'>
         Продукции
       </Link>
-      <Link href={``}
+      <Link href={`/admin/crud_category`}
         className='px-[35px] py-[25px] bg-grey_first rounded-[10] font-[MullerBold] shadow-[0_0_10px_0_#00000014]'>
         Категории
       </Link>

@@ -1,5 +1,5 @@
 "use client"
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { v4 as uuidv4, } from 'uuid';
 import "swiper/css";
 import "swiper/css/navigation";
@@ -12,6 +12,7 @@ import { db, storage } from "@/lib/fire";
 import Cookies from 'js-cookie';
 import { deleteObject, getDownloadURL, listAll, ref, uploadBytes } from "firebase/storage";
 import { useProduct } from "@/lib/features/products/ProductServer";
+import { useAppSelector } from "@/lib/hooks";
 
 interface extraProduct {
   color: string,
@@ -22,9 +23,9 @@ interface extraProduct {
   quantity: any,
 }
 export default function page() {
-  const { AddEditProduct } = useProduct()
+  const { AddEditProduct, Getcategory } = useProduct()
   const cookPhone: any = Cookies.get("userPhone")
-
+  const { category } = useAppSelector(state => state.products)
   const [characteristics, setСharacteristics] = useState<any>([
     {
       name: "",
@@ -196,14 +197,14 @@ export default function page() {
   }
 
 
-
   const ClickAddProduct = (e: any) => {
     e.preventDefault();
     AddEditProduct(product)
 
   }
-  console.log(product);
-  console.log(characteristics);
+  useEffect(() => {
+    Getcategory()
+  }, [])
 
 
   return (
@@ -226,10 +227,9 @@ export default function page() {
               onChange={handleNameChange}
               className="w-full appearance-none rounded-[10px] border-grey border-[2px] px-[20px] py-[15px]">
               <option className="px-[20px] rounded-[10px] hover:!text-whiter hover:!bg-black" value=''>Категории</option>
-              <option className="px-[20px] rounded-[10px] hover:!text-whiter hover:!bg-black" value="phone">Смартфон</option>
-              <option className="px-[20px] rounded-[10px] hover:!text-whiter hover:!bg-black" value="laptop">Ноутбук</option>
-              <option className="px-[20px] rounded-[10px] hover:!text-whiter hover:!bg-black" value="home appliances">Бытовая техника</option>
-              <option className="px-[20px] rounded-[10px] hover:!text-whiter hover:!bg-black" value="PC Accessories">Аксессуары для ПК</option>
+              {category.stateCategory ? category.stateCategory.map((e: any, i: number) =>
+                <option key={i} className="px-[20px] rounded-[10px] hover:!text-whiter hover:!bg-black" value={e.search_key}>{e.name}</option>
+              ) : null}
             </select>
             <input
               className="w-full  rounded-[10px] border-grey border-[2px] px-[20px] py-[15px] placeholder:text-black "
@@ -327,7 +327,7 @@ export default function page() {
               </div>
               <div className="flex flex-col gap-[20px] ">
                 {productExtra.characteristics.map((product: any, index: number) =>
-                  <div className="flex gap-[20px] items-center">
+                  <div key={index} className="flex gap-[20px] items-center">
                     <input
                       className="w-full  rounded-[10px] border-grey border-[2px] px-[20px] py-[15px] placeholder:text-black "
                       type="text"

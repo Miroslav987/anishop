@@ -1,9 +1,10 @@
 import { auth } from "@/lib/fire";
-import { browserLocalPersistence, GoogleAuthProvider, isSignInWithEmailLink, onAuthStateChanged, sendSignInLinkToEmail, signInWithEmailLink, signInWithPopup, signOut } from "firebase/auth";
-import { clearUser, setUser } from "./UserSlice";
+import { browserLocalPersistence, GoogleAuthProvider, isSignInWithEmailLink, onAuthStateChanged, sendSignInLinkToEmail, signInWithEmailAndPassword, signInWithEmailLink, signInWithPopup, signOut } from "firebase/auth";
+import { clearUser, setAdmin, setUser } from "./UserSlice";
 import { useRouter } from "next/navigation";
 import { useModal } from "@/context/ModalProvider";
 import { useAppDispatch } from "@/lib/hooks";
+import { getDoc, getDocs } from "firebase/firestore";
 
 // 
 
@@ -51,22 +52,22 @@ export const useAuth = () => {
   const dispatch = useAppDispatch();
     const {closeModal} = useModal()
 
-  const sendSignInLink = async (email:string) => {
-    const actionCodeSettings = {
-      url: `https://almurut.vercel.app/finishsignup?email=${email}`,
-      handleCodeInApp: true,
-    };
+//   const sendSignInLink = async (email:string) => {
+//     const actionCodeSettings = {
+//       url: `https://almurut.vercel.app/finishsignup?email=${email}`,
+//       handleCodeInApp: true,
+//     };
     
-    try {
-      await sendSignInLinkToEmail(auth, email, actionCodeSettings);
-      window.localStorage.setItem('emailForSignIn', email); 
-      router.push('/profile');
+//     try {
+//       await sendSignInLinkToEmail(auth, email, actionCodeSettings);
+//       window.localStorage.setItem('emailForSignIn', email); 
+//       router.push('/profile');
       
-      return { success: true, message: 'Ссылка для входа отправлена на ваш email.' };
-    } catch (error:any) {
-      return { success: false, message: `Ошибка: ${error.message}` };
-    }
-};
+//       return { success: true, message: 'Ссылка для входа отправлена на ваш email.' };
+//     } catch (error:any) {
+//       return { success: false, message: `Ошибка: ${error.message}` };
+//     }
+// };
 
   // const confirmEmailSign = async (url: string, emailFromStorage: string,router:any) => {
   //   if (isSignInWithEmailLink(auth, url)) {
@@ -90,10 +91,23 @@ export const useAuth = () => {
       router.push("/profile")
       dispatch(setUser(user))
     } catch (error) {
-      console.log(error);
+      console.log(error);    
       
     }
   };
+
+  const SignUpAdmin = async(password:string) => {
+    const emailAdmin = "admin@gmail.com"
+    try {
+      const {user} = await signInWithEmailAndPassword(auth, emailAdmin, password)
+      dispatch(setAdmin(user))
+      router.push("/admin")
+      
+    } catch (error) {
+      console.error(error);
+      
+    }
+  }
 
   const Logout = async ()=> {
     try{
@@ -108,6 +122,6 @@ export const useAuth = () => {
   }
 
 
-  return {Logout,handleGoogle};
+  return {Logout,handleGoogle ,SignUpAdmin};
 };
 

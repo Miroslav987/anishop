@@ -59,19 +59,21 @@ button {
   :hover {
     cursor:pointer !important ;
   }
-  :active {
-    cursor: pointer !important;
-  }
+
 }
+
 button:active {
     cursor: pointer !important;
 
 }
 
-a{
+a {
   display: flex;
   align-items: center;
   justify-content: center;
+  :hover {
+    cursor:pointer
+  }
 }
 
 input[type='checkbox'] {
@@ -103,6 +105,8 @@ input:checked {
 
 .accordion__summary {
   display: flex;
+  gap: 10px;
+  align-items: center;
   justify-content: space-between;
 }
 

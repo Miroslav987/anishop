@@ -16,11 +16,6 @@ export default {
         'shadow_first': 'var(--shadow_first)',
       },
 
-      fontFamily: {
-        "MullerBold":".//",
-        "MullerLight":".//"
-      },
-
       container:{
         center:true,
         padding:"0 20",

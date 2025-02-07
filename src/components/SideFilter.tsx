@@ -5,7 +5,7 @@ export default function SideFilter() {
 
 
   return (
-    <div className='w-[166px] flex flex-col gap-[20px]'>
+    <div className='w-[166px] hidden flex-col gap-[20px] md:flex'>
 
 
       <div className='accordion'>
