@@ -6,7 +6,6 @@ import { useModal } from '@/context/ModalProvider'
 import Exite from './modals/Exite'
 import { useAppSelector } from '@/lib/hooks'
 import AuthEmail from './modals/Authorization/auth/AuthEmail'
-import Search from './Search'
 
 
 const NavBar =()=> {
@@ -46,7 +45,7 @@ const NavBar =()=> {
             <span className='text-green-600'>beta</span>
             </div>
           </Link>
-            <Search/>
+          {/* search */}
           <div className='hidden gap-[15px] md:flex'>
 
           <Link href="/basket">
