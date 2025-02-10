@@ -35,7 +35,7 @@ export default function Home() {
             <SearchCategory />
           </div>
           <Sorting />
-          <div className="w-full flex flex-wrap gap-[20px]  md:grid-rows-1">
+          <div className="w-full grid gap-[20px] grid-cols-1  sm:grid-cols-2 md:grid-cols-3">
             {products ? products.map((e: any) => (
               <Card key={e.id} e={e} />
               // console.log(e)

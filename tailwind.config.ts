@@ -16,6 +16,12 @@ export default {
         'shadow_first': 'var(--shadow_first)',
       },
 
+      fontFamily: {
+        MullerLight: ['MullerLight', 'sans-serif'], 
+        Muller: ['Muller', 'sans-serif'], 
+        MullerBold: ['MullerBold', 'sans-serif'], 
+      },
+
       container:{
         center:true,
         padding:"0 20",

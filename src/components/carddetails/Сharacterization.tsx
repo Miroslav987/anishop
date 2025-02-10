@@ -1,10 +1,10 @@
 import React from 'react'
 
 export default function Сharacterization({characterization}:any) {
-  console.log(12);
+
   
   return (
-    <div className='w-[50%]'>
+    <div className='w-full  md:w-[50%] '>
       {characterization.map((e:any,i:number)=>(
       <div key={i} className='flex items-end'>
         <p>{e.name}</p>

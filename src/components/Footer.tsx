@@ -5,7 +5,7 @@ import React from 'react'
 
 const Footer =()=> {
   return (
-    <div className='bg-white shadow-[0_-4px_6px_-1px_#0000001a] mt-[120px]'  >
+    <div className='bg-white shadow-[0_-4px_6px_-1px_#0000001a] mt-[120px] mb-[84px] md:mb-0'  >
         <div className='w-full h-[142px] flex items-center justify-between container snap-y'>
             <div>         
                 <Image

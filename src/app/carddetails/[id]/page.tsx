@@ -52,7 +52,7 @@ const CardDetails = ({ params }: CardDetailsProps) => {
   }
   return (
     <>
-      <div className='container'>
+      <div className='container '>
         <div className='flex gap-[10px] mb-[30px] items-center'>
           <Link href="/">Главная</Link>
           <svg width="12" height="10" viewBox="0 0 12 10" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -61,11 +61,11 @@ const CardDetails = ({ params }: CardDetailsProps) => {
           <p>Профиль</p>
         </div>
 
-        <div className='w-full relative  rounded-[10px]  bg-white px-[40px] pt-[50px] pb-[30px] shadow-[0_0_10px_0_#00000014] '>
+        <div className='w-full relative  rounded-[10px]  bg-white px-[0px] pt-[50px] pb-[30px] shadow-none md:px-[40px] pt-[50px] pb-[30px] shadow-[0_0_10px_0_#00000014]'>
           {oneProduct ? <>
             {userUID ?
-              <div className='absolute right-[10px] top-[10px] flex gap-[10px]'>
-                <button onClick={() => router.push(`/admin/editProduct/${encodeURIComponent(oneProduct.id)}`)} className='p-[10px] border rounded-lg bg-white hover:invert'>
+              <div className='absolute z-2 right-[10px] top-[10px] flex gap-[10px]'>
+                <button onClick={() => router.push(`/admin/editProduct/${encodeURIComponent(oneProduct.id)}`)} className='p-[10px] border rounded-lg bg-white hover:invert '>
                   <Image
                     src={'/icons/edit.png'}
                     width={25}
@@ -84,11 +84,11 @@ const CardDetails = ({ params }: CardDetailsProps) => {
               </div>
               : null}
             <div>
-              <div className="w-full flex gap-[2.1875rem]">
+              <div className="w-full flex flex-col gap-[2.1875rem] md:flex-row">
                 <CardSwiper images={oneProduct.extraProduct[typeColor].images} />
                 <div>
 
-                  <h3 className="w-[300px] flex items-center gap-[17.5px] text-[24px] ">
+                  <h3 className="w-full flex justify-between items-center gap-[17.5px] text-[24px] md:w-[300px] ">
                     {oneProduct.name}
                     {oneProduct.extraProduct[typeColor].sale ?
                       <p className="w-[51px] h-[41px] text-base flex items-center justify-center rounded-[100px] text-green_first bg-green_second">
@@ -99,7 +99,7 @@ const CardDetails = ({ params }: CardDetailsProps) => {
                     <p className="text-[24px]">{oneProduct.extraProduct[typeColor].price} сом</p> :
                     <div className='flex gap-[20px] items-baseline'>
                       <p className="text-[24px]">{oneProduct.extraProduct[typeColor].price - (oneProduct.extraProduct[typeColor].price / 100 * oneProduct.extraProduct[typeColor].sale)} сом</p>
-                      <p className="text-[14px] line-through text-grey_second">{oneProduct.extraProduct[typeColor].price} сом</p>
+                      <p className="hidden text-[14px] line-through text-grey_second md:block">{oneProduct.extraProduct[typeColor].price} сом</p>
                     </div>}
 
 

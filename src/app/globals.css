@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 @font-face {
-  font-family: 'Mullerlight';
+  font-family: 'MullerLight';
   src: url('/fonts/Mullerlight.ttf') format('truetype');
   font-weight: 100 900;
 }
@@ -52,7 +52,7 @@
 body {
   color: var(--black);
   background: var(--grey_first);
-  font-family: var(--Muller);
+  font-family: 'Muller';
 }
 
 button {
@@ -144,9 +144,15 @@ input:checked {
   }
 }
 
-
-
-
+@media screen and (max-width: 768px) {
+  body {
+    background: white;
+  }
+  .container {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
 
 .select {
   background-position: 95% 50%;
@@ -157,7 +163,6 @@ input:checked {
   height: 30px;
 }
 
-
 select>option {
   background-color: transparent;
   border: 0;
@@ -165,10 +170,6 @@ select>option {
   height: 31px;
   width: 220px;
 }
-
-
-
-
 
 .select>select {
   width: 100%;
