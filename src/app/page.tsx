@@ -37,7 +37,7 @@ export default function Home() {
           <Sorting />
           <div className="w-full grid gap-[20px] grid-cols-1  sm:grid-cols-2 md:grid-cols-3">
             {products ? products.map((e: any) => (
-              <Card key={e.id} e={e} />
+              <Card key={e.id} product={e} />
               // console.log(e)
               
               )) :

@@ -39,11 +39,11 @@ export const productsSlice = createAppSlice({
         })
 
         }),
-        selectors:{
-            selectProduct:(state) => state.products,
-            selectOneProduct:(state) => state.oneProduct,
-            selectStatus:(state) => state.loading
-        }
+        // selectors:{
+        //     selectProduct:(state) => state.products,
+        //     selectOneProduct:(state) => state.oneProduct,
+        //     selectStatus:(state) => state.loading
+        // }
     })
 
 

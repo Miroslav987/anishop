@@ -41,6 +41,7 @@ export default function EditProduct({ params }: EditProductProps) {
                 price: 0,
                 sale: 0,
                 quantity: 0,
+                id:uuidv4(),
             }
         ]
         // oneProduct? oneProduct.extraProduct :[]
@@ -104,6 +105,7 @@ export default function EditProduct({ params }: EditProductProps) {
             price: 0,
             sale: 0,
             quantity: 0,
+            id:uuidv4(),
         }
         if (extraProduct.length !== 5) {
             setExtraProduct([...extraProduct, newExtraProduct])
@@ -282,6 +284,7 @@ export default function EditProduct({ params }: EditProductProps) {
                                     <input
                                         type="file"
                                         multiple
+                                        accept="image/png, image/jpeg, image/jpg,"
                                         id={`file${indexProduct}`}
                                         name="images"
                                         className="hidden"

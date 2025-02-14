@@ -27,6 +27,7 @@ export const useProduct = () => {
 
     const GetOneProduct = async (id: any) => {
         try {
+            dispatch(SetOneProduct((false)))
             const data = doc(db, `products/${id}`)
             const product = await getDoc(data);
             dispatch(SetOneProduct(product.data()))
@@ -38,10 +39,7 @@ export const useProduct = () => {
 
     const AddEditProduct = async (product: any) => {
         try {
-
             const data = await setDoc(doc(db, "products", product.id), product)
-            console.log('rt');
-
             router.push('/')
 
         } catch (error) {

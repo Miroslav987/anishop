@@ -2,20 +2,18 @@
 
 import Description from '@/components/carddetails/Description';
 import Сharacterization from '@/components/carddetails/Сharacterization';
-import MainInfo from '@/components/carddetails/MainInfo';
 import CardSwiper from '@/components/carddetails/Swiper';
 import { useDetailsInfo } from '@/context/CardDetailsInfoProvidre';
 import { useProduct } from '@/lib/features/products/ProductServer';
 import { useAppSelector } from '@/lib/hooks';
 import clsx from 'clsx';
-// import { useRouter } from 'next/router';
 import { use, useEffect, useState, } from "react"
-import { useDispatch } from 'react-redux';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useModal } from '@/context/ModalProvider';
 import DeleteCard from '@/components/modals/DeleteCard';
 import { useRouter } from 'next/navigation';
+import { useBasket } from '@/lib/features/basket/BasketServer';
 
 interface CardDetailsProps {
   params: Promise<{ id: string }>
@@ -26,10 +24,19 @@ const CardDetails = ({ params }: CardDetailsProps) => {
   const router = useRouter()
   const { openModal } = useModal()
   const { GetOneProduct } = useProduct()
+  const { AddBasketProduct } = useBasket()
+
   const { userUID, userEmail, userPhone } = useAppSelector(state => state.user)
-  const { state, handleContent } = useDetailsInfo()
   const { oneProduct, loading } = useAppSelector(state => state.products)
+  const { basket } = useAppSelector(state => state.basket)
+  const { state, handleContent } = useDetailsInfo()
+
   const [typeColor, setTypeColor] = useState<number>(0)
+  // const [btnBasket, setBtnBasket] = useState(false)
+  // useEffect(()=>{
+
+  //   setBtnBasket(false)
+  // },[])
 
   useEffect(() => {
     GetOneProduct(newParams?.id);
@@ -39,9 +46,44 @@ const CardDetails = ({ params }: CardDetailsProps) => {
     handleContent(<Description description={oneProduct.description} />, false)
   }, [oneProduct])
 
+  // if (basket.products) {
+  //   useEffect(() => {
+  //     const filterId = basket.products.some((e: any) => e.id !== oneProduct.id)
+  //     setBtnBasket(filterId)
+  //   }, [basket.products,])
+  // }
+
   const handleTypeColor = (num: number) => {
     setTypeColor(num)
+    handleContent(<Сharacterization characterization={oneProduct.extraProduct[num].characteristics} />, true)
   }
+
+
+  // function basketadd(oneProduct: any) {
+  //   const basketproduct = {
+  //     name: oneProduct.name,
+  //     id: oneProduct.id,
+  //     characteristics: oneProduct.extraProduct[typeColor].characteristics,
+  //     img: oneProduct.extraProduct[typeColor].images[0],
+  //     price: oneProduct.extraProduct[typeColor].price,
+  //     quantity: 1,
+  //     maxquantity: oneProduct.extraProduct[typeColor].quantity,
+  //   }
+  //   AddBasketProduct(basketproduct)
+  // }
+  function basketadd(oneProduct: any) {
+    const basketproduct = {
+      name: oneProduct.name,
+      id: oneProduct.extraProduct[typeColor].id,
+      characteristics: oneProduct.extraProduct[typeColor].characteristics,
+      img: oneProduct.extraProduct[typeColor].images[0],
+      price: oneProduct.extraProduct[typeColor].price,
+      quantity: 1,
+      maxquantity: oneProduct.extraProduct[typeColor].quantity,
+    }
+    AddBasketProduct(basketproduct)
+  }
+
 
   if (loading) {
     return (
@@ -64,7 +106,7 @@ const CardDetails = ({ params }: CardDetailsProps) => {
         <div className='w-full relative  rounded-[10px]  bg-white px-[0px] pt-[50px] pb-[30px] shadow-none md:px-[40px] pt-[50px] pb-[30px] shadow-[0_0_10px_0_#00000014]'>
           {oneProduct ? <>
             {userUID ?
-              <div className='absolute z-2 right-[10px] top-[10px] flex gap-[10px]'>
+              <div className='absolute z-2 right-[0px] top-[0px] flex gap-[10px] md:top-[10px] right-[10px] '>
                 <button onClick={() => router.push(`/admin/editProduct/${encodeURIComponent(oneProduct.id)}`)} className='p-[10px] border rounded-lg bg-white hover:invert '>
                   <Image
                     src={'/icons/edit.png'}
@@ -122,14 +164,20 @@ const CardDetails = ({ params }: CardDetailsProps) => {
                   </div>
 
                   <div className='flex flex-col gap-[14px] mt-[24px]'>
-                    <button className='flex items-center justify-center gap-[10px] border-[1.5px] py-[16px] border rounded-radius border-grey_third font-[MullerBold]'>
-                      <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <g id="Warning / Circle_Check">
-                          <path id="Vector" d="M15.5 10L11.5 14L9.5 12M12.5 21C7.52944 21 3.5 16.9706 3.5 12C3.5 7.02944 7.52944 3 12.5 3C17.4706 3 21.5 7.02944 21.5 12C21.5 16.9706 17.4706 21 12.5 21Z" stroke="#1E2128" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                        </g>
-                      </svg>
-                      Товар в корзине!
-                    </button>
+                    {/* {btnBasket ? */}
+                      <button onClick={()=>basketadd(oneProduct)} className='flex items-center justify-center gap-[10px] border-[1.5px] py-[16px] border rounded-radius border-grey_third font-[MullerBold]'>
+                        <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <g id="Warning / Circle_Check">
+                            <path id="Vector" d="M15.5 10L11.5 14L9.5 12M12.5 21C7.52944 21 3.5 16.9706 3.5 12C3.5 7.02944 7.52944 3 12.5 3C17.4706 3 21.5 7.02944 21.5 12C21.5 16.9706 17.4706 21 12.5 21Z" stroke="#1E2128" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                          </g>
+                        </svg>
+                        Товар в корзине!
+                      </button>
+                      {/* // :
+                      // <button onClick={() => basketadd(oneProduct)} className='flex items-center justify-center gap-[10px] border-[1.5px] py-[16px] border rounded-radius border-grey_third font-[MullerBold]'>
+                      //   Добавить в корзину
+                      // </button>} */}
+
                     <button className='py-[16px] text-white bg-black rounded-radius  font-[MullerBold]'>
                       Купить сейчас
                     </button>

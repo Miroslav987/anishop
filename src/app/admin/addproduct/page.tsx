@@ -40,6 +40,7 @@ export default function page() {
       price: 0,
       sale: 0,
       quantity: 0,
+      id:uuidv4(),
     }
   ]);
 
@@ -104,6 +105,7 @@ export default function page() {
       price: 0,
       sale: 0,
       quantity: 0,
+      id:uuidv4(),
     }
     if (extraProduct.length !== 5) {
       setExtraProduct([...extraProduct, newExtraProduct])
@@ -150,9 +152,7 @@ export default function page() {
         setExtraProduct(deleteExtraProduct);
         setProduct(({ ...product, extraProduct: deleteExtraProduct, }));
       }
-    } else {
-
-    }
+    } 
   }
 
   const DeleteСharacteristic = (index: number, indexProduct: number) => {
@@ -200,12 +200,13 @@ export default function page() {
   const ClickAddProduct = (e: any) => {
     e.preventDefault();
     AddEditProduct(product)
-
+    
   }
   useEffect(() => {
     Getcategory()
   }, [])
-
+  
+  console.log(product);
 
   return (
     <>
@@ -272,6 +273,7 @@ export default function page() {
                   <input
                     type="file"
                     multiple
+                    accept="image/png, image/jpeg, image/jpg,"                    
                     required
                     id={`file${indexProduct}`}
                     name="images"
@@ -318,8 +320,8 @@ export default function page() {
                   className="w-full"
                   slidesPerView={3}
                 >
-                  {productExtra.images.map((file: any) =>
-                    <SwiperSlide className="flex justify-center">
+                  {productExtra.images.map((file: any, i:number) =>
+                    <SwiperSlide key={i} className="flex justify-center">
                       <img className="w-full rounded-[10px]" src={file} alt="" />
                     </SwiperSlide>
                   )}

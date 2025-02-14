@@ -2,12 +2,14 @@ import type { Action, ThunkAction } from "@reduxjs/toolkit";
 import { combineReducers, combineSlices, configureStore } from "@reduxjs/toolkit";
 import { productsSlice } from "./features/products/ProductsSlice";
 import { userSlice } from "./features/user/UserSlice";
+import { basketSlice } from "./features/basket/BasketSlice";
 // import  { productsSlice } from "./features/products/ProductsSlice";
 
 
 const rootReducer = combineSlices(
   productsSlice,
-  userSlice
+  userSlice,
+  basketSlice
 );
 export type RootState = ReturnType<typeof rootReducer>;
 
@@ -17,9 +19,9 @@ export const makeStore = () => {
   });
 };
 
-// Infer the return type of `makeStore`
+// Вывод верхового типа `makestore
 export type AppStore = ReturnType<typeof makeStore>;
-// Infer the `AppDispatch` type from the store itself
+// Вывод типа `appdispatch 'из самого магазина
 export type AppDispatch = AppStore["dispatch"];
 export type AppThunk<ThunkReturnType = void> = ThunkAction<
   ThunkReturnType,

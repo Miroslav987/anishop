@@ -1,9 +1,11 @@
 import { useModal } from '@/context/ModalProvider';
 import React from 'react'
 import CompletedClearBasket from './CompletClearBasket';
+import { useBasket } from '@/lib/features/basket/BasketServer';
 
 export default function ConfirmClearBasket( ) {
   const {closeModal,openModal} = useModal()
+  const {AllDeleteBasket} = useBasket()
   
   return (
     <>
@@ -17,7 +19,8 @@ export default function ConfirmClearBasket( ) {
                 Отменить
               </button>
 
-              <button onClick={()=>openModal(<CompletedClearBasket/>)} className="w-full rounded-[10px] border-black border-2 hover:bg-black hover:text-white">Очистить</button>
+              <button onClick={AllDeleteBasket} className="w-full rounded-[10px] border-black border-2 hover:bg-black hover:text-white">Очистить</button>
+              {/* <button onClick={()=>openModal(<CompletedClearBasket/>)} className="w-full rounded-[10px] border-black border-2 hover:bg-black hover:text-white">Очистить</button> */}
 
           </div>
           </div>
