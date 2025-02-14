@@ -25,18 +25,12 @@ const CardDetails = ({ params }: CardDetailsProps) => {
   const { openModal } = useModal()
   const { GetOneProduct } = useProduct()
   const { AddBasketProduct } = useBasket()
-
-  const { userUID, userEmail, userPhone } = useAppSelector(state => state.user)
+  const { userUID } = useAppSelector(state => state.user)
   const { oneProduct, loading } = useAppSelector(state => state.products)
-  const { basket } = useAppSelector(state => state.basket)
   const { state, handleContent } = useDetailsInfo()
 
   const [typeColor, setTypeColor] = useState<number>(0)
-  // const [btnBasket, setBtnBasket] = useState(false)
-  // useEffect(()=>{
 
-  //   setBtnBasket(false)
-  // },[])
 
   useEffect(() => {
     GetOneProduct(newParams?.id);
@@ -46,31 +40,13 @@ const CardDetails = ({ params }: CardDetailsProps) => {
     handleContent(<Description description={oneProduct.description} />, false)
   }, [oneProduct])
 
-  // if (basket.products) {
-  //   useEffect(() => {
-  //     const filterId = basket.products.some((e: any) => e.id !== oneProduct.id)
-  //     setBtnBasket(filterId)
-  //   }, [basket.products,])
-  // }
+
 
   const handleTypeColor = (num: number) => {
     setTypeColor(num)
     handleContent(<Сharacterization characterization={oneProduct.extraProduct[num].characteristics} />, true)
   }
 
-
-  // function basketadd(oneProduct: any) {
-  //   const basketproduct = {
-  //     name: oneProduct.name,
-  //     id: oneProduct.id,
-  //     characteristics: oneProduct.extraProduct[typeColor].characteristics,
-  //     img: oneProduct.extraProduct[typeColor].images[0],
-  //     price: oneProduct.extraProduct[typeColor].price,
-  //     quantity: 1,
-  //     maxquantity: oneProduct.extraProduct[typeColor].quantity,
-  //   }
-  //   AddBasketProduct(basketproduct)
-  // }
   function basketadd(oneProduct: any) {
     const basketproduct = {
       name: oneProduct.name,

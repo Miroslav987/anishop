@@ -3,7 +3,6 @@ import { combineReducers, combineSlices, configureStore } from "@reduxjs/toolkit
 import { productsSlice } from "./features/products/ProductsSlice";
 import { userSlice } from "./features/user/UserSlice";
 import { basketSlice } from "./features/basket/BasketSlice";
-// import  { productsSlice } from "./features/products/ProductsSlice";
 
 
 const rootReducer = combineSlices(

@@ -14,7 +14,7 @@ const NavBar = () => {
   const { basket } = useAppSelector(state => state.basket)
   const { userUID, userEmail, userPhone } = useAppSelector(state => state.user)
   const [client, setClient] = useState(false);
-console.log(basket);
+
 
 
   useEffect(() => {

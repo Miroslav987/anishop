@@ -1,26 +1,34 @@
 import { createAppSlice } from "@/lib/CreateAppSlice";
 
-
-
-
-const initialState:any = {
-    basket:JSON.parse(localStorage.getItem("basket")||"[]"),
-}
-
-
-
-
-export const basketSlice = createAppSlice({
-    name:"basket",
+interface BasketState {
+    basket: any; 
+  }
+  
+  const initialState: BasketState = {
+    basket: (() => {
+      try {
+        return JSON.parse(localStorage.getItem("basket") || "[]");
+      } catch (error) {
+        console.error( error);
+        return [];
+      }
+    })(),
+  };
+  
+  export const basketSlice = createAppSlice({
+    name: "basket",
     initialState,
-    reducers:()=> ({
-        SetBasket:((state , action)=>{
-            state.basket = action.payload
-        }),
-
-    }),
-})
-
-
-export const {SetBasket} = basketSlice.actions
-export default basketSlice.reducer
+    reducers: {
+      SetBasket: (state, action) => {
+        state.basket = action.payload;
+        try {
+          localStorage.setItem("basket", JSON.stringify(state.basket));
+        } catch (error) {
+          console.error( error);
+        }
+      },
+    },
+  });
+  
+  export const { SetBasket } = basketSlice.actions;
+  export default basketSlice.reducer;

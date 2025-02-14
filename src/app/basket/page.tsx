@@ -7,7 +7,7 @@ import { useAppSelector } from "@/lib/hooks";
 import { useState } from "react";
 
 
-export default function page() {
+export default function Basket() {
 
   const { openModal } = useModal()
   const { basket } = useAppSelector(state => state.basket)
@@ -19,8 +19,6 @@ export default function page() {
       +e.quantity * +e.price
     )
     totalPrice = productsPrice.reduce((acc: any, number: any) => acc + number)
-   
-    
   }
   return (
 
