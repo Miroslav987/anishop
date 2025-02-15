@@ -24,7 +24,7 @@ export default function AuthAdmin() {
                 <form onSubmit={handleSubmit} className="flex flex-col gap-[32px]">
                     <input
                         className="w-full rounded-[10px] border-grey border-[2px] px-[20px] py-[25px] placeholder:text-black"
-                        type="password"
+                        type="text"
                         required
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}

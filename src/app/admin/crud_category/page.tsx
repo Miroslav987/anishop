@@ -50,11 +50,10 @@ export default function page() {
     }
     function DelCategory(i:number) {
         const updateCategory:any = [...stateCategory]
-        delete updateCategory[i];
-        setCategory(updateCategory)
+        const delcat = updateCategory.filter((e:any,index:number)=> index !== i)
+        setCategory(delcat)
     }
-
-    
+     
     
     function CkickEditCategory(e: any) {
         e.preventDefault()
@@ -64,6 +63,7 @@ export default function page() {
     useEffect(()=>{
         Getcategory()
     },[])
+
     useEffect(()=>{
         setCategory(prev => category.stateCategory ? [...category.stateCategory]: prev )
     },[category.stateCategory])

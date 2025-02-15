@@ -35,6 +35,7 @@ export default function CardSwiper({images}:any) {
         )}
 
         </Swiper>
+        {images.length > 1? 
         <div className=" absolute top-[50%] inset-x-[10px] flex z-[2]  justify-between">
           <button className="bg-white p-[10px] rounded-full" onClick={handlePrev}>
             <svg
@@ -72,7 +73,7 @@ export default function CardSwiper({images}:any) {
               />
             </svg>
           </button>
-        </div>
+        </div>:null}
       </div>
     </div>
   );

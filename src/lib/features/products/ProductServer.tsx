@@ -60,9 +60,9 @@ export const useProduct = () => {
 
     const CrudCategory = async (category: any) => {
         const id = "uUR6bJhVyyEbk3Kifsf7"
+        console.log(category);
         try {
             const data = await setDoc(doc(db, "category", id), category)
-            console.log(data);
             Getcategory()
         } catch (error) {
             console.error(error);

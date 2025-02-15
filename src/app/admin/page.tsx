@@ -13,7 +13,7 @@ export default function Admin() {
       </Link>
 
       <Link href={`/admin/crud_category`}
-        className='w-full md:w-auto  px-[35px] py-[25px] bg-green_first text-white  rounded-[10px
+        className='w-full md:w-auto  px-[35px] py-[25px] bg-green_first text-white  rounded-[10px]
         ] font-[MullerBold] shadow-[0_0_10px_0_#00000014]'>
         Категории 
       </Link>
