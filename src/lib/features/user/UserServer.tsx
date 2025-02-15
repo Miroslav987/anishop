@@ -102,7 +102,7 @@ export const useAuth = () => {
       const {user} = await signInWithEmailAndPassword(auth, emailAdmin, password)
       dispatch(setAdmin(user))
       router.push("/admin")
-      
+      closeModal()
     } catch (error) {
       console.error(error);
       
@@ -115,6 +115,7 @@ export const useAuth = () => {
       dispatch(clearUser())
       router.push("/")
       closeModal()
+      
     }
     catch(error){
       console.error(error);

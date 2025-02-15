@@ -268,7 +268,7 @@ export default function EditProduct({ params }: EditProductProps) {
                         <div key={indexProduct} style={{ borderColor: productExtra.color }} className={`flex flex-col gap-[20px] px-[20px]  border-x-[4px]`}>
                             <div className="flex flex-wrap md:flex-nowrap gap-[20px]">
                                 <input
-                                    className="w-full h-auto  rounded-[10px] border-grey border-[2px] px-[20px] py-[15px] placeholder:text-black "
+                                    className="w-full h-[60px]   rounded-[10px] border-grey border-[2px] px-[20px] py-[15px] placeholder:text-black "
                                     type="color"
                                     name="color"
                                     required
