@@ -73,7 +73,7 @@ export default function page() {
             <div className="w-full flex flex-col gap-[20px]  rounded-[10px] bg-white px-[40px] pt-[50px] pb-[30px] ">
                 <form className="w-full flex flex-col gap-[20px]" onSubmit={CkickEditCategory} >
                     {stateCategory.map((e: any, i: number) => (
-                        <div className="flex gap-[20px] items-center" key={i}>
+                        <div className="flex flex-wrap md:flex-nowrap gap-[20px] items-center" key={i}>
                             <input
                                 className="w-full capitalize rounded-[10px] border-grey border-[2px] px-[20px] py-[15px] placeholder:text-black "
                                 type="text"
@@ -95,7 +95,7 @@ export default function page() {
                             <button
                                 type="button"
                                 onClick={() => DelCategory(i)}
-                                className="p-[10px] h-[40px] bg-white rounded-[10px]  hover:bg-black">
+                                className="m-auto p-[10px] h-[40px] bg-white rounded-[10px]  hover:bg-black">
                                 <svg width="18" height="18" viewBox="0 0 18 18" fill="#0000" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M6.5 1.5H11.5M1.5 4H16.5M14.8333 4L14.2489 12.7661C14.1612 14.0813 14.1174 14.7389 13.8333 15.2375C13.5833 15.6765 13.206 16.0294 12.7514 16.2497C12.235 16.5 11.5759 16.5 10.2578 16.5H7.74221C6.42409 16.5 5.76503 16.5 5.24861 16.2497C4.79396 16.0294 4.41674 15.6765 4.16665 15.2375C3.88259 14.7389 3.83875 14.0813 3.75107 12.7661L3.16667 4" stroke="#e5e7eb" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                                 </svg>
@@ -107,11 +107,11 @@ export default function page() {
                             type="button"
                             onClick={AddCategory}
                             className="w-full h-[60px] mt-[20px] rounded-[10px] border-black border-2 bg-black text-white ">
-                            Создать доп. вид товара</button>
+                            Создать категорию</button>
                         <button
                             type="submit"
                             className="w-full h-[60px] mt-[20px] rounded-[10px] border-black border-2 bg-black text-white ">
-                            Создать товар</button>
+                            Внести изменения</button>
                     </div>
                 </form>
             </div>

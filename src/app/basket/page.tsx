@@ -29,7 +29,7 @@ export default function Basket() {
           <div className="flex justify-end">
             <button
               onClick={() => openModal(<ConfirmClearBasket />)}
-              className="w-[202px] h-[36px] rounded-[10px] flex justify-center items-center gap-[10px] bg-grey_first shadow-[0_0_4px_0_#00000029]">
+              className="w-full h-[36px] rounded-[10px] flex justify-center items-center gap-[10px] bg-grey_first shadow-[0_0_4px_0_#00000029] md:w-[202px]">
               <svg
                 width="18"
                 height="18"
@@ -50,7 +50,7 @@ export default function Basket() {
           </div>
           <div className="flex mt-[40px] mb-[45px] flex-wrap  gap-[54px] ">
             {basket.products.map((e: any) => (
-              <CardBasket key={e.id} product={e} />
+              <CardBasket key={e.extraId} product={e} />
             ))}
           </div>
           <div className="w-full h-[4px] bg-grey_third rounded-[4px] "></div>
@@ -105,7 +105,7 @@ export default function Basket() {
         <div >
           <div className="flex justify-start pt-[14px]">
 
-            <button className="flex items-center gap-[10px]">
+            <button className="hidden items-center gap-[10px] md:flex">
               <svg className="rotate-90" width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M9 1L5 5L1 1" stroke="#1E2128" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
@@ -119,8 +119,8 @@ export default function Basket() {
             </svg>
             <p className="text-[32px]">Корзина пуста</p>
           </div>
-          <div className="w-full h-[4px] bg-grey_third rounded-[4px]  opacity-[0.5]"></div>
-          <div className="h-40 flex gap-[47.5px] items-end opacity-[0.5] ">
+          <div className="w-full h-[4px] bg-grey_third rounded-[4px]  opacity-[0.5] hidden md:block"></div>
+          <div className="h-40 hidden gap-[47.5px] items-end opacity-[0.5] md:flex">
             <div className=" w-[340px]  flex gap-[10px] flex-col pt-[45px]">
               <div className=" w-full flex items-center gap-[8px]">
                 <p className="whitespace-nowrap">Доставка</p>

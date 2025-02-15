@@ -17,17 +17,17 @@ export default function page() {
   const [client, setClient] = useState(false);
 
   useEffect(() => {
-    setClient(true); 
+    setClient(true);
   }, []);
 
-  
+
   if (!client) {
-    return null; 
+    return null;
   }
   return (
     <>
-      <div className="flex gap-[30px] ">
-        <div onClick={() =>router.push('/profile/my-address-creditcard')}
+      <div className="flex gap-[15px] md:gap-[30px] flex-col md:flex-row ">
+        <div onClick={() => router.push('/profile/my-address-creditcard')}
           className="w-full flex items-center gap-[16px] bg-black p-[10px] rounded-[10px] cursor-pointer">
           <div className="w-[61px] h-[61px] flex justify-center items-center bg-black_second rounded-[9px] ">
             <svg
@@ -55,20 +55,22 @@ export default function page() {
           </div>
           <p className="text-white text-lg ">Мои адреса и карты</p>
         </div>
-        <div className="w-[50%] p-[20px] shadow-[0_0_6px_0_#0000001A] rounded-[10px]">
-          <p className="text-sm">Ваш номер</p>
-          {userPhone !== "null" ?
-            <>
-              <p className="text-lg font-[MullerBold]">{userPhone}</p>
-              <button onClick={() => openModal(<AuthPhone />)}>Изменить</button>
-            </>
-            :
-            <button onClick={() => openModal(<AuthPhone />)}>Добавить</button>
-          }
-        </div>
-        <div className="w-[50%] p-[20px] shadow-[0_0_6px_0_#0000001A] rounded-[10px]">
-          <p className="text-sm">Ваша почта</p>
-          <p className="text-lg font-[MullerBold]">{userEmail}</p>
+        <div className=" w-full flex flex-wrap md:flex-nowrap gap-[15px] md:gap-[30px]">
+          <div className="w-full p-[20px] shadow-[0_0_6px_0_#0000001A] rounded-[10px]">
+            <p className="text-sm">Ваш номер</p>
+            {userPhone !== "null" ?
+              <>
+                <p className="text-lg font-[MullerBold]">{userPhone}</p>
+                <button onClick={() => openModal(<AuthPhone />)}>Изменить</button>
+              </>
+              :
+              <button onClick={() => openModal(<AuthPhone />)}>Добавить</button>
+            }
+          </div>
+          <div className="w-full p-[20px] shadow-[0_0_6px_0_#0000001A] rounded-[10px]">
+            <p className="text-sm">Ваша почта</p>
+            <p className="text-lg font-[MullerBold]">{userEmail}</p>
+          </div>
         </div>
       </div>
       <div className=" mt-[70px] flex gap-[16px] items-center">
@@ -86,19 +88,19 @@ export default function page() {
         <CardOrderingProfile />
         <CardOrderingProfile />
       </div>
-      <div className="mt-[60px] flex gap-[20px] justify-end">
+      <div className="mt-[60px] flex flex-wrap gap-[20px] justify-end">
 
 
-        {userAdmin? 
-            <button onClick={() => router.push("/admin")} className="flex items-center justify-center gap-[8px] rounded-[10px] h-[60px] px-[100px] bg-white border-black border-2 ">
-              <p className="">Админка</p>
-            </button>
-              :
-            <button onClick={()=>openModal(<AuthAdmin/>)} className="flex items-center justify-center gap-[8px] rounded-[10px] h-[60px] px-[100px] bg-white border-black border-2 ">
-              <p className="">Админка</p>
-            </button>}
+        {userAdmin ?
+          <button onClick={() => router.push("/admin")} className="w-full md:w-auto flex items-center justify-center gap-[8px] rounded-[10px] h-[60px] px-[100px] bg-white border-black border-2 ">
+            <p className="">Админка</p>
+          </button>
+          :
+          <button onClick={() => openModal(<AuthAdmin />)} className="w-full md:w-auto flex items-center justify-center gap-[8px] rounded-[10px] h-[60px] px-[100px] bg-white border-black border-2 ">
+            <p className="">Админка</p>
+          </button>}
 
-        <button onClick={() => openModal(<Exite />)} className="flex items-center justify-center gap-[8px] rounded-[10px] h-[60px] px-[100px] bg-black  ">
+        <button onClick={() => openModal(<Exite />)} className="w-full md:w-auto flex items-center justify-center gap-[8px] rounded-[10px] h-[60px] px-[100px] bg-black  ">
           <div>
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M12 15L15 12M15 12L12 9M15 12H4M9 7.24859V7.2002C9 6.08009 9 5.51962 9.21799 5.0918C9.40973 4.71547 9.71547 4.40973 10.0918 4.21799C10.5196 4 11.0801 4 12.2002 4H16.8002C17.9203 4 18.4796 4 18.9074 4.21799C19.2837 4.40973 19.5905 4.71547 19.7822 5.0918C20 5.5192 20 6.07899 20 7.19691V16.8036C20 17.9215 20 18.4805 19.7822 18.9079C19.5905 19.2842 19.2837 19.5905 18.9074 19.7822C18.48 20 17.921 20 16.8031 20H12.1969C11.079 20 10.5192 20 10.0918 19.7822C9.71547 19.5905 9.40973 19.2839 9.21799 18.9076C9 18.4798 9 17.9201 9 16.8V16.75"

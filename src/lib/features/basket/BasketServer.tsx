@@ -29,12 +29,12 @@ export const useBasket = () => {
         }
 
         let filterBasket = basket.products.filter((elem: any) => {
-            return elem.id === product.id;
+            return elem.extraId === product.extraId;
         });
 
         if (filterBasket.length > 0) {
             basket.products = basket.products.filter((elem: any) => {
-                return elem.id !== product.id;
+                return elem.extraId !== product.extraId;
             });
         }
         else {
@@ -43,13 +43,13 @@ export const useBasket = () => {
         }
     }
 
-    const DeleteBasketProduct = (id: string) => {
+    const DeleteBasketProduct = (extraId: string) => {
         const updateBasket = { ...basket }
         const products = updateBasket.products.filter((e: any) =>
-            e.id !== id
+            e.extraId !== extraId
         )
         const infoDeleteProduct = updateBasket.products.filter((e: any) =>
-            e.id === id
+            e.extraId === extraId
         )
         const deleteProduct = {
             products,
@@ -61,10 +61,10 @@ export const useBasket = () => {
     }
 
 
-    const PlusQuanty = (id: string) => {
+    const PlusQuanty = (extraId: string) => {
         const updateBasket = { ...basket };
 
-        const productIndex = updateBasket.products.findIndex((e: any) => e.id === id);
+        const productIndex = updateBasket.products.findIndex((e: any) => e.extraId === extraId);
 
         if (productIndex !== -1) {
             const productDetail = updateBasket.products[productIndex];
@@ -92,10 +92,10 @@ export const useBasket = () => {
     };
 
 
-    const MinusQuanty = (id: string) => {
+    const MinusQuanty = (extraId: string) => {
         const updateBasket = { ...basket };
 
-        const productIndex = updateBasket.products.findIndex((e: any) => e.id === id);
+        const productIndex = updateBasket.products.findIndex((e: any) => e.extraId === extraId);
 
         if (productIndex !== -1) {
             const productDetail = updateBasket.products[productIndex];

@@ -53,7 +53,8 @@ function basketadd(e:any) {
     e.preventDefault()
     const basketproduct = {
       name:product.name,
-      id:product.extraProduct[0].id,
+      id:product.id,
+      extraId: product.extraProduct[0].id,
       characteristics:product.extraProduct[0].characteristics,
       img:product.extraProduct[0].images[0],
       price:product.extraProduct[0].price,
@@ -66,7 +67,7 @@ function basketadd(e:any) {
   
 
   return (
-    <Link href={`/carddetails/${encodeURIComponent(product.id)}`}>
+    <Link className="mx-[20px] md:mx-0" href={`/carddetails/${encodeURIComponent(product.id)}`}>
       <div className="relative flex flex-col justify-between  w-[100%] h-[326px] p-[18px] rounded-[10px] bg-white shadow-[0_0_10px_0_#00000014]  md:w-[291px] ">
         <button type="button" onClick={(e)=>basketadd(e)} className="absolute top-[10px] left-[18px] flex justify-center items-center bg-grey_first rounded-[10px]  w-[36px] h-[32px] p-[5px]  hover:invert-[100%]">
           <svg width="15" height="15" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">

@@ -50,7 +50,8 @@ const CardDetails = ({ params }: CardDetailsProps) => {
   function basketadd(oneProduct: any) {
     const basketproduct = {
       name: oneProduct.name,
-      id: oneProduct.extraProduct[typeColor].id,
+      id:oneProduct.id,
+      extraId: oneProduct.extraProduct[typeColor].id,
       characteristics: oneProduct.extraProduct[typeColor].characteristics,
       img: oneProduct.extraProduct[typeColor].images[0],
       price: oneProduct.extraProduct[typeColor].price,
@@ -70,13 +71,13 @@ const CardDetails = ({ params }: CardDetailsProps) => {
   }
   return (
     <>
-      <div className='container '>
-        <div className='flex gap-[10px] mb-[30px] items-center'>
+      <div className='container  px-[20px] md:px-0'>
+        <div className='hidden gap-[10px]  mb-[30px] items-center md:flex'>
           <Link href="/">Главная</Link>
           <svg width="12" height="10" viewBox="0 0 12 10" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M1 5H11M11 5L7 1M11 5L7 9" stroke="#1E2128" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
-          <p>Профиль</p>
+          <p>Tовар</p>
         </div>
 
         <div className='w-full relative  rounded-[10px]  bg-white px-[0px] pt-[50px] pb-[30px] shadow-none md:px-[40px] pt-[50px] pb-[30px] shadow-[0_0_10px_0_#00000014]'>
@@ -101,7 +102,7 @@ const CardDetails = ({ params }: CardDetailsProps) => {
                 </button>
               </div>
               : null}
-            <div>
+            <div className='mb-[150px] md:mb-0'>
               <div className="w-full flex flex-col gap-[2.1875rem] md:flex-row">
                 <CardSwiper images={oneProduct.extraProduct[typeColor].images} />
                 <div>

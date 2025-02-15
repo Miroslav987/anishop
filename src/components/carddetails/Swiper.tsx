@@ -29,8 +29,8 @@ export default function CardSwiper({images}:any) {
           ref={swiperRef}
         >
           {images.map((e:string, i:number)=>
-          <SwiperSlide key={i} className="flex justify-center">
-            <img src={e} alt="" />
+          <SwiperSlide key={i} className="flex items-center justify-center">
+            <img className="m-auto" src={e} alt="" />
           </SwiperSlide>
         )}
 

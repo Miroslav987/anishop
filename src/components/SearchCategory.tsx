@@ -9,15 +9,12 @@ export default function SearchCategory() {
         useEffect(()=>{
           Getcategory()
         },[])
-    // const category = ['Все','Смартфоны','Ноутбуки','Бытовая техника','Умный дом','Аксессуары для ПК','Ноутбуки']
 function handleSearchCategory(e:string) {
   SearchCategory(e)
-  console.log(e);
-  
 }
   return (
-    <div className={` w-full flex gap-[16px]  mb-[50px] font-[MullerBold] overflow-hidden `}>
-        <ScrollContainer  vertical={false}  className='w-full flex gap-[16px] '>
+    <div className={` w-full flex gap-[16px]  font-[MullerBold] overflow-hidden `}>
+        <ScrollContainer  vertical={false}  className='w-full py-[5px] flex gap-[16px] md:py-[0px]'>
         <button 
             onClick={()=>SearchCategory('')}
              className={`

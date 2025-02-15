@@ -5,7 +5,8 @@ import React from 'react'
 
 const Footer =()=> {
   return (
-    <div className='bg-white shadow-[0_-4px_6px_-1px_#0000001a] mt-[120px] mb-[84px] md:mb-0'  >
+    <footer>
+    <nav className='bg-white shadow-[0_-4px_6px_-1px_#0000001a] mt-[120px] mb-[84px] md:mb-0 hidden md:block'  >
         <div className='w-full h-[142px] flex items-center justify-between container snap-y'>
             <div>         
                 <Image
@@ -31,7 +32,8 @@ const Footer =()=> {
                 <p>Все права защищены</p>
             </div>
         </div>
-    </div>
+    </nav>
+    </footer>
   )
 }
 

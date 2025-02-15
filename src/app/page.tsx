@@ -13,7 +13,7 @@ import { useProduct } from "@/lib/features/products/ProductServer";
 
 
 export default function Home() {
-  const {GetProducts} = useProduct()
+  const { GetProducts } = useProduct()
   const { products } = useAppSelector(state => state.products)
 
 
@@ -21,27 +21,27 @@ export default function Home() {
   useEffect(() => {
     if (typeof window !== 'undefined') {
       GetProducts()
-  }
+    }
   }, []);
 
 
 
   return (
     <>
-      <div className="flex justify-between gap-[50px] container px-[20px] lg:px-0 ">
+      <div className="flex justify-between gap-[50px] container   ">
         <SideFilter />
         <div className="w-full  flex flex-col overflow-hidden ">
-          <div>
+          <div className="flex flex-col gap-[34px] px-[20px] md:px-0 md:gap-[50px]">
             <SearchCategory />
+            <Sorting />
           </div>
-          <Sorting />
           <div className="w-full grid gap-[20px] grid-cols-1  sm:grid-cols-2 md:grid-cols-3">
             {products ? products.map((e: any) => (
               <Card key={e.id} product={e} />
               // console.log(e)
-              
-              )) :
-               <p>Пусто</p>
+
+            )) :
+              <p>Пусто</p>
             }
           </div>
 
