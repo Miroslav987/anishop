@@ -6,7 +6,7 @@ import clsx from "clsx";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 
-export default function DeleteCard({id}:any) {
+export default function DeleteCard({id,extraProduct}:any) {
   const { closeModal } = useModal();
   const {DeleteProduct} = useProduct()
   return (
@@ -23,7 +23,7 @@ export default function DeleteCard({id}:any) {
             Отмена
           </button>
 
-          <button onClick={()=>DeleteProduct(id)} className="w-full rounded-[10px] border-black border-2 hover:bg-black hover:text-white">
+          <button onClick={()=>DeleteProduct(id,extraProduct)} className="w-full rounded-[10px] border-black border-2 hover:bg-black hover:text-white">
             Удалить
           </button>
         </div>

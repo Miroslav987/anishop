@@ -1,12 +1,24 @@
 import { useProduct } from '@/lib/features/products/ProductServer'
+import { useSearch } from '@/lib/features/search/SearchesServer'
+import { useRouter, useSearchParams } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
 
+
+
+
+
 export default function Search() {
-  const { Search } = useProduct()
+  const router = useRouter();
   const [search, setSearch] = useState<string>('')
-useEffect(()=>{
-  Search(search)
-},[search])
+
+
+
+const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+
+};
+
+
+
   return (
     <div className='relative w-full   h-[54px] flex items-center md:w-[38%] '>
       <input className='w-[100%] h-[100%] pl-[64px]  bg-grey_first  rounded-[10px]  '

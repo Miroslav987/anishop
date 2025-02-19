@@ -13,7 +13,7 @@ import Cookies from 'js-cookie';
 import { deleteObject, getDownloadURL, listAll, ref, uploadBytes } from "firebase/storage";
 import { useProduct } from "@/lib/features/products/ProductServer";
 import { useAppSelector } from "@/lib/hooks";
-import { SetCategory } from "@/lib/features/products/ProductsSlice";
+import { useSearch } from "@/lib/features/search/SearchesServer";
 
 interface extraProduct {
     color: string,
@@ -24,8 +24,8 @@ interface extraProduct {
     quantity: any,
 }
 export default function page() {
-    const { CrudCategory ,Getcategory } = useProduct()
-      const { category } = useAppSelector(state => state.products)
+    const { CrudCategory ,Getcategory } = useSearch()
+      const { category } = useAppSelector(state => state.searches)
       
     const [stateCategory, setCategory] = useState([{
         name: "",

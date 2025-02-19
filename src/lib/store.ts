@@ -3,12 +3,14 @@ import { combineReducers, combineSlices, configureStore } from "@reduxjs/toolkit
 import { productsSlice } from "./features/products/ProductsSlice";
 import { userSlice } from "./features/user/UserSlice";
 import { basketSlice } from "./features/basket/BasketSlice";
+import { searchesSlice } from "./features/search/SearchesSlice";
 
 
 const rootReducer = combineSlices(
   productsSlice,
   userSlice,
-  basketSlice
+  basketSlice,
+  searchesSlice
 );
 export type RootState = ReturnType<typeof rootReducer>;
 

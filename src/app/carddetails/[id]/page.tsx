@@ -93,7 +93,7 @@ const CardDetails = ({ params }: CardDetailsProps) => {
                     alt='edite'
                   />
                 </button>
-                <button onClick={() => openModal(<DeleteCard id={oneProduct.id} />)} className='p-[10px] border rounded-lg bg-white hover:invert'>
+                <button onClick={() => openModal(<DeleteCard id={oneProduct.id} extraProduct={oneProduct.extraProduct} />)} className='p-[10px] border rounded-lg bg-white hover:invert'>
                   <Image
                     src={'/icons/delete.png'}
                     width={23}

@@ -79,6 +79,10 @@ a {
   }
 }
 
+.load_card_bg {
+  background: linear-gradient(180deg, #FFFFFF 9.5%, #DCDCDC 64.5%, #B7B7B7 100%);
+}
+
 input[type='checkbox'] {
   width: 16px;  
   height: 16px;  

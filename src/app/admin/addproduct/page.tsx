@@ -13,6 +13,7 @@ import Cookies from 'js-cookie';
 import { deleteObject, getDownloadURL, listAll, ref, uploadBytes } from "firebase/storage";
 import { useProduct } from "@/lib/features/products/ProductServer";
 import { useAppSelector } from "@/lib/hooks";
+import { useSearch } from "@/lib/features/search/SearchesServer";
 
 interface extraProduct {
   color: string,
@@ -23,9 +24,10 @@ interface extraProduct {
   quantity: any,
 }
 export default function page() {
-  const { AddEditProduct, Getcategory } = useProduct()
+  const { AddEditProduct } = useProduct()
+  const { Getcategory } = useSearch()
   const cookPhone: any = Cookies.get("userPhone")
-  const { category } = useAppSelector(state => state.products)
+  const { category } = useAppSelector(state => state.searches)
   const [characteristics, setСharacteristics] = useState<any>([
     {
       name: "",
@@ -40,7 +42,7 @@ export default function page() {
       price: 0,
       sale: 0,
       quantity: 0,
-      id:uuidv4(),
+      id: uuidv4(),
     }
   ]);
 
@@ -51,9 +53,32 @@ export default function page() {
       description: "",
       phone: cookPhone,
       extraProduct: extraProduct,
+      price: 0,
+      sale: 0,
       id: uuidv4()
     }
   )
+
+
+  const Product = {
+    name: "",
+    category: "",
+    description: "",
+    phone: cookPhone,
+    extraProduct: [{
+      color: "#000000",
+      characteristics: [{
+        name: "",
+        info: ""
+      }],
+      images: [],
+      price: 0,
+      sale: 0,
+      quantity: 0,
+      id: uuidv4(),
+    }],
+    id: uuidv4()
+  }
 
 
   const handleNameChange = (event: any) => {
@@ -77,11 +102,42 @@ export default function page() {
     setProduct(({ ...product, extraProduct: updatedExtraProduct, }));
   };
 
+  const handleExtraAndNameChange = (indexProduct: number, e: any) => {
+
+    const updatedExtraProduct = [...extraProduct];
+    updatedExtraProduct[indexProduct] = {
+      ...updatedExtraProduct[indexProduct],
+      [e.name]: e.value,
+    };
+
+
+    if (indexProduct <= 0) {
+
+      const updatedProduct = {
+        ...product,
+        [e.name]: e.value,
+        extraProduct: updatedExtraProduct,
+      };
+
+      if (e.name === "price") {
+        updatedProduct.price = +e.value;
+      }
+
+      if (e.name === "sale") {
+        updatedProduct.sale = +e.value;
+      }
+      setProduct(updatedProduct);
+    }
+    setExtraProduct(updatedExtraProduct);
+
+  }
+
   const handleCharacteristicChange = (indexProduct: number, index: number, e: any) => {
     const updateCharacteristic: any = [...characteristics];
     updateCharacteristic[index] = {
       ...updateCharacteristic[index],
       [e.name]: e.value,
+      price: +e.value,
     };
 
     setСharacteristics(updateCharacteristic)
@@ -105,7 +161,7 @@ export default function page() {
       price: 0,
       sale: 0,
       quantity: 0,
-      id:uuidv4(),
+      id: uuidv4(),
     }
     if (extraProduct.length !== 5) {
       setExtraProduct([...extraProduct, newExtraProduct])
@@ -152,7 +208,7 @@ export default function page() {
         setExtraProduct(deleteExtraProduct);
         setProduct(({ ...product, extraProduct: deleteExtraProduct, }));
       }
-    } 
+    }
   }
 
   const DeleteСharacteristic = (index: number, indexProduct: number) => {
@@ -200,13 +256,13 @@ export default function page() {
   const ClickAddProduct = (e: any) => {
     e.preventDefault();
     AddEditProduct(product)
-    
+
   }
   useEffect(() => {
     Getcategory()
   }, [])
-  
-  console.log(product);
+
+
 
   return (
     <>
@@ -273,7 +329,7 @@ export default function page() {
                   <input
                     type="file"
                     multiple
-                    accept="image/png, image/jpeg, image/jpg,"                    
+                    accept="image/png, image/jpeg, image/jpg,"
                     required
                     id={`file${indexProduct}`}
                     name="images"
@@ -288,7 +344,7 @@ export default function page() {
                     type="number"
                     name="price"
                     placeholder="цена"
-                    onChange={(e) => handleExtraProductFieldChange(indexProduct, e.target)}
+                    onChange={(e) => handleExtraAndNameChange(indexProduct, e.target)}
                   />
                   <span className="absolute top-[28%] right-[10px]">сом</span>
                 </div>
@@ -298,7 +354,7 @@ export default function page() {
                     type="number"
                     name="sale"
                     placeholder="скидка"
-                    onChange={(e) => handleExtraProductFieldChange(indexProduct, e.target)}
+                    onChange={(e) => handleExtraAndNameChange(indexProduct, e.target)}
                   />
                   <span className="absolute top-[28%] right-[10px]">%</span>
                 </div>
@@ -320,7 +376,7 @@ export default function page() {
                   className="w-full"
                   slidesPerView={3}
                 >
-                  {productExtra.images.map((file: any, i:number) =>
+                  {productExtra.images.map((file: any, i: number) =>
                     <SwiperSlide key={i} className="flex justify-center">
                       <img className="w-full rounded-[10px]" src={file} alt="" />
                     </SwiperSlide>

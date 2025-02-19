@@ -14,6 +14,7 @@ import { deleteObject, getDownloadURL, listAll, ref, uploadBytes } from "firebas
 import { useProduct } from "@/lib/features/products/ProductServer";
 import { useAppSelector } from "@/lib/hooks";
 import { Setproducts } from "@/lib/features/products/ProductsSlice";
+import { useSearch } from "@/lib/features/search/SearchesServer";
 
 
 interface EditProductProps {
@@ -22,8 +23,9 @@ interface EditProductProps {
 
 export default function EditProduct({ params }: EditProductProps) {
     const newParams = use(params)
-    const { GetOneProduct, AddEditProduct, Getcategory } = useProduct()
-    const { category } = useAppSelector(state => state.products)
+    const { GetOneProduct, AddEditProduct, } = useProduct()
+    const { Getcategory } = useSearch()
+    const { category } = useAppSelector(state => state.searches)
     const { oneProduct, loading } = useAppSelector(state => state.products)
     const cookPhone: any = Cookies.get("userPhone")
     const [characteristics, setСharacteristics] = useState<any>([
@@ -41,7 +43,7 @@ export default function EditProduct({ params }: EditProductProps) {
                 price: 0,
                 sale: 0,
                 quantity: 0,
-                id:uuidv4(),
+                id: uuidv4(),
             }
         ]
         // oneProduct? oneProduct.extraProduct :[]
@@ -54,18 +56,20 @@ export default function EditProduct({ params }: EditProductProps) {
             description: "",
             phone: cookPhone,
             extraProduct: extraProduct,
+            price: 0,
+            sale: 0,
             id: "",
         }
     )
 
-    const handleNameChange = (event: any) => {
+    const handleNameChange = (e: any) => {
         const updatedProduct = {
             ...product,
-            [event.target.name]: event.target.value,
+            [e.target.name]: e.target.value,
         };
-
         setProduct(updatedProduct);
     };
+    
 
     const handleExtraProductFieldChange = (indexProduct: number, e: any) => {
 
@@ -78,6 +82,35 @@ export default function EditProduct({ params }: EditProductProps) {
         setExtraProduct(updatedExtraProduct);
         setProduct(({ ...product, extraProduct: updatedExtraProduct, }));
     };
+
+    const handleExtraAndNameChange = (indexProduct: number, e: any) => {
+
+        const updatedExtraProduct = [...extraProduct];
+        updatedExtraProduct[indexProduct] = {
+          ...updatedExtraProduct[indexProduct],
+          [e.name]: e.value,
+        };
+    
+        if (indexProduct <= 0) {
+    
+          const updatedProduct = {
+            ...product,
+            [e.name]: e.value,
+            extraProduct: updatedExtraProduct,
+          };
+    
+          if (e.name === "price") {
+            updatedProduct.price = +e.value;
+          }
+    
+          if (e.name === "sale") {
+            updatedProduct.sale = +e.value;
+          }
+          setProduct(updatedProduct);
+        }
+        setExtraProduct(updatedExtraProduct);
+    
+      }
 
     const handleCharacteristicChange = (indexProduct: number, index: number, e: any) => {
         const updatedExtraProduct = [...extraProduct];
@@ -105,7 +138,7 @@ export default function EditProduct({ params }: EditProductProps) {
             price: 0,
             sale: 0,
             quantity: 0,
-            id:uuidv4(),
+            id: uuidv4(),
         }
         if (extraProduct.length !== 5) {
             setExtraProduct([...extraProduct, newExtraProduct])
@@ -154,9 +187,7 @@ export default function EditProduct({ params }: EditProductProps) {
                 setExtraProduct(deleteExtraProduct);
                 setProduct(({ ...product, extraProduct: deleteExtraProduct, }));
             }
-        } else {
-
-        }
+        } 
     }
 
     const DeleteСharacteristic = (index: number, indexProduct: number) => {
@@ -207,7 +238,7 @@ export default function EditProduct({ params }: EditProductProps) {
 
     useEffect(() => {
         setExtraProduct((prev: any) => (oneProduct.extraProduct ? [...oneProduct.extraProduct] : prev))
-        setProduct((prev: any) =>({...prev,...oneProduct,}));
+        setProduct((prev: any) => ({ ...prev, ...oneProduct, }));
     }, [oneProduct]);
 
     const ClickEditProduct = (e: any) => {
@@ -215,6 +246,7 @@ export default function EditProduct({ params }: EditProductProps) {
         AddEditProduct(product)
 
     }
+  
 
 
     return (
@@ -262,8 +294,6 @@ export default function EditProduct({ params }: EditProductProps) {
                         />
                     </div>
 
-
-
                     {extraProduct.map((productExtra: any, indexProduct: number) => (
                         <div key={indexProduct} style={{ borderColor: productExtra.color }} className={`flex flex-col gap-[20px] px-[20px]  border-x-[4px]`}>
                             <div className="flex flex-wrap md:flex-nowrap gap-[20px]">
@@ -298,7 +328,7 @@ export default function EditProduct({ params }: EditProductProps) {
                                         name="price"
                                         placeholder="цена"
                                         value={productExtra.price}
-                                        onChange={(e) => handleExtraProductFieldChange(indexProduct, e.target)}
+                                        onChange={(e)=>handleExtraAndNameChange(indexProduct, e.target) }
                                     />
                                     <span className="absolute top-[28%] right-[10px]">сом</span>
                                 </div>
@@ -309,7 +339,7 @@ export default function EditProduct({ params }: EditProductProps) {
                                         name="sale"
                                         placeholder="скидка"
                                         value={productExtra.sale}
-                                        onChange={(e) => handleExtraProductFieldChange(indexProduct, e.target)}
+                                        onChange={(e) => handleExtraAndNameChange(indexProduct, e.target)}
                                     />
                                     <span className="absolute top-[28%] right-[10px]">%</span>
                                 </div>
@@ -342,26 +372,26 @@ export default function EditProduct({ params }: EditProductProps) {
                             <div className="flex flex-col gap-[20px] ">
                                 {productExtra.characteristics.map((product: any, index: number) =>
                                     <div key={index} className="flex flex-wrap md:flex-nowrap gap-[20px] items-center">
-                                        <div>
-                                        <input
-                                            className="w-full  rounded-[10px] border-grey border-[2px] px-[20px] py-[15px] placeholder:text-black "
-                                            type="text"
-                                            name="name"
-                                            value={product.name}
-                                            required
-                                            onChange={(e) => handleCharacteristicChange(indexProduct, index, e.target)}
-                                            placeholder="название хар."
-                                        />
-                                        <input
-                                            className="w-full  rounded-[10px] border-grey border-[2px] px-[20px] py-[15px] placeholder:text-black "
-                                            type="text"
-                                            name="info"
-                                            value={product.info}
-                                            required
-                                            onChange={(e) => handleCharacteristicChange(indexProduct, index, e.target)}
-                                            placeholder="информация хар."
-                                        />
-                                        </div>
+                                        
+                                            <input
+                                                className="w-full  rounded-[10px] border-grey border-[2px] px-[20px] py-[15px] placeholder:text-black "
+                                                type="text"
+                                                name="name"
+                                                value={product.name}
+                                                required
+                                                onChange={(e) => handleCharacteristicChange(indexProduct, index, e.target)}
+                                                placeholder="название хар."
+                                            />
+                                            <input
+                                                className="w-full  rounded-[10px] border-grey border-[2px] px-[20px] py-[15px] placeholder:text-black "
+                                                type="text"
+                                                name="info"
+                                                value={product.info}
+                                                required
+                                                onChange={(e) => handleCharacteristicChange(indexProduct, index, e.target)}
+                                                placeholder="информация хар."
+                                            />
+                                        
                                         <button
                                             type="button"
                                             onClick={() => DeleteСharacteristic(index, indexProduct)}
