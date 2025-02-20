@@ -30,6 +30,7 @@ export default {
       colors: {
         white: "var(--white)",
         black: "var(--black_first)",
+        bg_modal: "var(--bg_modal)",
         black_second: "var(--black_second)",
         grey_first: "var(--grey_first)",
         grey_second: "var(--grey_second)",

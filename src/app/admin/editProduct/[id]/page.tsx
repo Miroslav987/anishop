@@ -48,10 +48,11 @@ export default function EditProduct({ params }: EditProductProps) {
         ]
         // oneProduct? oneProduct.extraProduct :[]
     );
-
+    
     const [product, setProduct] = useState<any>(
         {
             name: "",
+            name_lower:"",
             category: "",
             description: "",
             phone: cookPhone,
@@ -62,11 +63,15 @@ export default function EditProduct({ params }: EditProductProps) {
         }
     )
 
+    
     const handleNameChange = (e: any) => {
         const updatedProduct = {
             ...product,
             [e.target.name]: e.target.value,
         };
+        if (e.target.name === "name") {
+            updatedProduct.name_lower = e.target.value.toLowerCase();
+          }
         setProduct(updatedProduct);
     };
     

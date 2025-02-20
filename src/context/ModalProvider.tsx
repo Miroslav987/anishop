@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import React, {createContext, useContext, useState} from 'react';
 
 type ModalContextType = {
-  openModal: (content: any) => void;
+  openModal: (content: any , search?:boolean) => void;
   closeModal: () => void;
 };
 
@@ -16,31 +16,37 @@ const SnackbarContext = createContext<ModalContextType | undefined>(undefined);
 
 const initialState = {
   isOpen: false,
-  content: null
+  content: null,
+  search: false,
 }
 
 const ModalProvider = (props: ModalProviderProps) => {
   const [state, setState] = useState<any>(initialState);
 
-  const openModal = (content: any) => {
-    setState({isOpen: true, content})
+  const openModal = (content: any, search?:boolean) => {
+    setState({isOpen: true, content, search})
+
 
   };
 
   const closeModal = () => {
-    setState((prev: any) => ({...prev, isOpen: false}));
+    setState((prev: any) => ({...prev, isOpen: false,search:false}));
+
   };
   
   return (
 
-    <SnackbarContext.Provider value={{openModal, closeModal}}>
+    <SnackbarContext.Provider value={{openModal,closeModal}}>
    <div
-   style={{zIndex:10}}
-    className={clsx(`w-full fixed  inset-0 backdrop-blur-[10px] bg-[#1E21281A]  flex items-center justify-center `,
-     { " hidden ": !state.isOpen }
+  //  onClick={closeModal}
+   style={!state.search?{zIndex:100}:{zIndex:20}}
+    className={clsx(`z-40 w-full fixed  inset-0 backdrop-blur-[10px]  items-center justify-center flex `,
+     { " hidden ": !state.isOpen },
+     { " z-[20] ": state.search }
      )}>
-     
+      <div className='relative inset-0 container items-center justify-center flex'>
       {state.content}
+      </div>
    </div>
       {props.children}
     </SnackbarContext.Provider>

@@ -1,15 +1,18 @@
 import { db } from "@/lib/fire";
 import { collection, doc, getDoc, getDocs, query, setDoc, where } from "firebase/firestore";
 import { useDispatch } from "react-redux";
-import { SetCategory } from "./SearchesSlice";
+import { SetCategory, SetSearchProducts } from "./SearchesSlice";
 import { Setproducts } from "../products/ProductsSlice";
+import { useModal } from "@/context/ModalProvider";
 
 
 
 
 
-export const useSearch =()=> {
+export const useSearch = () => {
     const dispatch = useDispatch()
+      const { openModal, closeModal } = useModal()
+
     const CrudCategory = async (category: any) => {
         const id = "uUR6bJhVyyEbk3Kifsf7"
         console.log(category);
@@ -36,22 +39,26 @@ export const useSearch =()=> {
     }
 
     const Search = async (search: string) => {
+        if (search) {
+            try {
+                const categoryQuery = query(collection(db, 'products'), where('name_lower', '>=', search), where('name_lower', '<=', search + '\uf8ff'));
+                const categorySnapshot = await getDocs(categoryQuery);
+                const categoryProducts = categorySnapshot.docs.map(doc => ({
+                    ...doc.data(),
+                }));
 
-        try {
-            const categoryQuery = query(collection(db, 'products'), where('name', '>=', search), where('name', '<=', search + '\uf8ff'));
-            const categorySnapshot = await getDocs(categoryQuery);
-            const categoryProducts = categorySnapshot.docs.map(doc => ({
-                ...doc.data(),
-            }));
+                dispatch(SetSearchProducts(categoryProducts))
+                
+            } catch (error) {
+                console.error(error);
 
-            dispatch(Setproducts(categoryProducts))
-        } catch (error) {
-            console.error(error);
-
+            }
+        }else{
+            dispatch(SetSearchProducts([]))
         }
     }
 
 
 
-    return {CrudCategory, Getcategory, Search}
+    return { CrudCategory, Getcategory, Search }
 }

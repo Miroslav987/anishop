@@ -49,6 +49,7 @@ export default function page() {
   const [product, setProduct] = useState<any>(
     {
       name: "",
+      name_lower:"",
       category: "",
       description: "",
       phone: cookPhone,
@@ -60,32 +61,37 @@ export default function page() {
   )
 
 
-  const Product = {
-    name: "",
-    category: "",
-    description: "",
-    phone: cookPhone,
-    extraProduct: [{
-      color: "#000000",
-      characteristics: [{
-        name: "",
-        info: ""
-      }],
-      images: [],
-      price: 0,
-      sale: 0,
-      quantity: 0,
-      id: uuidv4(),
-    }],
-    id: uuidv4()
-  }
+  // const Product = {
+  //   name: "",
+  //   name_lower:"",
+  //   category: "",
+  //   description: "",
+  //   phone: cookPhone,
+  //   extraProduct: [{
+  //     color: "#000000",
+  //     characteristics: [{
+  //       name: "",
+  //       info: ""
+  //     }],
+  //     images: [],
+  //     price: 0,
+  //     sale: 0,
+  //     quantity: 0,
+  //     id: uuidv4(),
+  //   }],
+  //   id: uuidv4()
+  // }
 
 
-  const handleNameChange = (event: any) => {
+  const handleNameChange = (e: any) => {
     const updatedProduct = {
       ...product,
-      [event.target.name]: event.target.value,
+      [e.target.name]: e.target.value,
     };
+
+    if (e.target.name === "name") {
+      updatedProduct.name_lower = e.target.value.toLowerCase();
+    }
 
     setProduct(updatedProduct);
   };
@@ -119,6 +125,8 @@ export default function page() {
         extraProduct: updatedExtraProduct,
       };
 
+
+
       if (e.name === "price") {
         updatedProduct.price = +e.value;
       }
@@ -131,13 +139,13 @@ export default function page() {
     setExtraProduct(updatedExtraProduct);
 
   }
+console.log(product);
 
   const handleCharacteristicChange = (indexProduct: number, index: number, e: any) => {
     const updateCharacteristic: any = [...characteristics];
     updateCharacteristic[index] = {
       ...updateCharacteristic[index],
       [e.name]: e.value,
-      price: +e.value,
     };
 
     setСharacteristics(updateCharacteristic)

@@ -94,8 +94,8 @@ export default function Basket() {
               </button>
             </div> */}
 
-
-            <button onClick={() => openModal(<MakingOrdering />)} className="w-full rounded-[10px] h-[60px] bg-black text-white ">
+              {/* onClick={() => openModal(<MakingOrdering />)} */}
+            <button  className="w-full rounded-[10px] h-[60px] bg-black text-white ">
               Продолжить
             </button>
 
@@ -146,12 +146,12 @@ export default function Basket() {
                 </p>
               </div>
             </div>
-            <div className=" h-[60px] rounded-[10px] bg-grey_first flex items-center ">
+            {/* <div className=" h-[60px] rounded-[10px] bg-grey_first flex items-center ">
               <p className="px-[25px]">G7P4K2ZQ</p>
               <button className=" h-[100%] rounded-[10px]  px-[25px] bg-black text-white ">
                 Использовать
               </button>
-            </div>
+            </div> */}
             <button className="mr-[32px] w-full rounded-[10px] h-[61px] bg-black text-white ">
               Продолжить
             </button>

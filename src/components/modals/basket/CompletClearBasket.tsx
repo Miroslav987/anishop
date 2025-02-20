@@ -6,7 +6,7 @@ export default function CompletedClearBasket() {
   const { closeModal } = useModal();
   return (
     <>
-          <div className=" w-[646] rounded-[10px] bg-white py-[80] px-[90]">
+          <div className=" w-[646px] rounded-[10px] bg-white py-[80px] px-[90px]">
       <div className="flex flex-col items-center gap-[24px]">
         <svg
           width="58"

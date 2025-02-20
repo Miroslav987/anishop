@@ -1,13 +1,12 @@
 
 'use client';
 
-import { useEffect, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '@/lib/hooks';
 import { Setproducts } from '@/lib/features/products/ProductsSlice';
 import { db } from '@/lib/fire';
 import { collection, getDocs, orderBy, query, where } from 'firebase/firestore';
-import { useSearchParams } from 'next/navigation'; // Используем хук для параметров URL
-import SideFilter from '../components/SideFilter';
+import { useSearchParams } from 'next/navigation'; 
 import Card from '../components/cards/Card';
 import SearchCategory from '../components/SearchCategory';
 import Sorting from '../components/Sorting';
@@ -31,57 +30,56 @@ const fetchProducts = async (sort: any, category: string) => {
 };
 
 
-const HomePage = () => {
+const HomePageContent  = () => {
   const dispatch = useAppDispatch();
+  const searchParams = useSearchParams();
   const { GetProducts } = useProduct();
   const { products } = useAppSelector(state => state.products);
-  const searchParams = useSearchParams();
-  const sort: any = searchParams.get('sort') || 'asc';
-  const category = searchParams.get('category') || 'all';
+  const sort:string = searchParams.get('sort') || 'asc';
+  const category:string = searchParams.get('category') || 'all';
+
+  const fetchData = async () => {
+    const fetchedProducts = await fetchProducts(sort, category);
+    dispatch(Setproducts(fetchedProducts));
+  };
 
   useEffect(() => {
-    const fetchData = async () => {
-      const fetchedProducts = await fetchProducts(sort, category);
-      dispatch(Setproducts(fetchedProducts));
-    };
     fetchData();
-
-  }, [sort, category, dispatch]);
+  }, [sort, category]);
 
 
   useEffect(() => {
-
     GetProducts();
-  }, [dispatch]);
+  }, []);
 
   return (
     <>
       <div className="flex justify-between gap-[50px] container">
-      
-      {/* <SideFilter /> */}
-      <div className="w-full flex flex-col overflow-hidden">
-        <div className="flex flex-col gap-[34px] px-[20px] xl:px-0 md:gap-[50px]">
-          <SearchCategory />
-          <Sorting />
+        <div className="w-full flex flex-col overflow-hidden">
+          <div className="flex flex-col gap-[34px] px-[20px] xl:px-0 md:gap-[50px]">
+            <SearchCategory />
+            <Sorting />
+          </div>
+          <div className="w-full grid gap-[20px] md:px-[20px] xl:px-0 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4">
+            {products.length > 0 ? (
+              products.map((e: any, index: number) => (
+                <Card key={index} product={e} />
+              ))
+            ) : (
+              [1,1,1,11,1,].map((e,i)=><CardLoad key={i} />)
+            )}
+          </div>
         </div>
-        <div className="w-full grid gap-[20px] md:px-[20px] xl:px-0 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4">
-          {products.length > 0 ? (
-            products.map((e: any, index: number) => (
-              <Card key={index} product={e} />
-            ))
-
-          ) : (
-            [1,1,1,11,1,].map(()=><CardLoad/>)
-          )}
-        </div>
-
-        {/* <button className="w-[264px] h-[48px] rounded-[10px] m-auto mt-[40px] bg-black text-white">
-          Загрузить еще
-        </button> */}
-      </div>
-
       </div>
     </>
+  );
+};
+
+const HomePage = () => {
+  return (
+    <Suspense fallback={<div>Загрузка...</div>}>
+      <HomePageContent />
+    </Suspense>
   );
 };
 

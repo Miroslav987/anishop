@@ -23,7 +23,7 @@ export default function SearchCategory() {
     <div className={` w-full flex gap-[16px]  font-[MullerBold] overflow-hidden `}>
       <ScrollContainer vertical={false} className='w-full py-[5px] flex gap-[16px] md:py-[0px]'>
         <button
-          onClick={() => { handleSearchCategory(''), setBtnFocus('') }}
+          onClick={() => { handleSearchCategory('all'), setBtnFocus('all') }}
           className={clsx(`
             whitespace-nowrap
             flex justify-center items-center 
@@ -47,7 +47,6 @@ export default function SearchCategory() {
               {
                 'invert-[100%]': e.search_key === btnFocus
               }
-
             )}>
             {e.name}
           </button>

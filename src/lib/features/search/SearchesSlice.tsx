@@ -1,7 +1,8 @@
 import { createAppSlice } from "@/lib/CreateAppSlice"
 
 const initialState:any = {
-    category:[]
+    category:[],
+    search_products:[]
 }
 
 
@@ -11,10 +12,13 @@ export const searchesSlice = createAppSlice({
     reducers:()=>({
         SetCategory:(state,action)=>{
             state.category = action.payload
+        },
+        SetSearchProducts:(state,action)=>{
+            state.search_products = action.payload
         }
     }),
 })
 
 
-export const {SetCategory,} = searchesSlice.actions
+export const {SetCategory,SetSearchProducts} = searchesSlice.actions
 export default searchesSlice.reducer
