@@ -79,7 +79,6 @@ export default function Basket() {
                 <p className="font-[MullerBold] whitespace-nowrap">
                   {totalPrice} сом
                 </p>
-
               </div>
             </div>
 
