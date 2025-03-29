@@ -1,7 +1,7 @@
 import type { Action, ThunkAction } from "@reduxjs/toolkit";
 import { combineReducers, combineSlices, configureStore } from "@reduxjs/toolkit";
 import { productsSlice } from "./features/products/ProductsSlice";
-import { userSlice } from "./features/user/UserSlice";
+import { userSlice } from "./features/users/UserSlice";
 import { basketSlice } from "./features/basket/BasketSlice";
 import { searchesSlice } from "./features/search/SearchesSlice";
 

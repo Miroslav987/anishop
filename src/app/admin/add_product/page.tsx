@@ -15,15 +15,9 @@ import { useProduct } from "@/lib/features/products/ProductServer";
 import { useAppSelector } from "@/lib/hooks";
 import { useSearch } from "@/lib/features/search/SearchesServer";
 
-interface extraProduct {
-  color: string,
-  characteristics: string[],
-  images: any[],
-  price: any,
-  sale: any,
-  quantity: any,
-}
+
 export default function page() {
+  const {email} = useAppSelector(state=> state.user.user)
   const { AddEditProduct } = useProduct()
   const { Getcategory } = useSearch()
   const cookPhone: any = Cookies.get("userPhone")
@@ -56,6 +50,7 @@ export default function page() {
       extraProduct: extraProduct,
       price: 0,
       sale: 0,
+      email:email,
       id: uuidv4()
     }
   )

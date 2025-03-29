@@ -1,9 +1,6 @@
 
 import { useModal } from "@/context/ModalProvider";
 import { useProduct } from "@/lib/features/products/ProductServer";
-import { useAuth } from "@/lib/features/user/UserServer";
-import clsx from "clsx";
-import Link from "next/link";
 import React, { useEffect, useState } from "react";
 
 export default function DeleteCard({id,extraProduct}:any) {

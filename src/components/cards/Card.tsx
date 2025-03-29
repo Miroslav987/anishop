@@ -5,48 +5,7 @@ import Link from "next/link";
 import React from "react";
 
 export default function Card({ product }: any) {
-  // ! рейтинг
-  //   let products = [
-  //     { id: 1, name: 'Товар 1', totalRating: 17, ratingCount: 4 },
-  //     { id: 2, name: 'Товар 2', totalRating: 9, ratingCount: 3 },
-  //     { id: 3, name: 'Товар 3', totalRating: 15, ratingCount: 3 }
-  //   ];
 
-  //   // Функция для добавления новой оценки
-  //   function addRating(productId, rating) {
-  //     const product = products.find(p => p.id === productId);
-
-  //     if (product) {
-  //       if (rating >= 1 && rating <= 5) {
-  //         // Обновляем сумму и количество оценок
-  //         product.totalRating += rating;
-  //         product.ratingCount += 1;
-  //         console.log(`Оценка ${rating} добавлена для товара "${product.name}".`);
-  //       } else {
-  //         console.log('Оценка должна быть от 1 до 5.');
-  //       }
-  //     } else {
-  //       console.log(`Товар с ID ${productId} не найден.`);
-  //     }
-  //   }
-
-  //   // Функция для вычисления среднего рейтинга товара
-  //   function getAverageRating(productId) {
-  //     const product = products.find(p => p.id === productId);
-
-  //     if (product && product.ratingCount > 0) {
-  //       // Вычисляем средний рейтинг
-  //       const average = product.totalRating / product.ratingCount;
-  //       console.log(`Средний рейтинг товара "${product.name}": ${average.toFixed(1)} из 5.`);
-  //     } else {
-  //       console.log(`Товар с ID ${productId} не найден или еще не имеет оценок.`);
-  //     }
-  //   }
-
-  //   addRating(1, 4);  // Добавляем оценку 4 для товара с ID 1
-  // addRating(2, 5);  // Добавляем оценку 5 для товара с ID 2
-  // getAverageRating(1); // Печатаем средний рейтинг товара с ID 1
-  // getAverageRating(2)
 const {AddBasketProduct} = useBasket()
 
 function basketadd(e:any) {
@@ -83,7 +42,14 @@ function basketadd(e:any) {
           <>
             <div>
               <div className="flex justify-center">
-                <img className="object-cover  h-[140px]" src={`${product.extraProduct[0].images[0]}`} alt="" />
+                             <Image
+                                src={product.extraProduct[0].images[0]}
+                                width={150}
+                                height={140}
+                                className="object-cover  h-[140px]"
+                                priority={true}
+                                alt={product.extraProduct[0].images[0]}
+                              />
 
               </div>
               <div className="" >

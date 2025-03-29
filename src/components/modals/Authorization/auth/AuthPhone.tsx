@@ -7,24 +7,21 @@ import { ApplicationVerifier,  RecaptchaVerifier,  sendSignInLinkToEmail, signIn
 
 import React, {  useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { setUserPhone } from '@/lib/features/user/UserSlice';
+import { setUserPhone } from '@/lib/features/users/UserSlice';
+import { useAppDispatch, useAppSelector } from '@/lib/hooks';
+import { useUser } from '@/lib/features/users/UserServer';
 
 
 
 export default function AuthPhone() {
   const dispatch = useDispatch();
   const { closeModal } = useModal();
-const cookPhone:any = Cookies.get("userPhone")
-const [phoneNumber, setPhoneNumber] = useState<string>(cookPhone?cookPhone:"");
+  const { AddEditPhone } = useUser();
+  const user = useAppSelector(state => state.user.user)
+const [phoneNumber, setPhoneNumber] = useState<string>(user.phone? user.phone: "" );
 const handlePhoneNumberSubmit = async (e:any) => {
   e.preventDefault();
-  if (phoneNumber.trim()) {
-    dispatch(setUserPhone(phoneNumber))
-    closeModal()
-  }else{
-    console.log("no");
-  
-  }
+  AddEditPhone(phoneNumber ,user)
 };
 
 

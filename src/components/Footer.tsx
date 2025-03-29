@@ -10,14 +10,14 @@ const Footer =()=> {
         <div className='w-full h-[142px] flex items-center justify-between container snap-y'>
             <div>         
                 <Image
-                src="/logo.svg"
+                src="/logo.png"
                 width={173}
                 height={60}
                 className="hidden lg:block"
                 alt="logo"
             />
                 <Image
-                src="/logo_adaptive.svg"
+                src="/logo_adaptive.png"
                 width={26}
                 height={44}
                 className="block mr-[30px] lg:hidden"

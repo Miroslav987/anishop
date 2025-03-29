@@ -26,7 +26,7 @@ const CardDetails = ({ params }: CardDetailsProps) => {
   const { GetOneProduct } = useProduct()
   const { AddBasketProduct } = useBasket()
   const { basket } = useAppSelector(state => state.basket)
-  const { userUID } = useAppSelector(state => state.user)
+  const { admin_access, dealer_access , email } = useAppSelector(state => state.user.user)
   const { oneProduct, loading } = useAppSelector(state => state.products)
   const { state, handleContent } = useDetailsInfo()
   const [typeColor, setTypeColor] = useState<number>(0)
@@ -37,10 +37,6 @@ const CardDetails = ({ params }: CardDetailsProps) => {
   useEffect(() => {
     handleContent(<Description description={oneProduct.description} />, false)
   }, [oneProduct])
-
-
-
-
 
 
   const handleTypeColor = (num: number) => {
@@ -63,6 +59,7 @@ const CardDetails = ({ params }: CardDetailsProps) => {
   }
 
 
+
   if (loading) {
     return (
       <>
@@ -83,9 +80,9 @@ const CardDetails = ({ params }: CardDetailsProps) => {
 
         <div className='w-full relative  rounded-[10px]  bg-white px-[0px] pt-[50px] pb-[30px] shadow-none md:px-[40px] pt-[50px] pb-[30px] shadow-[0_0_10px_0_#00000014]'>
           {oneProduct ? <>
-            {userUID ?
+            {admin_access ||  dealer_access  && email === oneProduct.email ?
               <div className='absolute z-2 right-[0px] top-[0px] flex gap-[10px] md:top-[10px] right-[10px] '>
-                <button onClick={() => router.push(`/admin/editProduct/${encodeURIComponent(oneProduct.id)}`)} className='p-[10px] border rounded-lg bg-white hover:invert '>
+                <button onClick={() => router.push(`/admin/edit_product/${encodeURIComponent(oneProduct.id)}`)} className='p-[10px] border rounded-lg bg-white hover:invert '>
                   <Image
                     src={'/icons/edit.png'}
                     width={25}

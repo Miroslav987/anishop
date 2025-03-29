@@ -1,7 +1,7 @@
 import { db, storage } from "@/lib/fire"
 import { addDoc, collection, deleteDoc, doc, getDoc, getDocs, query, setDoc, where } from "firebase/firestore"
 import { useDispatch } from "react-redux"
-import { SetOneProduct, Setproducts } from "./ProductsSlice"
+import { SetMyProducts, SetOneProduct, Setproducts } from "./ProductsSlice"
 import { AppDispatch } from "@/lib/store"
 import { useAppDispatch } from "@/lib/hooks"
 import { useRouter } from "next/navigation"
@@ -90,8 +90,28 @@ export const useProduct = () => {
         }
     }
 
+  const MyProduct = async (email:string)=>{
+    try {
+
+      const productQuery = query(collection(db, 'products'), where("email", '>=', email));
+      
+      const productSnapshot = await getDocs(productQuery);
+      const products = productSnapshot.docs.map(doc => ({
+          ...doc.data(),
+      }));
+      
+      dispatch(SetMyProducts(products))
+  
+    } catch (error) {
+      console.error(error);
+      
+    }
+  }
+
+    
 
 
 
-    return { GetProducts, GetOneProduct, AddEditProduct, DeleteProduct }
+
+    return { GetProducts, GetOneProduct, AddEditProduct, DeleteProduct, MyProduct }
 }

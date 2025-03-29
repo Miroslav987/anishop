@@ -1,18 +1,20 @@
 import { useModal } from "@/context/ModalProvider";
-import { useAuth } from "@/lib/features/user/UserServer";
+import { useUser } from "@/lib/features/users/UserServer";
+import { useAppSelector } from "@/lib/hooks";
 import { useState } from "react";
 
 
 
 
 export default function AuthAdmin() {
+    const user = useAppSelector(state => state.user.user)
     const { closeModal } = useModal()
-    const {SignUpAdmin} = useAuth()
-    const [password, setPassword] = useState<any>()
+    const {SignUpAdmin} = useUser()
+    const [password, setPassword] = useState<string>("")
 
     function handleSubmit(e: any) {
-        SignUpAdmin(password)
         e.preventDefault()
+        SignUpAdmin(password,user)
     }
     return (
         <>

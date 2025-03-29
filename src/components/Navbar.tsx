@@ -9,40 +9,38 @@ import AuthEmail from './modals/Authorization/auth/AuthEmail'
 import SearchInput from './SearchInput'
 import clsx from 'clsx'
 import { usePathname, useRouter } from 'next/navigation'
-
+import { useUser } from '@/lib/features/users/UserServer'
 const NavBar = () => {
 
-  const { openModal, closeModal} = useModal()
+  const { openModal, closeModal } = useModal()
   const { basket } = useAppSelector(state => state.basket)
-  const { userUID, userEmail, userPhone } = useAppSelector(state => state.user)
+  const state = useAppSelector(state => state.user)
+  const { uid, email, photoURL, admin_access } = useAppSelector(state => state.user.user)
+  const { GetProfile} = useUser()
   const [client, setClient] = useState(false);
   const [srollNav, setScrollNav] = useState(false)
   const [srollNavMob, setScrollNavMob] = useState(false)
   const lastScrollRef = useRef(0);
   const pathname = usePathname()
-  
 
   useEffect(() => {
     const handleScroll = () => {
       const windowScroll = window.scrollY;
       const windowWidth = window.innerWidth;
-
-      if (windowWidth >= 768 && pathname === '/') {
+//  && pathname === '/'
+      if (windowWidth >= 768) {
         if (windowScroll <= 40) {
           setScrollNav(false);
-          console.log("nav1");
         } else {
           setScrollNav(true);
-          console.log("nav2");
         }
-      
+
       } else {
-        if (windowScroll > lastScrollRef.current  && pathname === '/') {
+        // && pathname === '/'
+        if (windowScroll > lastScrollRef.current ) {
           setScrollNavMob(true);
-          console.log("nav1mob");
         } else {
           setScrollNavMob(false);
-          console.log("nav2mob");
         }
         lastScrollRef.current = windowScroll;
       }
@@ -57,7 +55,9 @@ const NavBar = () => {
 
   useEffect(() => {
     setClient(true);
+    GetProfile(uid)
   }, []);
+
 
   if (!client) {
     return null;
@@ -65,36 +65,42 @@ const NavBar = () => {
   return (
     <header className={clsx(`mb-[140px] md:mb-[220px] duration-10 ease-out`)}>
       <nav className={clsx(`flex  justify-between items-center fixed inset-0  h-[100px] md:h-[142px] bottom-auto z-20  bg-white shadow-md duration-200 md:duration-10 ease-out px-[20px] lg:px-0`,
-          { "!h-[100px] ": srollNav,
-            "transform -translate-y-full": srollNavMob})}>
-        <div className={clsx(` flex gap-[20px] justify-between items-center container`,
+        {
+          "!h-[100px] ": srollNav,
+          "transform -translate-y-full": srollNavMob
+        })}>
+        <div className={clsx(` flex gap-0 md:gap-[20px] justify-between items-center container`,
 
         )}>
-          <Link href="/">
-            <div onClick={closeModal}  className='flex flex-col items-start lg:flex-row'>
+          <Link  href="/">
+            <div onClick={closeModal} className='flex flex-col items-start lg:flex-row'>
               <Image
                 src="/logo.svg"
                 width={200}
-                height={60}
+                height={55}
                 className="hidden  lg:block"
                 priority={true}
                 alt="logo"
               />
+              
               <Image
                 src="/logo_adaptive.svg"
-                width={26}
+                width={30}
                 height={44}
-                className="block mr-[30px] lg:hidden"
+                className="relative 
+                 block mr-[30px] lg:hidden"
                 priority={true}
                 alt="logo"
               />
               <span className='text-green-600'>beta</span>
             </div>
           </Link>
+          
           <SearchInput />
+
           <div className='hidden gap-[15px] md:flex'>
 
-            <Link onClick={closeModal}  href="/basket">
+            <Link onClick={closeModal} href="/basket">
               <button className='relative flex h-[54px] items-center rounded-[10px] bg-grey_first gap-[10px] px-[15px] '>
                 {basket.total_quantity ?
                   <div className='absolute flex items-center justify-center w-[25px] h-[25px] right-[-5px] top-[-10px] rounded-[100px] bg-black'>
@@ -107,13 +113,17 @@ const NavBar = () => {
                 <p>Корзина</p>
               </button>
             </Link>
-            {userEmail ?
+            {email ?
               <div className=' flex gap-[20px] '>
-                <Link onClick={closeModal}  href="/profile">
+                <Link onClick={closeModal} href="/profile">
                   <button className='flex h-[54px] items-center rounded-[10px] bg-grey_first gap-[10px] px-[15px] '>
-                    <svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M24.3902 27.3874C22.5745 25.3595 19.9363 24.0833 17 24.0833C14.0637 24.0833 11.4253 25.3595 9.60954 27.3874M17 29.75C9.95837 29.75 4.25 24.0416 4.25 17C4.25 9.95837 9.95837 4.25 17 4.25C24.0416 4.25 29.75 9.95837 29.75 17C29.75 24.0416 24.0416 29.75 17 29.75ZM17 19.8333C14.6528 19.8333 12.75 17.9305 12.75 15.5833C12.75 13.2361 14.6528 11.3333 17 11.3333C19.3472 11.3333 21.25 13.2361 21.25 15.5833C21.25 17.9305 19.3472 19.8333 17 19.8333Z" stroke="#1E2128" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                    </svg>
+                    {/* {photoURL ?
+                      <img className='w-[30px] h-[30px]  rounded-[100px]' src={photoURL} alt="" />
+                      : */}
+                      <svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M24.3902 27.3874C22.5745 25.3595 19.9363 24.0833 17 24.0833C14.0637 24.0833 11.4253 25.3595 9.60954 27.3874M17 29.75C9.95837 29.75 4.25 24.0416 4.25 17C4.25 9.95837 9.95837 4.25 17 4.25C24.0416 4.25 29.75 9.95837 29.75 17C29.75 24.0416 24.0416 29.75 17 29.75ZM17 19.8333C14.6528 19.8333 12.75 17.9305 12.75 15.5833C12.75 13.2361 14.6528 11.3333 17 11.3333C19.3472 11.3333 21.25 13.2361 21.25 15.5833C21.25 17.9305 19.3472 19.8333 17 19.8333Z" stroke="#1E2128" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                      </svg>
+                     {/* } */}
 
                     <p>Профиль</p>
                   </button>
@@ -156,7 +166,7 @@ const NavBar = () => {
             </svg>
             <p>Корзина</p>
           </Link>
-          {userEmail ?
+          {email ?
             <Link href={'/profile'} className='flex flex-col items-center gap-[10px]'>
               <svg width="22" height="21" viewBox="3.2 9 27.5 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M24.3902 27.3874C22.5745 25.3595 19.9363 24.0833 17 24.0833C14.0637 24.0833 11.4253 25.3595 9.60954 27.3874M17 29.75C9.95837 29.75 4.25 24.0416 4.25 17C4.25 9.95837 9.95837 4.25 17 4.25C24.0416 4.25 29.75 9.95837 29.75 17C29.75 24.0416 24.0416 29.75 17 29.75ZM17 19.8333C14.6528 19.8333 12.75 17.9305 12.75 15.5833C12.75 13.2361 14.6528 11.3333 17 11.3333C19.3472 11.3333 21.25 13.2361 21.25 15.5833C21.25 17.9305 19.3472 19.8333 17 19.8333Z" stroke="#1E2128" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
@@ -171,7 +181,7 @@ const NavBar = () => {
               <p>Профиль</p>
             </button>
           }
-          {userEmail ?
+          {email ?
             <button onClick={() => openModal(<Exite />)} className='flex flex-col items-center gap-[10px]'>
               <svg width="22" height="21" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M12 15L15 12M15 12L12 9M15 12H4M9 7.24859V7.2002C9 6.08009 9 5.51962 9.21799 5.0918C9.40973 4.71547 9.71547 4.40973 10.0918 4.21799C10.5196 4 11.0801 4 12.2002 4H16.8002C17.9203 4 18.4796 4 18.9074 4.21799C19.2837 4.40973 19.5905 4.71547 19.7822 5.0918C20 5.5192 20 6.07899 20 7.19691V16.8036C20 17.9215 20 18.4805 19.7822 18.9079C19.5905 19.2842 19.2837 19.5905 18.9074 19.7822C18.48 20 17.921 20 16.8031 20H12.1969C11.079 20 10.5192 20 10.0918 19.7822C9.71547 19.5905 9.40973 19.2839 9.21799 18.9076C9 18.4798 9 17.9201 9 16.8V16.75" stroke="#1E2128" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />

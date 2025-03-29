@@ -19,7 +19,7 @@ export default function CardSwiper({images}:any) {
   };
 
   return (
-    <div className="w-full details_swiper md:w-[60%]">
+    <div className="w-full  md:w-[60%]">
       <div className="relative">
         <Swiper
           loop={true}

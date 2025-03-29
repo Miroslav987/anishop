@@ -7,13 +7,14 @@ import { createAppSlice } from "../../CreateAppSlice";
  export interface ProductsState {
     products:any,
     oneProduct:any,
+    myProduct:any
     loading:boolean,
-    // category:any
 }
 
 const initialState:ProductsState = {
     products:[],
     oneProduct:{},
+    myProduct:[],
     loading:true,
 }
 
@@ -28,6 +29,10 @@ export const productsSlice = createAppSlice({
 
         Setproducts:((state,action)=>{
             state.products = action.payload
+        }),
+
+        SetMyProducts:((state,action)=>{
+            state.myProduct = action.payload
         }),
 
         SetOneProduct:((state,action)=>{
@@ -45,7 +50,7 @@ export const productsSlice = createAppSlice({
 
 
 
-export const {Setproducts,SetOneProduct} = productsSlice.actions
+export const {Setproducts, SetOneProduct, SetMyProducts} = productsSlice.actions
 export default productsSlice.reducer
 
 

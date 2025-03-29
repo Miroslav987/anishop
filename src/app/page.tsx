@@ -12,6 +12,7 @@ import SearchCategory from '../components/SearchCategory';
 import Sorting from '../components/Sorting';
 import { useProduct } from '@/lib/features/products/ProductServer';
 import CardLoad from '@/components/cards/CardLoad';
+import { useUser } from '@/lib/features/users/UserServer';
 
 const fetchProducts = async (sort: any, category: string) => {
   let productsSearch: any[] = [];
@@ -31,6 +32,8 @@ const fetchProducts = async (sort: any, category: string) => {
 
 
 const HomePageContent  = () => {
+  const {uid} = useAppSelector(state => state.user.user)
+  const {GetProfile} =useUser()
   const dispatch = useAppDispatch();
   const searchParams = useSearchParams();
   const { GetProducts } = useProduct();
@@ -47,6 +50,9 @@ const HomePageContent  = () => {
     fetchData();
   }, [sort, category]);
 
+    // useEffect(() => {
+    //   if (uid) { GetProfile(uid) }
+    // }, []);
 
   useEffect(() => {
     GetProducts();
@@ -66,7 +72,7 @@ const HomePageContent  = () => {
                 <Card key={index} product={e} />
               ))
             ) : (
-              [1,1,1,11,1,].map((e,i)=><CardLoad key={i} />)
+              [1,1,1,1,1,].map((e,i)=><CardLoad key={i} />)
             )}
           </div>
         </div>

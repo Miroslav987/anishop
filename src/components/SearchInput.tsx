@@ -43,8 +43,6 @@ export default function Search() {
 
   }, [search_products.length ])
 
-console.log(searchStatus);
-
   return (
     <div className={clsx(`relative w-full md:w-[38%] block`)}>
       <div className='w-full h-[54px] flex items-center  '>

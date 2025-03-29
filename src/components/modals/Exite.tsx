@@ -1,13 +1,13 @@
 
 import { useModal } from "@/context/ModalProvider";
-import { useAuth } from "@/lib/features/user/UserServer";
+import { useUser } from "@/lib/features/users/UserServer";
 import clsx from "clsx";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 
 export default function Exite() {
   const { closeModal } = useModal();
-  const {Logout} = useAuth()
+  const {Logout} = useUser()
   return (
     <>
       <div className=" w-[646px] rounded-[10px] bg-white py-[80px] px-[90px]">
