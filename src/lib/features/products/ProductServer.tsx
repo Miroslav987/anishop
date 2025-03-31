@@ -93,7 +93,7 @@ export const useProduct = () => {
     const MyProduct = async (email: string) => {
         try {
             if (email) {
-                const productQuery = query(collection(db, 'products'), where("email", '>=', email));
+                const productQuery = query(collection(db, 'products'), where("email", '==', email));
 
                 const productSnapshot = await getDocs(productQuery);
                 const products = productSnapshot.docs.map(doc => ({
@@ -102,7 +102,6 @@ export const useProduct = () => {
 
                 return dispatch(SetMyProducts(products))
             }
-
 
         } catch (error) {
             console.error(error);
