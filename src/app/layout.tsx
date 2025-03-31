@@ -5,7 +5,7 @@ import DetailsInfoProvider from "@/context/CardDetailsInfoProvidre";
 import StoreProvider from "./StoreProvider";
 import NavBar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import Head from "next/head"; // Импортируем компонент Head
+import Head from "next/head"; 
 
 export const metadata: Metadata = {
   title: "anishop",
@@ -28,11 +28,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="antialiased">
-        {/* Добавляем мета-тег Google Site Verification */}
         <Head>
-          <meta
+        <meta
             name="google-site-verification"
-            content="IuVZJ9aqQSfGVSkVaXr0DWkPRXTVKxF3p0Ay5XOH9kg"
+            content="1m40ZhpkaOBu8WRGiAlr705V3rbGKKkwx9qFUdNcQTE"
           />
         </Head>
         
