@@ -9,8 +9,14 @@ import Footer from "@/components/Footer";
 
 
 export const metadata: Metadata = {
-  title: "almurut",
-  description: "shop",
+  title: "anishop",
+  description: "shop anishop",
+  openGraph: {
+    title: "anishop",
+    description: "shop anishop",
+    url:"https://anishops.vercel.app/",
+    images: ["https://firebasestorage.googleapis.com/v0/b/onlineshop-4f347.appspot.com/o/logo%2Fanishop.png?alt=media&token=edd7237f-7bf7-4742-ad6c-7b11a81014d0"],
+  },
 };
 
 

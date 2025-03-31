@@ -25,9 +25,9 @@ export const SwiperProfile = () => {
 
     return (
         <>
-            <div className="profile_pagination swiper-pagination mt-[70px] flex gap-[30px] md:gap-[50px] flex-col md:flex-row">
+            <div className=" mt-[70px] flex gap-[30px] md:gap-[50px] flex-col md:flex-row">
                 <button
-                    className="relative pagination-bullet w-full outline-black outline-1 outline-double bg-white rounded-[10px]  flex gap-[16px]  items-center swiper-pagination-bullet"
+                    className="relative  w-full outline-black outline-1 outline-double bg-white rounded-[10px]  flex gap-[16px]  items-center swiper-pagination-bullet"
                     onClick={() => swiperRef.current.swiper.slideTo(0)} >
                     <div className="flex items-center justify-center rounded-[6px] w-[40px] h-[40px] bg-black">
                         <svg width="22" height="22" viewBox="0 0 20 22" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -35,12 +35,12 @@ export const SwiperProfile = () => {
                         </svg>
                     </div>
                     <p className="text-xl">Мои заказы</p>
-                    <span className='absolute top-[-23px] right-0'>⬇ пока не работает   </span>
+                    <span className='absolute top-[-23px] right-0'>пока не работает   </span>
                 </button>
                 {dealer_access ?
                     <>
                         <button
-                            className="relative pagination-bullet w-full outline-black outline-1 outline-double bg-white rounded-[10px]  flex gap-[16px] items-center swiper-pagination-bullet"
+                            className="relative  w-full outline-black outline-1 outline-double bg-white rounded-[10px]  flex gap-[16px] items-center swiper-pagination-bullet"
                             onClick={() => swiperRef.current.swiper.slideTo(1)} >
                             <div className="flex items-center justify-center rounded-[6px] w-[40px] h-[40px] bg-black">
                                 <svg width="22" height="22" viewBox="0 0 20 22" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -48,11 +48,11 @@ export const SwiperProfile = () => {
                                 </svg>
                             </div>
                             <p className="text-xl">Заказы клиентов</p>
-                            <span className='absolute top-[-23px] right-0'> ⬇ пока не работает</span>
+                            <span className='absolute top-[-23px] right-0'>пока не работает</span>
                         </button>
 
                         <button
-                            className="pagination-bullet w-full outline-black outline-1 outline-double bg-white rounded-[10px] flex gap-[16px] items-center swiper-pagination-bullet"
+                            className="w-full outline-black outline-1 outline-double bg-white rounded-[10px] flex gap-[16px] items-center swiper-pagination-bullet"
                             onClick={() => swiperRef.current.swiper.slideTo(2)} >
                             <div className="flex items-center justify-center rounded-[6px] w-[40px] h-[40px] bg-black">
                                 <svg width="22" height="22" viewBox="0 0 20 22" fill="none" xmlns="http://www.w3.org/2000/svg">
