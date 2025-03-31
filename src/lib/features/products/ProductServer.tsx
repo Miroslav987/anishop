@@ -54,15 +54,15 @@ export const useProduct = () => {
             await deleteDoc(doc(db, "products", id));
 
             const deleteImagesPromises = Object.keys(extraProduct).map(async (i) => {
-              const mainProductFolder = `productImages/${id}`;
-              const additionalProductFolder = `${mainProductFolder}/extraProduct${i}`;
-              const imageRef = ref(storage, `${additionalProductFolder}`);
-        
-              if (extraProduct[i].images[0]) {
-                const imgs = await listAll(imageRef);
-                const deleteImagePromises = imgs.items.map((img) => deleteObject(img));
-                await Promise.all(deleteImagePromises); 
-              }
+                const mainProductFolder = `productImages/${id}`;
+                const additionalProductFolder = `${mainProductFolder}/extraProduct${i}`;
+                const imageRef = ref(storage, `${additionalProductFolder}`);
+
+                if (extraProduct[i].images[0]) {
+                    const imgs = await listAll(imageRef);
+                    const deleteImagePromises = imgs.items.map((img) => deleteObject(img));
+                    await Promise.all(deleteImagePromises);
+                }
             });
 
             await Promise.all(deleteImagesPromises);
@@ -90,25 +90,27 @@ export const useProduct = () => {
         }
     }
 
-  const MyProduct = async (email:string)=>{
-    try {
+    const MyProduct = async (email: string) => {
+        try {
+            if (email) {
+                const productQuery = query(collection(db, 'products'), where("email", '>=', email));
 
-      const productQuery = query(collection(db, 'products'), where("email", '>=', email));
-      
-      const productSnapshot = await getDocs(productQuery);
-      const products = productSnapshot.docs.map(doc => ({
-          ...doc.data(),
-      }));
-      
-      dispatch(SetMyProducts(products))
-  
-    } catch (error) {
-      console.error(error);
-      
+                const productSnapshot = await getDocs(productQuery);
+                const products = productSnapshot.docs.map(doc => ({
+                    ...doc.data(),
+                }));
+
+                return dispatch(SetMyProducts(products))
+            }
+
+
+        } catch (error) {
+            console.error(error);
+
+        }
     }
-  }
 
-    
+
 
 
 
