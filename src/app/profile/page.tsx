@@ -87,7 +87,7 @@ export default function page() {
       <div className="mt-[60px] flex flex-wrap gap-[20px] justify-end">
         {dealer_access ?
           <Link href={`/admin/add_product`}
-            className='"w-full md:w-auto flex items-center justify-center gap-[8px] rounded-[10px] cursor-pointer h-[60px] px-[100px] bg-white border-black border-2 '>
+            className="w-full md:w-auto flex items-center justify-center gap-[8px] rounded-[10px] cursor-pointer h-[60px] px-[100px] bg-white border-black border-2 ">
             Добавить товар
           </Link>
           : null}

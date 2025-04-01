@@ -27,7 +27,7 @@ export const SwiperProfile = () => {
         <>
             <div className=" mt-[70px] flex gap-[30px] md:gap-[50px] flex-col md:flex-row">
                 <button
-                    className="relative  w-full outline-black outline-1 outline-double bg-white rounded-[10px]  flex gap-[16px]  items-center swiper-pagination-bullet"
+                    className="relative  w-full outline-black outline-1 outline-double bg-white rounded-[10px]  flex gap-[16px]  items-center "
                     onClick={() => swiperRef.current.swiper.slideTo(0)} >
                     <div className="flex items-center justify-center rounded-[6px] w-[40px] h-[40px] bg-black">
                         <svg width="22" height="22" viewBox="0 0 20 22" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -40,7 +40,7 @@ export const SwiperProfile = () => {
                 {dealer_access ?
                     <>
                         <button
-                            className="relative  w-full outline-black outline-1 outline-double bg-white rounded-[10px]  flex gap-[16px] items-center swiper-pagination-bullet"
+                            className="relative  w-full outline-black outline-1 outline-double bg-white rounded-[10px]  flex gap-[16px] items-center "
                             onClick={() => swiperRef.current.swiper.slideTo(1)} >
                             <div className="flex items-center justify-center rounded-[6px] w-[40px] h-[40px] bg-black">
                                 <svg width="22" height="22" viewBox="0 0 20 22" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -52,7 +52,7 @@ export const SwiperProfile = () => {
                         </button>
 
                         <button
-                            className="w-full outline-black outline-1 outline-double bg-white rounded-[10px] flex gap-[16px] items-center swiper-pagination-bullet"
+                            className="w-full outline-black outline-1 outline-double bg-white rounded-[10px] flex gap-[16px] items-center "
                             onClick={() => swiperRef.current.swiper.slideTo(2)} >
                             <div className="flex items-center justify-center rounded-[6px] w-[40px] h-[40px] bg-black">
                                 <svg width="22" height="22" viewBox="0 0 20 22" fill="none" xmlns="http://www.w3.org/2000/svg">

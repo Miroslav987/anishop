@@ -13,7 +13,7 @@ export const CardUser =({user}:{user:USER})=> {
                         <p className="mb-1"><strong>Имя:</strong> {user.name}</p>
                         <p className="mb-4"><strong>Компания:</strong> {user.name_company ? user.name_company : "нет"}</p>
 
-                        <div className="flex justify-between">
+                        <div className="flex justify-between flex-col gap-[20px] md:gap-0 md:flex-row">
                             <div>
                                 <div className="flex gap-[20px] items-center justify-between mb-2">
                                     <p>Административный доступ</p>

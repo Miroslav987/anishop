@@ -12,7 +12,7 @@ export default function layout({
         <>
             <div className="">
                 <h2 className='text-3xl text-center font-[MullerBold] pb-[30px]'>Список людей</h2>
-                <div className="flex gap-[30px]">
+                <div className="flex flex-col items-center md:items-start md:flex-row gap-[30px]">
                     {children}
                 </div>
             </div>

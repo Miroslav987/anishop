@@ -1,11 +1,16 @@
-import Link from "next/link";
-import React from "react";
-import CardOrdering from "@/components/cards/CardOrderingBasket";
+
+import React, { useState } from "react";
 import { useModal } from "@/context/ModalProvider";
 import CompletOrder from "./CompletOrder";
+import { useAppSelector } from "@/lib/hooks";
+import CardOrderingBasket from "@/components/cards/CardOrderingBasket";
 // import CardOrdering from "@/app/ui/profile/card-ordering";
 export default function MakingOrdering() {
   const {closeModal,openModal} = useModal()
+  const {basket} = useAppSelector(state => state.basket)
+  const {email , phone, name} = useAppSelector(state => state.user.user)
+  const [ phoneState, usePhone] = useState(phone? phone :"")
+  const [ emailState, useEmail] = useState(phone? phone :"")
   return (
     <>
       <div className=" relative w-[100%]  rounded-[10px] bg-white container  shadow-[0_0_10px_0_#00000014]">
@@ -15,15 +20,9 @@ export default function MakingOrdering() {
         <div className="w-full flex ">
           <div className="w-full flex flex-col justify-between py-[80px] px-[60px]  rounded-[10px] bg-[#FCFBFB]">
             <div className="h-[400px] scroll_style overflow-y-scroll pr-[5] flex flex-col gap-[20px]">
-              <CardOrdering />
-              <CardOrdering />
-              <CardOrdering />
-              <CardOrdering />
-              <CardOrdering />
-              <CardOrdering />
-              <CardOrdering />
-              <CardOrdering />
-              <CardOrdering />
+                          {basket? basket.products.map((e: any,id:number) => (
+                            <CardOrderingBasket key={id} product={e} />
+                          )):null}
             </div>
             <div className=" w-full  flex gap-[16] flex-col pt-[45]">
               <div className=" w-full flex items-center gap-[8]">
@@ -39,7 +38,7 @@ export default function MakingOrdering() {
                   .................................
                 </p>
                 <p className="font-[MullerBold] text-[18px] whitespace-nowrap">
-                  130 500 сом
+                  {basket.price} сом
                 </p>
               </div>
             </div>
@@ -54,16 +53,20 @@ export default function MakingOrdering() {
                 <input
                   className="w-full  rounded-[10px] border-grey border-[2px] px-[20px] py-[25px] placeholder:text-black "
                   placeholder="Ваше имя"
+                  value={name? name :""}
                   type="text"
                 />
                 <input
                   className="w-full rounded-[10px] border-grey border-[2px] px-[20px] py-[25px] placeholder:text-black "
+                  value={phone? phone :""}
+                  
                   placeholder="+996 500 500 500"
                   type="tel"
                 />
                 <input
                   className="w-full rounded-[10px] border-grey border-[2px] px-[20px] py-[25px] placeholder:text-black "
                   placeholder="example@ex.com"
+                  value={email? email :""}
                   type="text"
                 />
               </div>

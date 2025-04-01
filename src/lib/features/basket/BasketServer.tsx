@@ -127,5 +127,15 @@ export const useBasket = () => {
         closeModal()
     }
 
-    return ({ AddBasketProduct, DeleteBasketProduct, PlusQuanty, MinusQuanty, AllDeleteBasket })
+    const AllPriceProducts =(price:number)=> {
+        const updateBasket = { ...basket };
+        const updatePrice = {
+            ...updateBasket ,
+            price:price,
+        }
+        dispatch(SetBasket(updatePrice));
+        localStorage.setItem('basket', JSON.stringify(updatePrice));
+    }
+
+    return ({ AddBasketProduct, DeleteBasketProduct, PlusQuanty, MinusQuanty, AllDeleteBasket, AllPriceProducts })
 }

@@ -46,7 +46,7 @@ function basketadd(e:any) {
                                 src={product.extraProduct[0].images[0]}
                                 width={150}
                                 height={140}
-                                className="object-cover  h-[140px]"
+                                className="object-contain w-full h-[140px]"
                                 priority={true}
                                 alt={product.extraProduct[0].images[0]}
                               />
@@ -55,7 +55,7 @@ function basketadd(e:any) {
               <div className="" >
                 <p className="text-base font-black pb-[10px] pt-[15px] ">{product.name}</p>
                 {product.extraProduct[0].characteristics[0] ? product.extraProduct[0].characteristics.slice(0, 3).map((characteristic: any) =>
-                  <p className=" text-grey_second text-sm" key={characteristic.name}>{characteristic.name} {characteristic.info}</p>
+                  <p className=" text-grey_second text-sm" key={characteristic.name}>{characteristic.name}: {characteristic.info}</p>
                 ) : null}
               </div>
             </div>

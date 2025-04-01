@@ -3,13 +3,15 @@ import CardBasket from "@/components/cards/CardBasket";
 import ConfirmClearBasket from "@/components/modals/basket/ConfirmClearBasket";
 import MakingOrdering from "@/components/modals/basket/MakingOrdering";
 import { useModal } from "@/context/ModalProvider";
+import { useBasket } from "@/lib/features/basket/BasketServer";
 import { useAppSelector } from "@/lib/hooks";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 
 export default function Basket() {
 
   const { openModal } = useModal()
+  const { AllPriceProducts } = useBasket()
   const { basket } = useAppSelector(state => state.basket)
   let totalPrice:any =0
   
@@ -20,6 +22,11 @@ export default function Basket() {
     )
     totalPrice = productsPrice.reduce((acc: any, number: any) => acc + number)
   }
+  useEffect(()=>{
+    AllPriceProducts(totalPrice)
+    console.log(basket);
+    
+  },[totalPrice])
   return (
 
     <>
@@ -77,7 +84,7 @@ export default function Basket() {
                   ...............................
                 </p>
                 <p className="font-[MullerBold] whitespace-nowrap">
-                  {totalPrice} сом
+                  {basket.price} сом
                 </p>
               </div>
             </div>
@@ -93,8 +100,8 @@ export default function Basket() {
               </button>
             </div> */}
 
-              {/* onClick={() => openModal(<MakingOrdering />)} */}
-            <button  className="w-full rounded-[10px] h-[60px] bg-black text-white ">
+              
+            <button onClick={() => openModal(<MakingOrdering />)}  className="w-full rounded-[10px] h-[60px] bg-black text-white ">
               Продолжить
             </button>
 

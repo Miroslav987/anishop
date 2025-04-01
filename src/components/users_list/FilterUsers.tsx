@@ -32,9 +32,9 @@ useEffect(()=>{
     }
 },[btnFocus])
     return (
-        <div className="flex gap-[20px] flex-col">
+        <div className=" flex  gap-[20px] flex-row flex-wrap md:flex-col">
             {userbtn.map((e:any, i:number)=>
-            <button key={i} className={clsx("text-center shadow-[inset_0_0_10px_0_#00000014] bg-grey_first  rounded-[10px] p-[15px] ",
+            <button key={i} className={clsx("text-center shadow-[inset_0_0_10px_0_#00000014] bg-grey_first whitespace-nowrap  rounded-[10px] p-[15px] ",
                     { "bg-white !shadow-shadow_first scale-102": btnFocus === e.key } )}
                     onClick={()=>setBtnFocus(e.key)}>
                 {e.name}

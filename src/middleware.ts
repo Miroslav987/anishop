@@ -5,6 +5,7 @@ import { NextRequest, NextResponse } from 'next/server';
 export function middleware(req: NextRequest) {
   const user:RequestCookie  | undefined = req.cookies.get('email'); 
   const admin:RequestCookie  | undefined = req.cookies.get('admin_access'); 
+  const dealer:RequestCookie  | undefined = req.cookies.get('dealer_access'); 
 
  
 

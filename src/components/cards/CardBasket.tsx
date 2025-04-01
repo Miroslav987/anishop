@@ -7,8 +7,6 @@ import React, { useEffect, useState } from 'react'
 export default function CardBasket({ product }: any) {
   const { DeleteBasketProduct, PlusQuanty, MinusQuanty } = useBasket()
 
-
-
   return (
     <div className='relative gap-[16px] z-0 w-full md:w-[218px] '>
       <div className='flex gap-[16px] flex-row md:flex-col'>
@@ -40,11 +38,11 @@ export default function CardBasket({ product }: any) {
             <input type="number"
               maxLength={2}
               value={product.quantity}
-              onChange={() => (9)}
               className='w-full whitespace-nowrap  text-center focus: outline-none p-0 after:content-["шт"] after:ml-0.5 after:text-red-500'
             />
           </div>
-          <button type="button" onClick={() => PlusQuanty(product.extraId)} className="w-full text-[#A7ABAD] border rounded-[10px] flex items-center justify-center hover:text-black hover:border-black">
+          <button type="button"
+           onClick={() => PlusQuanty(product.extraId)} className="w-full text-[#A7ABAD] border rounded-[10px] flex items-center justify-center hover:text-black hover:border-black">
             <span className=" pb-[7px] font-sans text-3xl">+</span>
           </button>
         </div>
