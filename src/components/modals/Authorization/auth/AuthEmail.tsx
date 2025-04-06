@@ -6,7 +6,7 @@ import Image from "next/image";
 import React, { useEffect, useState } from "react";
 
 export default function AuthEmail() {
-  const { handleGoogle } = useUser()
+  const { handleGoogle, handleApple } = useUser()
   const { closeModal } = useModal()
   const [email, setEmail] = useState<string>('');
 
@@ -31,6 +31,16 @@ export default function AuthEmail() {
               height={25}
                />
               <span className="text-lg">Войти через Google</span>
+            </button>
+          <button className="  flex items-center justify-center gap-[10px] w-full h-[60px] rounded-[10px] border-black border-2 hover:bg-black hover:text-white"
+           onClick={()=>(handleApple(),closeModal())}>
+            <Image
+              src="/icons/apple.png"
+              alt="google"
+              width={25}
+              height={25}
+               />
+              <span className="text-lg">Войти через Apple</span>
             </button>
         </div>
         <div className="recaptcha-container"></div>

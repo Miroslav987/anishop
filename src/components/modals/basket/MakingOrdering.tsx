@@ -1,16 +1,54 @@
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useModal } from "@/context/ModalProvider";
 import CompletOrder from "./CompletOrder";
 import { useAppSelector } from "@/lib/hooks";
 import CardOrderingBasket from "@/components/cards/CardOrderingBasket";
+import { useOrder } from "@/lib/features/order/OrderServer";
 // import CardOrdering from "@/app/ui/profile/card-ordering";
 export default function MakingOrdering() {
   const {closeModal,openModal} = useModal()
+  const {AddOrder} = useOrder()
   const {basket} = useAppSelector(state => state.basket)
   const {email , phone, name} = useAppSelector(state => state.user.user)
-  const [ phoneState, usePhone] = useState(phone? phone :"")
-  const [ emailState, useEmail] = useState(phone? phone :"")
+  const [client, useClient]= useState(false)
+
+  const order = {
+
+  }
+
+ const ClickAddOrder =()=> {
+
+ }
+
+
+
+//  function generateCustomId() {
+//   // Генерируем UUID и убираем дефисы
+//   const uuid = crypto.randomUUID().replace(/-/g, '');
+
+//   // Извлекаем первые 8 символов и преобразуем их в нужный формат
+//   let customId = '';
+//   for (let i = 0; i < 8; i++) {
+//       // Преобразуем каждый символ в соответствующую букву или цифру
+//       if (i % 2 === 0) {
+//           // Переводим 2 символа в число, а затем в букву (A-Z)
+//           customId += String.fromCharCode(65 + (parseInt(uuid.slice(i, i + 2), 16) % 26));
+//       } else {
+//           // Для четных индексов оставляем цифры как есть
+//           customId += uuid[i];
+//       }
+//   }
+//   return customId.toUpperCase();
+// }
+
+// // Пример использования
+// const customId = generateCustomId();
+// console.log(customId);
+
+if (!client) {
+  return null;
+}
   return (
     <>
       <div className=" relative w-[100%]  rounded-[10px] bg-white container  shadow-[0_0_10px_0_#00000014]">

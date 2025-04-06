@@ -1,11 +1,12 @@
 import { auth, db } from "@/lib/fire";
-import { browserLocalPersistence, GoogleAuthProvider, isSignInWithEmailLink, onAuthStateChanged, sendSignInLinkToEmail, signInWithEmailAndPassword, signInWithEmailLink, signInWithPopup, signOut } from "firebase/auth";
+import { GoogleAuthProvider, OAuthProvider, reauthenticateWithPopup, signInWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth";
 import { clearUser, SetUsers, setUser, USER } from "./UserSlice";
 import { useRouter } from "next/navigation";
 import { useModal } from "@/context/ModalProvider";
 import { useAppDispatch } from "@/lib/hooks";
 import { collection, doc, getDoc, getDocs, query, setDoc, where } from "firebase/firestore";
 import { log } from "console";
+import { retry } from "@reduxjs/toolkit/query";
 
 
 export const useUser = () => {
@@ -47,16 +48,35 @@ export const useUser = () => {
       const { user } = await signInWithPopup(auth, provider)
       if (user.uid) {
         await LoginProfile(user)
-        console.log(user);
       }
     } catch (error) {
       console.log(error);
     }
   };
 
-  const LoginProfile = async (user: any) => {
+  const handleApple = async () => {
+    const provider = new OAuthProvider('apple.com');
     try {
 
+      const { user } = await signInWithPopup(auth, provider)
+      console.log(user);
+      
+      if (user.uid) {
+        await LoginProfile(user)
+      }
+    } catch (error: any) {
+      if (error.message == "Firebase: Error (auth/operation-not-allowed).") {
+        return alert("работает только на устройствах Apple")
+      }
+      console.log(error.message);
+
+      //  console.error(error);
+
+    }
+  };
+
+  const LoginProfile = async (user: any) => {
+    try {
       const data = doc(db, `users/${user.uid}`);
       const userinfo = await getDoc(data);
       if (!userinfo.exists()) {
@@ -86,9 +106,9 @@ export const useUser = () => {
         request_dealer: false,
         request_admin: false,
       };
-      console.log(userData);
 
       await setDoc(doc(db, `users`, `${userData.uid}`), userData);
+      await LoginProfile(userData)
     } catch (error) {
       console.error(error);
     }
@@ -119,7 +139,7 @@ export const useUser = () => {
     }
   }
 
-  const FilterUser = async (filter:string)=>{
+  const FilterUser = async (filter: string) => {
     try {
       if (filter === "all") {
         return GetUsers()
@@ -127,13 +147,13 @@ export const useUser = () => {
       const userQuery = query(collection(db, 'users'), where(filter, '>=', true),);
       const userSnapshot = await getDocs(userQuery);
       const user = userSnapshot.docs.map(doc => ({
-          ...doc.data(),
+        ...doc.data(),
       }));
       dispatch(SetUsers(user))
-  
+
     } catch (error) {
       console.error(error);
-      
+
     }
   }
 
@@ -203,7 +223,7 @@ export const useUser = () => {
     }
   }
 
-  
+
 
 
   const Logout = async () => {
@@ -231,7 +251,8 @@ export const useUser = () => {
     AdminAccess,
     DealerAccess,
     RequestAdmin,
-    RequestDealer
+    RequestDealer,
+    handleApple
   };
 };
 

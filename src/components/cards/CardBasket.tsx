@@ -12,9 +12,13 @@ export default function CardBasket({ product }: any) {
       <div className='flex gap-[16px] flex-row md:flex-col'>
           <div className='flex items-center justify-center rounded-[20px] border-2 px-[30px] py-[10px] md:px-[15px]'>
             <Link href={`/carddetails/${encodeURIComponent(product.id)}`}>
-              <img src={product.img} alt=""
-                className='h-[60px] md:h-[120px] '
-              />
+                   <Image
+                    src={product.img}
+                    width={150}
+                    height={150}
+                    alt={product.img}
+                    className='h-[120px] md:h-[120px] object-contain'
+                  />
             </Link>
           </div>
         <div className=''>
