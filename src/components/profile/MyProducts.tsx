@@ -5,15 +5,15 @@ import { useEffect } from "react"
 import clsx from "clsx"
 
 export const MyProducts = () => {
-    const { email } = useAppSelector(state => state.user.user)
+    const { uid } = useAppSelector(state => state.user.user)
     const { MyProduct } = useProduct()
     const { myProduct } = useAppSelector(state => state.products)
 
     useEffect(() => {
-        if (email) {
-            MyProduct(email)
+        if (uid) {
+            MyProduct(uid)
         }
-    }, [email])
+    }, [uid])
 
     return (
         <>

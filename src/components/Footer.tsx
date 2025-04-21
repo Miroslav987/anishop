@@ -13,8 +13,9 @@ const Footer =()=> {
                 src="/logo.svg"
                 width={200}
                 height={55}
-                className="hidden lg:block"
+                className="hidden  lg:block"
                 alt="logo"
+                priority
             />
                 <Image
                 src="/logo_adaptive.svg"
@@ -22,6 +23,7 @@ const Footer =()=> {
                 height={44}
                 className="block mr-[30px] lg:hidden"
                 alt="logo"
+                priority
             />
             </div>
             <div className='flex items-center text-sm'>

@@ -4,13 +4,15 @@ import { productsSlice } from "./features/products/ProductsSlice";
 import { userSlice } from "./features/users/UserSlice";
 import { basketSlice } from "./features/basket/BasketSlice";
 import { searchesSlice } from "./features/search/SearchesSlice";
+import { ordersSlice } from "./features/order/OrderSlice";
 
 
 const rootReducer = combineSlices(
   productsSlice,
   userSlice,
   basketSlice,
-  searchesSlice
+  searchesSlice,
+  ordersSlice
 );
 export type RootState = ReturnType<typeof rootReducer>;
 
@@ -20,9 +22,8 @@ export const makeStore = () => {
   });
 };
 
-// Вывод верхового типа `makestore
+
 export type AppStore = ReturnType<typeof makeStore>;
-// Вывод типа `appdispatch 'из самого магазина
 export type AppDispatch = AppStore["dispatch"];
 export type AppThunk<ThunkReturnType = void> = ThunkAction<
   ThunkReturnType,

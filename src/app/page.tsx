@@ -70,10 +70,10 @@ const HomePageContent  = () => {
             {products.length > 0 ? (
               products.map((e: any, index: number) => (
                 <Card key={index} product={e} />
-              ))
-            ) : (
-              [1,1,1,1,1,].map((e,i)=><CardLoad key={i} />)
-            )}
+              ))) 
+              : 
+              ([1,1,1,1,1,].map((e,i)=><CardLoad key={i} />))
+              }
           </div>
         </div>
       </div>

@@ -9,7 +9,7 @@ import { useEffect, useState } from "react";
 
 
 export default function Basket() {
-
+  const [client, setClient] = useState(false);
   const { openModal } = useModal()
   const { AllPriceProducts } = useBasket()
   const { basket } = useAppSelector(state => state.basket)
@@ -27,6 +27,15 @@ export default function Basket() {
     console.log(basket);
     
   },[totalPrice])
+
+  useEffect(()=>{
+    setClient(true)
+  },[])
+
+  if (!client) {
+    return null;
+  }
+
   return (
 
     <>
@@ -57,7 +66,9 @@ export default function Basket() {
           </div>
           <div className="flex mt-[40px] mb-[45px] flex-wrap  gap-[54px] ">
             {basket.products.map((e: any) => (
+              <div key={e.extraId}>
               <CardBasket key={e.extraId} product={e} />
+              </div>
             ))}
           </div>
           <div className="w-full h-[4px] bg-grey_third rounded-[4px] "></div>
@@ -101,7 +112,7 @@ export default function Basket() {
             </div> */}
 
               
-            <button onClick={() => openModal(<MakingOrdering />)}  className="w-full rounded-[10px] h-[60px] bg-black text-white ">
+            <button onClick={() => openModal(<MakingOrdering/>)}  className="w-full rounded-[10px] h-[60px] bg-black text-white ">
               Продолжить
             </button>
 

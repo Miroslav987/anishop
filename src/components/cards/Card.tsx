@@ -13,6 +13,7 @@ function basketadd(e:any) {
     const basketproduct = {
       name:product.name,
       id:product.id,
+      dealerUid:product.dealerUid,
       extraId: product.extraProduct[0].id,
       characteristics:product.extraProduct[0].characteristics,
       img:product.extraProduct[0].images[0],

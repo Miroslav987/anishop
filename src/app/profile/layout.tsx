@@ -14,7 +14,7 @@ export default function layout({children}:{children:React.ReactNode}) {
         </svg>
         <p>Профиль</p>
       </div>
-    <div className='w-full  rounded-[10px] bg-white px-[40px] pt-[50px] pb-[30px] mb-[100px] md:mb-0 shadow-none md:shadow-[0_0_10px_0_#00000014]'>
+    <div className='w-full  rounded-[10px] bg-white px-[20px] md:px-[40px] pt-[50px] pb-[30px] mb-[100px] md:mb-0 shadow-none md:shadow-[0_0_10px_0_#00000014]'>
       {children}
     </div>
   </div>

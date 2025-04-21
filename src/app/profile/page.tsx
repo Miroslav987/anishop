@@ -80,24 +80,20 @@ export default function page() {
         </div>
       </div>
 
-      <div >
-        <SwiperProfile />
-      </div>
-
-      <div className="mt-[60px] flex flex-wrap gap-[20px] justify-end">
+      <div className=" mt-[40px] md:mt-[60px] grid grid-cols-1 md:grid-cols-3 gap-[5px] md:gap-[20px] justify-end">
         {dealer_access ?
-          <Link href={`/admin/add_product`}
-            className="w-full md:w-auto flex items-center justify-center gap-[8px] rounded-[10px] cursor-pointer h-[60px] px-[100px] bg-white border-black border-2 ">
+          <Link href={`/dealer/add_product`}
+            className="w-full md:w-auto flex items-center justify-center gap-[8px] rounded-[10px] cursor-pointer h-[60px]  border-black border-2 ">
             Добавить товар
           </Link>
-          : null}
+          : <div></div>}
         {!admin_access ?
-          <button onClick={() => openModal(<Empowerment />)} className="w-full md:w-auto flex items-center justify-center gap-[8px] rounded-[10px] h-[60px] px-[100px] bg-white border-black border-2 ">
+          <button onClick={() => openModal(<Empowerment />)} className="w-full md:w-auto flex items-center justify-center gap-[8px] rounded-[10px] h-[60px]   border-black border-2 ">
             <p >Расширения прав</p>
           </button>
           : null}
         {admin_access ?
-          <button onClick={() => router.push("/admin")} className="w-full md:w-auto flex items-center justify-center gap-[8px] rounded-[10px] h-[60px] px-[100px] bg-white border-black border-2 ">
+          <button onClick={() => router.push("/admin")} className="w-full md:w-auto flex items-center justify-center gap-[8px] rounded-[10px] h-[60px] bg-white border-black border-2 ">
             <p className="">Админка</p>
           </button>
           : null
@@ -113,6 +109,11 @@ export default function page() {
           <p className="text-white">Выйти</p>
         </button>
       </div>
+      
+      <div >
+        <SwiperProfile />
+      </div>
+
     </>
   );
 }

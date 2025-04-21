@@ -48,6 +48,7 @@ const CardDetails = ({ params }: CardDetailsProps) => {
     const basketproduct = {
       name: oneProduct.name,
       id:oneProduct.id,
+      dealerUid:oneProduct.dealerUid,
       extraId: oneProduct.extraProduct[typeColor].id,
       characteristics: oneProduct.extraProduct[typeColor].characteristics,
       img: oneProduct.extraProduct[typeColor].images[0],
@@ -78,11 +79,11 @@ const CardDetails = ({ params }: CardDetailsProps) => {
           <p>Tовар</p>
         </div>
 
-        <div className='w-full relative  rounded-[10px]  bg-white px-[0px] pt-[50px] pb-[30px] shadow-none md:px-[40px] pt-[50px] pb-[30px] shadow-[0_0_10px_0_#00000014]'>
+        <div className='w-full relative  rounded-[10px]  bg-white px-[0px] pt-[50px] pb-[30px] md:px-[40px] shadow-none md:shadow-[0_0_10px_0_#00000014]'>
           {oneProduct ? <>
             {admin_access ||  dealer_access  && email === oneProduct.email ?
-              <div className='absolute z-2 right-[0px] top-[0px] flex gap-[10px] md:top-[10px] right-[10px] '>
-                <button onClick={() => router.push(`/admin/edit_product/${encodeURIComponent(oneProduct.id)}`)} className='p-[10px] border rounded-lg bg-white hover:invert '>
+              <div className='absolute z-2 top-[0px] flex gap-[10px] md:top-[10px] right-[10px] '>
+                <button onClick={() => router.push(`/dealer/edit_product/${encodeURIComponent(oneProduct.id)}`)} className='p-[10px] border rounded-lg bg-white hover:invert '>
                   <Image
                     src={'/icons/edit.png'}
                     width={25}
@@ -160,12 +161,12 @@ const CardDetails = ({ params }: CardDetailsProps) => {
                 </div>
               </div>
               <div className="mt-[5.25rem]">
-                <div className="flex gap-[3.125rem] text-[1.5rem] mb-[30px] pb-[1.5rem] border-b-2">
+                <div className="flex gap-[3.125rem]  text-[1.5rem] mb-[30px] pb-[1.5rem] border-b-2">
                   <p
                     className={clsx(`cursor-pointer`,
                       { 'text-grey_third': state.text }
                     )}
-                    onClick={() => handleContent(<Description description={oneProduct.description} />, false)}>Описание</p>
+                    onClick={() => handleContent(<Description  description={oneProduct.description} />, false)}>Описание</p>
                   <p
                     className={clsx(`cursor-pointer`,
                       { 'text-grey_third': !state.text }
@@ -176,7 +177,7 @@ const CardDetails = ({ params }: CardDetailsProps) => {
 
 
               </div>
-              <div className="text-justify font-[MullerLight] tracking-wide">{state.content}</div>
+              <div className="text-justify !font-[MullerLight] tracking-wide">{state.content}</div>
             </div>
           </>
             : null}

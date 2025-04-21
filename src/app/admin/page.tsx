@@ -7,7 +7,7 @@ export default function Admin() {
     <p className='text-5xl font-[MullerBold] text-center'>Админка</p>
 
     <div className='mt-[70px] flex flex-wrap justify-center px-[20px] md-0 gap-[20px] text-2xl'>
-      <Link href={`/admin/add_product`}
+      <Link href={`/dealer/add_product`}
         className='w-full md:w-auto  px-[35px] py-[25px] bg-grey_first  rounded-[10px] font-[MullerBold] shadow-[inset_0_0_10px_0_#00000014]'>
         Продукция
       </Link>

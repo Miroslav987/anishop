@@ -27,7 +27,7 @@ export default function EditProduct({ params }: EditProductProps) {
     const { Getcategory } = useSearch()
     const { category } = useAppSelector(state => state.searches)
     const { oneProduct, loading } = useAppSelector(state => state.products)
-    const cookPhone: any = Cookies.get("userPhone")
+    const {phone, uid} = useAppSelector(state => state.user.user)
     const [characteristics, setСharacteristics] = useState<any>([
         {
             name: "",
@@ -55,7 +55,8 @@ export default function EditProduct({ params }: EditProductProps) {
             name_lower:"",
             category: "",
             description: "",
-            phone: cookPhone,
+            phone: phone,
+            dealerUid:"",
             extraProduct: extraProduct,
             price: 0,
             sale: 0,

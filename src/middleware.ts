@@ -13,8 +13,14 @@ export function middleware(req: NextRequest) {
     return NextResponse.redirect(new URL('/', req.url));
   }
 
+console.log(admin);
+console.log(dealer);
 
   if (admin?.value !== "true" && req.nextUrl.pathname.startsWith('/admin')) {
+    return NextResponse.redirect(new URL('/', req.url)); 
+  }
+
+  if (dealer?.value !== "true" && admin?.value !== "true" && req.nextUrl.pathname.startsWith('/dealer')) {
     return NextResponse.redirect(new URL('/', req.url)); 
   }
 
@@ -22,6 +28,6 @@ export function middleware(req: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/admin/:path*', '/profile/:path*'],
+  matcher: ['/admin/:path*', '/profile/:path*','/dealer/:path'],
 
 }

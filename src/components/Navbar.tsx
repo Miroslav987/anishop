@@ -78,8 +78,8 @@ const NavBar = () => {
                 src="/logo.svg"
                 width={200}
                 height={55}
-                className="hidden  lg:block"
-                priority={true}
+                className="hidden lg:block"
+                priority
                 alt="logo"
               />
               
@@ -89,7 +89,7 @@ const NavBar = () => {
                 height={44}
                 className="relative 
                  block mr-[30px] lg:hidden"
-                priority={true}
+                priority
                 alt="logo"
               />
               <span className='text-green-600'>beta</span>

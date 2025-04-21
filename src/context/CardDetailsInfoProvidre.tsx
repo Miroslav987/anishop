@@ -28,7 +28,7 @@ const DetailsInfoProvider = (props: CardDetailsInfoProviderProps) => {
 
   return (
 
-    <SnackbarContext.Provider value={{handleContent, state}}>
+    <SnackbarContext.Provider value={{handleContent, state}} >
       {props.children}
     </SnackbarContext.Provider>
   

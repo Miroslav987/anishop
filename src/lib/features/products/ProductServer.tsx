@@ -90,10 +90,10 @@ export const useProduct = () => {
         }
     }
 
-    const MyProduct = async (email: string) => {
+    const MyProduct = async (uid: string) => {
         try {
-            if (email) {
-                const productQuery = query(collection(db, 'products'), where("email", '==', email));
+            if (uid) {
+                const productQuery = query(collection(db, 'products'), where("dealerUid", '==', uid));
 
                 const productSnapshot = await getDocs(productQuery);
                 const products = productSnapshot.docs.map(doc => ({

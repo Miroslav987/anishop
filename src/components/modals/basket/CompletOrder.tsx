@@ -10,7 +10,7 @@ export default function CompletOrder() {
   }
   return (
     <>
-          <div className=" w-[640px] rounded-[10px] bg-white py-[80px] px-[130px]  shadow-[0_0_10px_0_#00000014]">
+          <div className=" w-[640px] rounded-[10px] bg-white py-[80px] px-[20px] md:px-[130px]  shadow-[0_0_10px_0_#00000014]">
       <div className="flex flex-col items-center gap-[24px]">
         <svg
           width="70"

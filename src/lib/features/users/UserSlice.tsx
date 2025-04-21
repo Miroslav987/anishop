@@ -43,7 +43,7 @@ const convertToBoolean = (value: string | undefined): boolean => {
   return value === "true";
 };
 
-// Начальное состояние
+
 const initialState: State = {
   user: {
     uid: Cookies.get("uid") || null,

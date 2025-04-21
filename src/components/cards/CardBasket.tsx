@@ -42,6 +42,7 @@ export default function CardBasket({ product }: any) {
             <input type="number"
               maxLength={2}
               value={product.quantity}
+              onChange={()=>(0)}
               className='w-full whitespace-nowrap  text-center focus: outline-none p-0 after:content-["шт"] after:ml-0.5 after:text-red-500'
             />
           </div>

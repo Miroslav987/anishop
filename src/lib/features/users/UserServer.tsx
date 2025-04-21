@@ -64,14 +64,11 @@ export const useUser = () => {
       if (user.uid) {
         await LoginProfile(user)
       }
-    } catch (error: any) {
+    } catch (error:any) {
       if (error.message == "Firebase: Error (auth/operation-not-allowed).") {
         return alert("работает только на устройствах Apple")
       }
       console.log(error.message);
-
-      //  console.error(error);
-
     }
   };
 

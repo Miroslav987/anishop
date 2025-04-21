@@ -17,10 +17,9 @@ import { useSearch } from "@/lib/features/search/SearchesServer";
 
 
 export default function page() {
-  const {email} = useAppSelector(state=> state.user.user)
+  const {email , phone,uid} = useAppSelector(state=> state.user.user)
   const { AddEditProduct } = useProduct()
   const { Getcategory } = useSearch()
-  const cookPhone: any = Cookies.get("userPhone")
   const { category } = useAppSelector(state => state.searches)
   const [characteristics, setСharacteristics] = useState<any>([
     {
@@ -46,7 +45,8 @@ export default function page() {
       name_lower:"",
       category: "",
       description: "",
-      phone: cookPhone,
+      phone: phone,
+      dealerUid:uid,
       extraProduct: extraProduct,
       price: 0,
       sale: 0,

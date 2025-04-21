@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import { SpeedInsights } from "@vercel/speed-insights/next"
 import "./globals.css";
 import ModalProvider from "@/context/ModalProvider";
 import DetailsInfoProvider from "@/context/CardDetailsInfoProvidre";
@@ -37,6 +38,7 @@ export default function RootLayout({
             <DetailsInfoProvider>
               <NavBar />
               {children}
+              <SpeedInsights />
               <Footer />
             </DetailsInfoProvider>
           </ModalProvider>
