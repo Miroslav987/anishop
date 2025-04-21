@@ -177,7 +177,7 @@ const CardDetails = ({ params }: CardDetailsProps) => {
 
 
               </div>
-              <div className="text-justify !font-[MullerLight] tracking-wide">{state.content}</div>
+              <div className="text-justify font-[MullerLight] tracking-wide">{state.content}</div>
             </div>
           </>
             : null}

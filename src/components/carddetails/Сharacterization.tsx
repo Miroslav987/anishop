@@ -8,7 +8,7 @@ export default function Сharacterization({characterization}:any) {
       {characterization.map((e:any,i:number)=>(
       <div key={i} className='flex items-end'>
         <p>{e.name}</p>
-        <div className='mx-[5px] w-full border-b-2 border-dotted'></div>
+        <div className='mx-[5px] w-full border-b-2 font-[MullerLight] border-dotted'></div>
         <p className='whitespace-nowrap'>{e.info}</p>
       </div>
     ))}
