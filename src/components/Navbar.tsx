@@ -57,9 +57,24 @@ const NavBar = () => {
   }, []);
 
 
-  if (!client) {
-    return null;
-  }
+  if (!client) 
+    return (
+      <header className={clsx(`mb-[140px] md:mb-[220px] duration-10 ease-out`)}>
+      <nav className={clsx(`flex  justify-between items-center fixed inset-0  h-[100px] md:h-[142px] bottom-auto z-20  bg-white shadow-md duration-200 md:duration-10 ease-out px-[20px] lg:px-0`,
+        {
+          "!h-[100px] ": srollNav,
+          "transform -translate-y-full": srollNavMob
+        })}>
+
+
+      </nav>
+      <nav className='fixed bottom-[0] inset-x-0 z-10 px-[20px] py-[18px] h-[84px] bg-white  rounded-[10px] shadow-shadow_first md:hidden'>
+
+      </nav>
+    </header>
+  
+    )
+  
   return (
     <header className={clsx(`mb-[140px] md:mb-[220px] duration-10 ease-out`)}>
       <nav className={clsx(`flex  justify-between items-center fixed inset-0  h-[100px] md:h-[142px] bottom-auto z-20  bg-white shadow-md duration-200 md:duration-10 ease-out px-[20px] lg:px-0`,
