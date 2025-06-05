@@ -31,6 +31,9 @@ export default function RootLayout({
 }>) {
   return (<>
     <html lang="ru">
+      <head>
+      <meta name="theme-color" content="#20CF5B" />
+      </head>
       <body className="antialiased">
 
         <StoreProvider>

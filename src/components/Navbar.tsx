@@ -27,7 +27,6 @@ const NavBar = () => {
     const handleScroll = () => {
       const windowScroll = window.scrollY;
       const windowWidth = window.innerWidth;
-//  && pathname === '/'
       if (windowWidth >= 768) {
         if (windowScroll <= 40) {
           setScrollNav(false);
@@ -36,7 +35,6 @@ const NavBar = () => {
         }
 
       } else {
-        // && pathname === '/'
         if (windowScroll > lastScrollRef.current ) {
           setScrollNavMob(true);
         } else {

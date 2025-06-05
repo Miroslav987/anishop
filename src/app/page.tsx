@@ -13,6 +13,7 @@ import Sorting from '../components/Sorting';
 import { useProduct } from '@/lib/features/products/ProductServer';
 import CardLoad from '@/components/cards/CardLoad';
 import { useUser } from '@/lib/features/users/UserServer';
+import Link from 'next/link';
 
 const fetchProducts = async (sort: any, category: string) => {
   let productsSearch: any[] = [];
@@ -50,18 +51,17 @@ const HomePageContent  = () => {
     fetchData();
   }, [sort, category]);
 
-    // useEffect(() => {
-    //   if (uid) { GetProfile(uid) }
-    // }, []);
+
 
   useEffect(() => {
     GetProducts();
   }, []);
-
+ 
   return (
     <>
       <div className="flex justify-between gap-[50px] container">
         <div className="w-full flex flex-col overflow-hidden">
+           
           <div className="flex flex-col gap-[34px] px-[20px] xl:px-0 md:gap-[50px]">
             <SearchCategory />
             <Sorting />
@@ -83,7 +83,7 @@ const HomePageContent  = () => {
 
 const HomePage = () => {
   return (
-    <Suspense fallback={<div>Загрузка...</div>}>
+    <Suspense fallback={<div className='loading'><p>Загрузка...</p></div>}>
       <HomePageContent />
     </Suspense>
   );

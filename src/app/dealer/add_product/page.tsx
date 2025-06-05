@@ -14,13 +14,16 @@ import { deleteObject, getDownloadURL, listAll, ref, uploadBytes } from "firebas
 import { useProduct } from "@/lib/features/products/ProductServer";
 import { useAppSelector } from "@/lib/hooks";
 import { useSearch } from "@/lib/features/search/SearchesServer";
+import Loading from "@/ui/Loading";
 
 
-export default function page() {
-  const {email , phone,uid} = useAppSelector(state=> state.user.user)
+export default function AddProduct() {
+  const { email, phone, uid } = useAppSelector(state => state.user.user)
   const { AddEditProduct } = useProduct()
   const { Getcategory } = useSearch()
   const { category } = useAppSelector(state => state.searches)
+  const [loadImg, setLoadImg] = useState(false)
+  const [tempImg, setTempImg] = useState<any>([[],[],[],[],[]])
   const [characteristics, setСharacteristics] = useState<any>([
     {
       name: "",
@@ -42,40 +45,18 @@ export default function page() {
   const [product, setProduct] = useState<any>(
     {
       name: "",
-      name_lower:"",
+      name_lower: "",
       category: "",
       description: "",
       phone: phone,
-      dealerUid:uid,
+      dealerUid: uid,
       extraProduct: extraProduct,
       price: 0,
       sale: 0,
-      email:email,
+      email: email,
       id: uuidv4()
     }
   )
-
-
-  // const Product = {
-  //   name: "",
-  //   name_lower:"",
-  //   category: "",
-  //   description: "",
-  //   phone: cookPhone,
-  //   extraProduct: [{
-  //     color: "#000000",
-  //     characteristics: [{
-  //       name: "",
-  //       info: ""
-  //     }],
-  //     images: [],
-  //     price: 0,
-  //     sale: 0,
-  //     quantity: 0,
-  //     id: uuidv4(),
-  //   }],
-  //   id: uuidv4()
-  // }
 
 
   const handleNameChange = (e: any) => {
@@ -134,7 +115,7 @@ export default function page() {
     setExtraProduct(updatedExtraProduct);
 
   }
-console.log(product);
+  
 
   const handleCharacteristicChange = (indexProduct: number, index: number, e: any) => {
     const updateCharacteristic: any = [...characteristics];
@@ -230,7 +211,32 @@ console.log(product);
   };
 
 
+//   const handleImgsChange = async (indexProduct: any, e: any) => {
+//     setLoadImg(true)
+//     const files = e.files
+//     const imageUrls: string[] = [];
+//     const mainProductFolder = `tempImages/${product.id}`;
+//     const additionalProductFolder = `${mainProductFolder}/extraProduct${indexProduct}`;
+
+//     for (let index = 0; index < files.length; index++) {
+//       const file: any = files[index];
+//       const response: any = await fetch(URL.createObjectURL(file));
+
+//       const imageRef = ref(storage, `${additionalProductFolder}/${index}`);
+//       const blob = await response.blob();
+//       await uploadBytes(imageRef, blob);
+//       const imageUrl = await getDownloadURL(imageRef);
+//       imageUrls.push(imageUrl);
+//     }
+//     // console.log(imageUrls);
+//     setTempImg([...tempImg[indexProduct], imageUrls])
+// //  setTempImg([...tempImg, imageUrls])
+//     setLoadImg(false)
+//   }
+// console.log(tempImg);
+
   const handleImgsChange = async (indexProduct: any, e: any) => {
+    setLoadImg(true)
     const files = e.files
     const imageUrls: string[] = [];
     const mainProductFolder = `productImages/${product.id}`;
@@ -253,6 +259,7 @@ console.log(product);
     };
     setExtraProduct(updatedExtraProduct);
     setProduct(({ ...product, extraProduct: updatedExtraProduct, }));
+    setLoadImg(false)
   }
 
 
@@ -371,20 +378,23 @@ console.log(product);
                 />
               </div>
               <div className="w-full">
-                <Swiper
-                  loop={true}
-                  modules={[Navigation]}
-                  navigation={true}
-                  spaceBetween={20}
-                  className="w-full"
-                  slidesPerView={3}
-                >
-                  {productExtra.images.map((file: any, i: number) =>
-                    <SwiperSlide key={i} className="flex justify-center">
-                      <img className="w-full rounded-[10px]" src={file} alt="" />
-                    </SwiperSlide>
-                  )}
-                </Swiper>
+                {loadImg ? <Loading/>
+                  :
+                  <Swiper
+                    loop={true}
+                    modules={[Navigation]}
+                    navigation={true}
+                    spaceBetween={20}
+                    className="w-full"
+                    slidesPerView={3}
+                  >
+                    {productExtra.images.map((file: any, i: number) =>
+                      <SwiperSlide key={i} className="flex justify-center">
+                        <img className="w-full rounded-[10px]" src={file} alt="" />
+                      </SwiperSlide>
+                    )}
+                  </Swiper>
+                }
               </div>
               <div className="flex flex-col gap-[20px] ">
                 {productExtra.characteristics.map((product: any, index: number) =>
