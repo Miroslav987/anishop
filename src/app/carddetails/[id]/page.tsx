@@ -154,7 +154,7 @@ const CardDetails = ({ params }: CardDetailsProps) => {
                        {/* <button onClick={() => AddBasketProduct(basketproduct)} className='flex items-center justify-center gap-[10px] border-[1.5px] py-[16px] border rounded-radius border-grey_third font-[MullerBold]'>
                          Добавить в корзину
                       </button> */}
-                       <button onClick={() => basketadd(oneProduct)} className='flex items-center justify-center gap-[10px] border-[1.5px] py-[16px] border rounded-radius border-grey_third font-[MullerBold]'>
+                       <button onClick={() => basketadd(oneProduct)} className='flex items-center justify-center gap-[10px] border-[1.5px] py-[16px] rounded-radius border-grey_third font-[MullerBold]'>
                          Добавить в корзину
                       </button>
 
