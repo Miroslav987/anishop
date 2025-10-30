@@ -1,10 +1,12 @@
 "use client"
 import CardBasket from "@/components/cards/CardBasket";
+import AuthEmail from "@/components/modals/Authorization/auth/AuthEmail";
 import ConfirmClearBasket from "@/components/modals/basket/ConfirmClearBasket";
 import MakingOrdering from "@/components/modals/basket/MakingOrdering";
 import { useModal } from "@/context/ModalProvider";
 import { useBasket } from "@/lib/features/basket/BasketServer";
 import { useAppSelector } from "@/lib/hooks";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 
@@ -13,6 +15,7 @@ export default function Basket() {
   const { openModal } = useModal()
   const { AllPriceProducts } = useBasket()
   const { basket } = useAppSelector(state => state.basket)
+  const { user } = useAppSelector(state => state.user)
   let totalPrice:any =0
   
   if (basket.total_quantity) {
@@ -24,7 +27,6 @@ export default function Basket() {
   }
   useEffect(()=>{
     AllPriceProducts(totalPrice)
-    console.log(basket);
     
   },[totalPrice])
 
@@ -111,10 +113,14 @@ export default function Basket() {
               </button>
             </div> */}
 
-              
+              {user.email? 
             <button onClick={() => openModal(<MakingOrdering/>)}  className="w-full rounded-[10px] h-[60px] bg-black text-white ">
               Продолжить
+            </button>:
+            <button onClick={() => openModal(<AuthEmail/>)}  className="w-full rounded-[10px] h-[60px] bg-black text-white ">
+              Продолжить
             </button>
+            }
 
           </div>
         </div>
