@@ -6,6 +6,7 @@ import React, { useEffect, useState } from 'react'
 import CardOrderingBasket from './cards/CardOrderingBasket';
 import clsx from 'clsx';
 import { useAppSelector } from '@/lib/hooks';
+import { CardSearch } from './cards/CardSearch';
 
 
 
@@ -60,7 +61,7 @@ export default function Search() {
         <div className={clsx(`w-max md:w-[50vw] h-[80vh] md:h-[60vh]  absolute inset-0 right-[100%]  top-[80px] z-30  rounded-[10px] bg-white py-[40px] md:py-[80px] px-[20px] md:px-[60px]`, { "hidden": !search_products })}>
           <div className="w-full h-full flex flex-col items-start gap-[10px] scroll_style overflow-y-scroll">
             {search_products.map((e: any, i: number) => (
-             <div className='w-full' onClick={()=>{ setSearchStatus(false), closeModal() }}> <CardOrderingBasket key={i} product={e} /></div>
+             <div className='w-full' onClick={()=>{ setSearchStatus(false), closeModal() }}> <CardSearch key={i} product={e} /></div>
             ))}
           </div>
         </div>
